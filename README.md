@@ -55,3 +55,5 @@ https://mapperhelper.github.io/all/
 | Java | 8 |
 | SpringBoot | 2.x |
 | MySQL | 5.7.* |
+
+*上述规范参考仓库地址：https://github.com/jyannis/achieveit.git*
