@@ -18,8 +18,8 @@ class PetHospitalApplicationTests {
     @Test
     public void getPassword() {
         String url = encryptor.encrypt("");
-        String name = encryptor.encrypt("");
-        String password = encryptor.encrypt("");
+        String name = encryptor.encrypt("root");
+        String password = encryptor.encrypt("123456");
         System.out.println("database url: " + url);
         System.out.println("database name: " + name);
         System.out.println("database password: " + password);
