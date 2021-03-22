@@ -17,7 +17,7 @@ class PetHospitalApplicationTests {
      */
     @Test
     public void getPassword() {
-        String url = encryptor.encrypt("");
+        String url = encryptor.encrypt("jdbc:mysql://47.101.217.16:3306/pethospital?characterEncoding=utf-8&useSSL=false");
         String name = encryptor.encrypt("");
         String password = encryptor.encrypt("");
         System.out.println("database url: " + url);
