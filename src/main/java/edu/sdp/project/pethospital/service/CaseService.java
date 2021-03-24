@@ -1,0 +1,4 @@
+package edu.sdp.project.pethospital.service;
+
+public class CaseService {
+}

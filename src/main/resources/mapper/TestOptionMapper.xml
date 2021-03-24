@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sdp.project.pethospital.mapper.TestOptionMapper">
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.TestOption">
+    <constructor>
+      <idArg column="testOptionId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="testOptionName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goal" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="selectNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="judgeNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="qaNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="totalScore" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="selectTag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="judgeTag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="qaTag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="duration" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    testOptionId, testOptionName, goal, selectNum, judgeNum, qaNum, totalScore, selectTag, 
+    judgeTag, qaTag, duration
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from testoption
+    where testOptionId = #{testoptionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from testoption
+    where testOptionId = #{testoptionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.TestOption">
+    insert into testoption (testOptionId, testOptionName, goal, 
+      selectNum, judgeNum, qaNum, 
+      totalScore, selectTag, judgeTag, 
+      qaTag, duration)
+    values (#{testoptionid,jdbcType=INTEGER}, #{testoptionname,jdbcType=VARCHAR}, #{goal,jdbcType=INTEGER}, 
+      #{selectnum,jdbcType=INTEGER}, #{judgenum,jdbcType=INTEGER}, #{qanum,jdbcType=INTEGER}, 
+      #{totalscore,jdbcType=INTEGER}, #{selecttag,jdbcType=VARCHAR}, #{judgetag,jdbcType=VARCHAR}, 
+      #{qatag,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.TestOption">
+    insert into testoption
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="testoptionid != null">
+        testOptionId,
+      </if>
+      <if test="testoptionname != null">
+        testOptionName,
+      </if>
+      <if test="goal != null">
+        goal,
+      </if>
+      <if test="selectnum != null">
+        selectNum,
+      </if>
+      <if test="judgenum != null">
+        judgeNum,
+      </if>
+      <if test="qanum != null">
+        qaNum,
+      </if>
+      <if test="totalscore != null">
+        totalScore,
+      </if>
+      <if test="selecttag != null">
+        selectTag,
+      </if>
+      <if test="judgetag != null">
+        judgeTag,
+      </if>
+      <if test="qatag != null">
+        qaTag,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="testoptionid != null">
+        #{testoptionid,jdbcType=INTEGER},
+      </if>
+      <if test="testoptionname != null">
+        #{testoptionname,jdbcType=VARCHAR},
+      </if>
+      <if test="goal != null">
+        #{goal,jdbcType=INTEGER},
+      </if>
+      <if test="selectnum != null">
+        #{selectnum,jdbcType=INTEGER},
+      </if>
+      <if test="judgenum != null">
+        #{judgenum,jdbcType=INTEGER},
+      </if>
+      <if test="qanum != null">
+        #{qanum,jdbcType=INTEGER},
+      </if>
+      <if test="totalscore != null">
+        #{totalscore,jdbcType=INTEGER},
+      </if>
+      <if test="selecttag != null">
+        #{selecttag,jdbcType=VARCHAR},
+      </if>
+      <if test="judgetag != null">
+        #{judgetag,jdbcType=VARCHAR},
+      </if>
+      <if test="qatag != null">
+        #{qatag,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.TestOption">
+    update testoption
+    <set>
+      <if test="testoptionname != null">
+        testOptionName = #{testoptionname,jdbcType=VARCHAR},
+      </if>
+      <if test="goal != null">
+        goal = #{goal,jdbcType=INTEGER},
+      </if>
+      <if test="selectnum != null">
+        selectNum = #{selectnum,jdbcType=INTEGER},
+      </if>
+      <if test="judgenum != null">
+        judgeNum = #{judgenum,jdbcType=INTEGER},
+      </if>
+      <if test="qanum != null">
+        qaNum = #{qanum,jdbcType=INTEGER},
+      </if>
+      <if test="totalscore != null">
+        totalScore = #{totalscore,jdbcType=INTEGER},
+      </if>
+      <if test="selecttag != null">
+        selectTag = #{selecttag,jdbcType=VARCHAR},
+      </if>
+      <if test="judgetag != null">
+        judgeTag = #{judgetag,jdbcType=VARCHAR},
+      </if>
+      <if test="qatag != null">
+        qaTag = #{qatag,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=INTEGER},
+      </if>
+    </set>
+    where testOptionId = #{testoptionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.TestOption">
+    update testoption
+    set testOptionName = #{testoptionname,jdbcType=VARCHAR},
+      goal = #{goal,jdbcType=INTEGER},
+      selectNum = #{selectnum,jdbcType=INTEGER},
+      judgeNum = #{judgenum,jdbcType=INTEGER},
+      qaNum = #{qanum,jdbcType=INTEGER},
+      totalScore = #{totalscore,jdbcType=INTEGER},
+      selectTag = #{selecttag,jdbcType=VARCHAR},
+      judgeTag = #{judgetag,jdbcType=VARCHAR},
+      qaTag = #{qatag,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=INTEGER}
+    where testOptionId = #{testoptionid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.TestOption">
+    <constructor>
+      <idArg column="testOptionId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="testOptionName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="goal" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="selectNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="judgeNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="qaNum" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="totalScore" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="selectTag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="judgeTag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="qaTag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="duration" javaType="java.lang.Integer" jdbcType="INTEGER" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    testOptionId, testOptionName, goal, selectNum, judgeNum, qaNum, totalScore, selectTag, 
+    judgeTag, qaTag, duration
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from testoption
+    where testOptionId = #{testoptionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from testoption
+    where testOptionId = #{testoptionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.TestOption">
+    insert into testoption (testOptionId, testOptionName, goal, 
+      selectNum, judgeNum, qaNum, 
+      totalScore, selectTag, judgeTag, 
+      qaTag, duration)
+    values (#{testoptionid,jdbcType=INTEGER}, #{testoptionname,jdbcType=VARCHAR}, #{goal,jdbcType=INTEGER}, 
+      #{selectnum,jdbcType=INTEGER}, #{judgenum,jdbcType=INTEGER}, #{qanum,jdbcType=INTEGER}, 
+      #{totalscore,jdbcType=INTEGER}, #{selecttag,jdbcType=VARCHAR}, #{judgetag,jdbcType=VARCHAR}, 
+      #{qatag,jdbcType=VARCHAR}, #{duration,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.TestOption">
+    insert into testoption
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="testoptionid != null">
+        testOptionId,
+      </if>
+      <if test="testoptionname != null">
+        testOptionName,
+      </if>
+      <if test="goal != null">
+        goal,
+      </if>
+      <if test="selectnum != null">
+        selectNum,
+      </if>
+      <if test="judgenum != null">
+        judgeNum,
+      </if>
+      <if test="qanum != null">
+        qaNum,
+      </if>
+      <if test="totalscore != null">
+        totalScore,
+      </if>
+      <if test="selecttag != null">
+        selectTag,
+      </if>
+      <if test="judgetag != null">
+        judgeTag,
+      </if>
+      <if test="qatag != null">
+        qaTag,
+      </if>
+      <if test="duration != null">
+        duration,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="testoptionid != null">
+        #{testoptionid,jdbcType=INTEGER},
+      </if>
+      <if test="testoptionname != null">
+        #{testoptionname,jdbcType=VARCHAR},
+      </if>
+      <if test="goal != null">
+        #{goal,jdbcType=INTEGER},
+      </if>
+      <if test="selectnum != null">
+        #{selectnum,jdbcType=INTEGER},
+      </if>
+      <if test="judgenum != null">
+        #{judgenum,jdbcType=INTEGER},
+      </if>
+      <if test="qanum != null">
+        #{qanum,jdbcType=INTEGER},
+      </if>
+      <if test="totalscore != null">
+        #{totalscore,jdbcType=INTEGER},
+      </if>
+      <if test="selecttag != null">
+        #{selecttag,jdbcType=VARCHAR},
+      </if>
+      <if test="judgetag != null">
+        #{judgetag,jdbcType=VARCHAR},
+      </if>
+      <if test="qatag != null">
+        #{qatag,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        #{duration,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.TestOption">
+    update testoption
+    <set>
+      <if test="testoptionname != null">
+        testOptionName = #{testoptionname,jdbcType=VARCHAR},
+      </if>
+      <if test="goal != null">
+        goal = #{goal,jdbcType=INTEGER},
+      </if>
+      <if test="selectnum != null">
+        selectNum = #{selectnum,jdbcType=INTEGER},
+      </if>
+      <if test="judgenum != null">
+        judgeNum = #{judgenum,jdbcType=INTEGER},
+      </if>
+      <if test="qanum != null">
+        qaNum = #{qanum,jdbcType=INTEGER},
+      </if>
+      <if test="totalscore != null">
+        totalScore = #{totalscore,jdbcType=INTEGER},
+      </if>
+      <if test="selecttag != null">
+        selectTag = #{selecttag,jdbcType=VARCHAR},
+      </if>
+      <if test="judgetag != null">
+        judgeTag = #{judgetag,jdbcType=VARCHAR},
+      </if>
+      <if test="qatag != null">
+        qaTag = #{qatag,jdbcType=VARCHAR},
+      </if>
+      <if test="duration != null">
+        duration = #{duration,jdbcType=INTEGER},
+      </if>
+    </set>
+    where testOptionId = #{testoptionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.TestOption">
+    update testoption
+    set testOptionName = #{testoptionname,jdbcType=VARCHAR},
+      goal = #{goal,jdbcType=INTEGER},
+      selectNum = #{selectnum,jdbcType=INTEGER},
+      judgeNum = #{judgenum,jdbcType=INTEGER},
+      qaNum = #{qanum,jdbcType=INTEGER},
+      totalScore = #{totalscore,jdbcType=INTEGER},
+      selectTag = #{selecttag,jdbcType=VARCHAR},
+      judgeTag = #{judgetag,jdbcType=VARCHAR},
+      qaTag = #{qatag,jdbcType=VARCHAR},
+      duration = #{duration,jdbcType=INTEGER}
+    where testOptionId = #{testoptionid,jdbcType=INTEGER}
+  </update>
+</mapper>

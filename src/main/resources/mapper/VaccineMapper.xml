@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sdp.project.pethospital.mapper.VaccineMapper">
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.Vaccine">
+    <constructor>
+      <idArg column="vacId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="vacName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="vacDescrip" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    vacId, vacName, vacDescrip
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from vaccine
+    where vacId = #{vacid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from vaccine
+    where vacId = #{vacid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.Vaccine">
+    insert into vaccine (vacId, vacName, vacDescrip
+      )
+    values (#{vacid,jdbcType=INTEGER}, #{vacname,jdbcType=VARCHAR}, #{vacdescrip,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.Vaccine">
+    insert into vaccine
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="vacid != null">
+        vacId,
+      </if>
+      <if test="vacname != null">
+        vacName,
+      </if>
+      <if test="vacdescrip != null">
+        vacDescrip,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="vacid != null">
+        #{vacid,jdbcType=INTEGER},
+      </if>
+      <if test="vacname != null">
+        #{vacname,jdbcType=VARCHAR},
+      </if>
+      <if test="vacdescrip != null">
+        #{vacdescrip,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.Vaccine">
+    update vaccine
+    <set>
+      <if test="vacname != null">
+        vacName = #{vacname,jdbcType=VARCHAR},
+      </if>
+      <if test="vacdescrip != null">
+        vacDescrip = #{vacdescrip,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where vacId = #{vacid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.Vaccine">
+    update vaccine
+    set vacName = #{vacname,jdbcType=VARCHAR},
+      vacDescrip = #{vacdescrip,jdbcType=VARCHAR}
+    where vacId = #{vacid,jdbcType=INTEGER}
+  </update>
+</mapper>

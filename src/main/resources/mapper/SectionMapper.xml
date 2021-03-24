@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sdp.project.pethospital.mapper.SectionMapper">
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.Section">
+    <constructor>
+      <idArg column="sectionId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="sectionName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="recDescrip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="docDescrip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="asisDescrip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="sectionImageUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    sectionId, sectionName, recDescrip, docDescrip, asisDescrip, sectionImageUrl
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from section
+    where sectionId = #{sectionid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from section
+    where sectionId = #{sectionid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.Section">
+    insert into section (sectionId, sectionName, recDescrip, 
+      docDescrip, asisDescrip, sectionImageUrl
+      )
+    values (#{sectionid,jdbcType=INTEGER}, #{sectionname,jdbcType=VARCHAR}, #{recdescrip,jdbcType=VARCHAR}, 
+      #{docdescrip,jdbcType=VARCHAR}, #{asisdescrip,jdbcType=VARCHAR}, #{sectionimageurl,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.Section">
+    insert into section
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="sectionid != null">
+        sectionId,
+      </if>
+      <if test="sectionname != null">
+        sectionName,
+      </if>
+      <if test="recdescrip != null">
+        recDescrip,
+      </if>
+      <if test="docdescrip != null">
+        docDescrip,
+      </if>
+      <if test="asisdescrip != null">
+        asisDescrip,
+      </if>
+      <if test="sectionimageurl != null">
+        sectionImageUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="sectionid != null">
+        #{sectionid,jdbcType=INTEGER},
+      </if>
+      <if test="sectionname != null">
+        #{sectionname,jdbcType=VARCHAR},
+      </if>
+      <if test="recdescrip != null">
+        #{recdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="docdescrip != null">
+        #{docdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="asisdescrip != null">
+        #{asisdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionimageurl != null">
+        #{sectionimageurl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.Section">
+    update section
+    <set>
+      <if test="sectionname != null">
+        sectionName = #{sectionname,jdbcType=VARCHAR},
+      </if>
+      <if test="recdescrip != null">
+        recDescrip = #{recdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="docdescrip != null">
+        docDescrip = #{docdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="asisdescrip != null">
+        asisDescrip = #{asisdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="sectionimageurl != null">
+        sectionImageUrl = #{sectionimageurl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sectionId = #{sectionid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.Section">
+    update section
+    set sectionName = #{sectionname,jdbcType=VARCHAR},
+      recDescrip = #{recdescrip,jdbcType=VARCHAR},
+      docDescrip = #{docdescrip,jdbcType=VARCHAR},
+      asisDescrip = #{asisdescrip,jdbcType=VARCHAR},
+      sectionImageUrl = #{sectionimageurl,jdbcType=VARCHAR}
+    where sectionId = #{sectionid,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,72 +1,46 @@
 package edu.sdp.project.pethospital.entity;
 
-import java.sql.Timestamp;
+import java.util.Date;
 
-public class Test {
-    private int testId;
-    private int userId;
-    private int testOptionId;
-    private Timestamp beginDate;
-    private Timestamp endDate;
-    private int score;
+public class Test extends TestKey {
+    private Date begindate;
 
-    public Test() {
-    }
+    private Date enddate;
 
-    public Test(int testId, int userId, int testOptionId, Timestamp beginDate, Timestamp endDate, int score) {
-        this.testId = testId;
-        this.userId = userId;
-        this.testOptionId = testOptionId;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
+    private Integer score;
+
+    public Test(Integer testid, Integer userid, Integer testoptionid, Date begindate, Date enddate, Integer score) {
+        super(testid, userid, testoptionid);
+        this.begindate = begindate;
+        this.enddate = enddate;
         this.score = score;
     }
 
-    public int getTestId() {
-        return testId;
+    public Test() {
+        super();
     }
 
-    public void setTestId(int testId) {
-        this.testId = testId;
+    public Date getBegindate() {
+        return begindate;
     }
 
-    public int getTestOptionId() {
-        return testOptionId;
+    public void setBegindate(Date begindate) {
+        this.begindate = begindate;
     }
 
-    public void setTestOptionId(int testOptionId) {
-        this.testOptionId = testOptionId;
+    public Date getEnddate() {
+        return enddate;
     }
 
-    public Timestamp getBeginDate() {
-        return beginDate;
+    public void setEnddate(Date enddate) {
+        this.enddate = enddate;
     }
 
-    public void setBeginDate(Timestamp beginDate) {
-        this.beginDate = beginDate;
-    }
-
-    public Timestamp getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Timestamp endDate) {
-        this.endDate = endDate;
-    }
-
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
-    }
-
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
     }
 }

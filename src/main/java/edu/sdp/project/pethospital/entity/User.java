@@ -1,16 +1,19 @@
 package edu.sdp.project.pethospital.entity;
 
+import java.util.Map;
+
 public class User {
-    private int userId=0;
-    private String account ;
-    private String name ;
-    private String password ;
-    private String role ;
+    private Integer userId;
 
-    public User() {
-    }
+    private String account;
 
-    public User(int userId, String account, String name, String password, String role) {
+    private String name;
+
+    private String password;
+
+    private String role;
+
+    public User(Integer userId, String account, String name, String password, String role) {
         this.userId = userId;
         this.account = account;
         this.name = name;
@@ -18,11 +21,15 @@ public class User {
         this.role = role;
     }
 
-    public int getUserId() {
+    public User() {
+        super();
+    }
+
+    public Integer getuserId() {
         return userId;
     }
 
-    public void setUserId(int userId) {
+    public void setuserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -31,7 +38,7 @@ public class User {
     }
 
     public void setAccount(String account) {
-        this.account = account;
+        this.account = account == null ? null : account.trim();
     }
 
     public String getName() {
@@ -39,7 +46,7 @@ public class User {
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.name = name == null ? null : name.trim();
     }
 
     public String getPassword() {
@@ -47,7 +54,7 @@ public class User {
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.password = password == null ? null : password.trim();
     }
 
     public String getRole() {
@@ -55,6 +62,19 @@ public class User {
     }
 
     public void setRole(String role) {
-        this.role = role;
+        this.role = role == null ? null : role.trim();
+    }
+    public void updateUser(Map params) {
+        if (params.containsKey("userId"))
+            this.userId = Integer.valueOf(params.get("userId").toString());
+        if (params.containsKey("name"))
+            this.name = params.get("name").toString();
+        if (params.containsKey("password"))
+            this.password = params.get("password").toString();
+        if (params.containsKey("account"))
+            this.account = params.get("account").toString();
+        if (params.containsKey("role"))
+            this.role = params.get("role").toString();
+
     }
 }

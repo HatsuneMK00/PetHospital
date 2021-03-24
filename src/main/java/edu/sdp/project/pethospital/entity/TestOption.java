@@ -1,120 +1,131 @@
 package edu.sdp.project.pethospital.entity;
 
 public class TestOption {
-    private int testOptionId;
-    private String testOptionName;
-    private int goal;
-    private int selectNum;
-    private int judgeNum;
-    private int qaNum;
-    private int totalNum;
-    private String varTag;
-    private String judgeTag;
-    private String qaTag;
-    private long duration;
+    private Integer testoptionid;
 
-    public TestOption() {
-    }
+    private String testoptionname;
 
-    public TestOption(int testOptionId, String testOptionName, int goal, int selectNum, int judgeNum, int qaNum, int totalNum, String varTag, String judgeTag, String qaTag, long duration) {
-        this.testOptionId = testOptionId;
-        this.testOptionName = testOptionName;
+    private Integer goal;
+
+    private Integer selectnum;
+
+    private Integer judgenum;
+
+    private Integer qanum;
+
+    private Integer totalscore;
+
+    private String selecttag;
+
+    private String judgetag;
+
+    private String qatag;
+
+    private Integer duration;
+
+    public TestOption(Integer testoptionid, String testoptionname, Integer goal, Integer selectnum, Integer judgenum, Integer qanum, Integer totalscore, String selecttag, String judgetag, String qatag, Integer duration) {
+        this.testoptionid = testoptionid;
+        this.testoptionname = testoptionname;
         this.goal = goal;
-        this.selectNum = selectNum;
-        this.judgeNum = judgeNum;
-        this.qaNum = qaNum;
-        this.totalNum = totalNum;
-        this.varTag = varTag;
-        this.judgeTag = judgeTag;
-        this.qaTag = qaTag;
+        this.selectnum = selectnum;
+        this.judgenum = judgenum;
+        this.qanum = qanum;
+        this.totalscore = totalscore;
+        this.selecttag = selecttag;
+        this.judgetag = judgetag;
+        this.qatag = qatag;
         this.duration = duration;
     }
 
-    public int getTestOptionId() {
-        return testOptionId;
+    public TestOption() {
+        super();
     }
 
-    public void setTestOptionId(int testOptionId) {
-        this.testOptionId = testOptionId;
+    public Integer getTestoptionid() {
+        return testoptionid;
     }
 
-    public String getTestOptionName() {
-        return testOptionName;
+    public void setTestoptionid(Integer testoptionid) {
+        this.testoptionid = testoptionid;
     }
 
-    public void setTestOptionName(String testOptionName) {
-        this.testOptionName = testOptionName;
+    public String getTestoptionname() {
+        return testoptionname;
     }
 
-    public int getGoal() {
+    public void setTestoptionname(String testoptionname) {
+        this.testoptionname = testoptionname == null ? null : testoptionname.trim();
+    }
+
+    public Integer getGoal() {
         return goal;
     }
 
-    public void setGoal(int goal) {
+    public void setGoal(Integer goal) {
         this.goal = goal;
     }
 
-    public int getSelectNum() {
-        return selectNum;
+    public Integer getSelectnum() {
+        return selectnum;
     }
 
-    public void setSelectNum(int selectNum) {
-        this.selectNum = selectNum;
+    public void setSelectnum(Integer selectnum) {
+        this.selectnum = selectnum;
     }
 
-    public int getJudgeNum() {
-        return judgeNum;
+    public Integer getJudgenum() {
+        return judgenum;
     }
 
-    public void setJudgeNum(int judgeNum) {
-        this.judgeNum = judgeNum;
+    public void setJudgenum(Integer judgenum) {
+        this.judgenum = judgenum;
     }
 
-    public int getQaNum() {
-        return qaNum;
+    public Integer getQanum() {
+        return qanum;
     }
 
-    public void setQaNum(int qaNum) {
-        this.qaNum = qaNum;
+    public void setQanum(Integer qanum) {
+        this.qanum = qanum;
     }
 
-    public int getTotalNum() {
-        return totalNum;
+    public Integer getTotalscore() {
+        return totalscore;
     }
 
-    public void setTotalNum(int totalNum) {
-        this.totalNum = totalNum;
+    public void setTotalscore(Integer totalscore) {
+        this.totalscore = totalscore;
     }
 
-    public String getVarTag() {
-        return varTag;
+    public String getSelecttag() {
+        return selecttag;
     }
 
-    public void setVarTag(String varTag) {
-        this.varTag = varTag;
+    public void setSelecttag(String selecttag) {
+        this.selecttag = selecttag == null ? null : selecttag.trim();
     }
 
-    public String getJudgeTag() {
-        return judgeTag;
+    public String getJudgetag() {
+        return judgetag;
     }
 
-    public void setJudgeTag(String judgeTag) {
-        this.judgeTag = judgeTag;
+    public void setJudgetag(String judgetag) {
+        this.judgetag = judgetag == null ? null : judgetag.trim();
     }
 
-    public String getQaTag() {
-        return qaTag;
+    public String getQatag() {
+        return qatag;
     }
 
-    public void setQaTag(String qaTag) {
-        this.qaTag = qaTag;
+    public void setQatag(String qatag) {
+        this.qatag = qatag == null ? null : qatag.trim();
     }
 
-    public long getDuration() {
+    public Integer getDuration() {
         return duration;
     }
 
-    public void setDuration(long duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 }

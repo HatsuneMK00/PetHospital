@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sdp.project.pethospital.mapper.CaseResultMapper">
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.CaseResult">
+    <constructor>
+      <idArg column="caseResultId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resultDescrip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resultImageUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resultVideoUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    caseResultId, resultDescrip, resultImageUrl, resultVideoUrl
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from caseresult
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from caseresult
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    insert into caseresult (caseResultId, resultDescrip, resultImageUrl, 
+      resultVideoUrl)
+    values (#{caseresultid,jdbcType=INTEGER}, #{resultdescrip,jdbcType=VARCHAR}, #{resultimageurl,jdbcType=VARCHAR}, 
+      #{resultvideourl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    insert into caseresult
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseresultid != null">
+        caseResultId,
+      </if>
+      <if test="resultdescrip != null">
+        resultDescrip,
+      </if>
+      <if test="resultimageurl != null">
+        resultImageUrl,
+      </if>
+      <if test="resultvideourl != null">
+        resultVideoUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseresultid != null">
+        #{caseresultid,jdbcType=INTEGER},
+      </if>
+      <if test="resultdescrip != null">
+        #{resultdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="resultimageurl != null">
+        #{resultimageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="resultvideourl != null">
+        #{resultvideourl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    update caseresult
+    <set>
+      <if test="resultdescrip != null">
+        resultDescrip = #{resultdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="resultimageurl != null">
+        resultImageUrl = #{resultimageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="resultvideourl != null">
+        resultVideoUrl = #{resultvideourl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    update caseresult
+    set resultDescrip = #{resultdescrip,jdbcType=VARCHAR},
+      resultImageUrl = #{resultimageurl,jdbcType=VARCHAR},
+      resultVideoUrl = #{resultvideourl,jdbcType=VARCHAR}
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.CaseResult">
+    <constructor>
+      <idArg column="caseResultId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resultDescrip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resultImageUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resultVideoUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    caseResultId, resultDescrip, resultImageUrl, resultVideoUrl
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from caseresult
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from caseresult
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    insert into caseresult (caseResultId, resultDescrip, resultImageUrl, 
+      resultVideoUrl)
+    values (#{caseresultid,jdbcType=INTEGER}, #{resultdescrip,jdbcType=VARCHAR}, #{resultimageurl,jdbcType=VARCHAR}, 
+      #{resultvideourl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    insert into caseresult
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseresultid != null">
+        caseResultId,
+      </if>
+      <if test="resultdescrip != null">
+        resultDescrip,
+      </if>
+      <if test="resultimageurl != null">
+        resultImageUrl,
+      </if>
+      <if test="resultvideourl != null">
+        resultVideoUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseresultid != null">
+        #{caseresultid,jdbcType=INTEGER},
+      </if>
+      <if test="resultdescrip != null">
+        #{resultdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="resultimageurl != null">
+        #{resultimageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="resultvideourl != null">
+        #{resultvideourl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    update caseresult
+    <set>
+      <if test="resultdescrip != null">
+        resultDescrip = #{resultdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="resultimageurl != null">
+        resultImageUrl = #{resultimageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="resultvideourl != null">
+        resultVideoUrl = #{resultvideourl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    update caseresult
+    set resultDescrip = #{resultdescrip,jdbcType=VARCHAR},
+      resultImageUrl = #{resultimageurl,jdbcType=VARCHAR},
+      resultVideoUrl = #{resultvideourl,jdbcType=VARCHAR}
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.CaseResult">
+    <constructor>
+      <idArg column="caseResultId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="resultDescrip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resultImageUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="resultVideoUrl" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    caseResultId, resultDescrip, resultImageUrl, resultVideoUrl
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from caseresult
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from caseresult
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    insert into caseresult (caseResultId, resultDescrip, resultImageUrl, 
+      resultVideoUrl)
+    values (#{caseresultid,jdbcType=INTEGER}, #{resultdescrip,jdbcType=VARCHAR}, #{resultimageurl,jdbcType=VARCHAR}, 
+      #{resultvideourl,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    insert into caseresult
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseresultid != null">
+        caseResultId,
+      </if>
+      <if test="resultdescrip != null">
+        resultDescrip,
+      </if>
+      <if test="resultimageurl != null">
+        resultImageUrl,
+      </if>
+      <if test="resultvideourl != null">
+        resultVideoUrl,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseresultid != null">
+        #{caseresultid,jdbcType=INTEGER},
+      </if>
+      <if test="resultdescrip != null">
+        #{resultdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="resultimageurl != null">
+        #{resultimageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="resultvideourl != null">
+        #{resultvideourl,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    update caseresult
+    <set>
+      <if test="resultdescrip != null">
+        resultDescrip = #{resultdescrip,jdbcType=VARCHAR},
+      </if>
+      <if test="resultimageurl != null">
+        resultImageUrl = #{resultimageurl,jdbcType=VARCHAR},
+      </if>
+      <if test="resultvideourl != null">
+        resultVideoUrl = #{resultvideourl,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.CaseResult">
+    update caseresult
+    set resultDescrip = #{resultdescrip,jdbcType=VARCHAR},
+      resultImageUrl = #{resultimageurl,jdbcType=VARCHAR},
+      resultVideoUrl = #{resultvideourl,jdbcType=VARCHAR}
+    where caseResultId = #{caseresultid,jdbcType=INTEGER}
+  </update>
+</mapper>

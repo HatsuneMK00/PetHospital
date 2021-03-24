@@ -1,19 +1,22 @@
 package edu.sdp.project.pethospital.entity;
 
 public class Question {
-    private int quesId;
+    private Integer quesid;
+
     private String type;
+
     private String descrip;
+
     private String answer;
-    private int score;
+
+    private Integer score;
+
     private String image;
+
     private String tag;
 
-    public Question() {
-    }
-
-    public Question(int quesId, String type, String descrip, String answer, int score, String image, String tag) {
-        this.quesId = quesId;
+    public Question(Integer quesid, String type, String descrip, String answer, Integer score, String image, String tag) {
+        this.quesid = quesid;
         this.type = type;
         this.descrip = descrip;
         this.answer = answer;
@@ -22,12 +25,16 @@ public class Question {
         this.tag = tag;
     }
 
-    public int getQuesId() {
-        return quesId;
+    public Question() {
+        super();
     }
 
-    public void setQuesId(int quesId) {
-        this.quesId = quesId;
+    public Integer getQuesid() {
+        return quesid;
+    }
+
+    public void setQuesid(Integer quesid) {
+        this.quesid = quesid;
     }
 
     public String getType() {
@@ -35,7 +42,7 @@ public class Question {
     }
 
     public void setType(String type) {
-        this.type = type;
+        this.type = type == null ? null : type.trim();
     }
 
     public String getDescrip() {
@@ -43,7 +50,7 @@ public class Question {
     }
 
     public void setDescrip(String descrip) {
-        this.descrip = descrip;
+        this.descrip = descrip == null ? null : descrip.trim();
     }
 
     public String getAnswer() {
@@ -51,14 +58,14 @@ public class Question {
     }
 
     public void setAnswer(String answer) {
-        this.answer = answer;
+        this.answer = answer == null ? null : answer.trim();
     }
 
-    public int getScore() {
+    public Integer getScore() {
         return score;
     }
 
-    public void setScore(int score) {
+    public void setScore(Integer score) {
         this.score = score;
     }
 
@@ -67,7 +74,7 @@ public class Question {
     }
 
     public void setImage(String image) {
-        this.image = image;
+        this.image = image == null ? null : image.trim();
     }
 
     public String getTag() {
@@ -75,6 +82,6 @@ public class Question {
     }
 
     public void setTag(String tag) {
-        this.tag = tag;
+        this.tag = tag == null ? null : tag.trim();
     }
 }

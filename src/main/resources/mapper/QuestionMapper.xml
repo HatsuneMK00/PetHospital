@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sdp.project.pethospital.mapper.QuestionMapper">
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.Question">
+    <constructor>
+      <idArg column="quesId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="descrip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="answer" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="score" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="image" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tag" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    quesId, type, descrip, answer, score, image, tag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ques
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ques
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.Question">
+    insert into ques (quesId, type, descrip, 
+      answer, score, image, 
+      tag)
+    values (#{quesid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{descrip,jdbcType=VARCHAR}, 
+      #{answer,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, 
+      #{tag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.Question">
+    insert into ques
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="quesid != null">
+        quesId,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="descrip != null">
+        descrip,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="quesid != null">
+        #{quesid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="descrip != null">
+        #{descrip,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.Question">
+    update ques
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="descrip != null">
+        descrip = #{descrip,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.Question">
+    update ques
+    set type = #{type,jdbcType=VARCHAR},
+      descrip = #{descrip,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR}
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.Question">
+    <constructor>
+      <idArg column="quesId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="type" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="descrip" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="answer" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="score" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="image" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="tag" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    quesId, type, descrip, answer, score, image, tag
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from ques
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from ques
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.Question">
+    insert into ques (quesId, type, descrip, 
+      answer, score, image, 
+      tag)
+    values (#{quesid,jdbcType=INTEGER}, #{type,jdbcType=VARCHAR}, #{descrip,jdbcType=VARCHAR}, 
+      #{answer,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, #{image,jdbcType=VARCHAR}, 
+      #{tag,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.Question">
+    insert into ques
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="quesid != null">
+        quesId,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+      <if test="descrip != null">
+        descrip,
+      </if>
+      <if test="answer != null">
+        answer,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="image != null">
+        image,
+      </if>
+      <if test="tag != null">
+        tag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="quesid != null">
+        #{quesid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="descrip != null">
+        #{descrip,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="image != null">
+        #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        #{tag,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.Question">
+    update ques
+    <set>
+      <if test="type != null">
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="descrip != null">
+        descrip = #{descrip,jdbcType=VARCHAR},
+      </if>
+      <if test="answer != null">
+        answer = #{answer,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="image != null">
+        image = #{image,jdbcType=VARCHAR},
+      </if>
+      <if test="tag != null">
+        tag = #{tag,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.Question">
+    update ques
+    set type = #{type,jdbcType=VARCHAR},
+      descrip = #{descrip,jdbcType=VARCHAR},
+      answer = #{answer,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      image = #{image,jdbcType=VARCHAR},
+      tag = #{tag,jdbcType=VARCHAR}
+    where quesId = #{quesid,jdbcType=INTEGER}
+  </update>
+</mapper>

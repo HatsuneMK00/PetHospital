@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.sdp.project.pethospital.mapper.CaseMapper">
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.Case">
+    <constructor>
+      <idArg column="caseId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="caseName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseConsult" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseDiag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseTherapy" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    caseId, caseName, caseConsult, caseDiag, caseTherapy
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from case
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from case
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.Case">
+    insert into case (caseId, caseName, caseConsult, 
+      caseDiag, caseTherapy)
+    values (#{caseid,jdbcType=INTEGER}, #{casename,jdbcType=VARCHAR}, #{caseconsult,jdbcType=VARCHAR}, 
+      #{casediag,jdbcType=VARCHAR}, #{casetherapy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.Case">
+    insert into case
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseid != null">
+        caseId,
+      </if>
+      <if test="casename != null">
+        caseName,
+      </if>
+      <if test="caseconsult != null">
+        caseConsult,
+      </if>
+      <if test="casediag != null">
+        caseDiag,
+      </if>
+      <if test="casetherapy != null">
+        caseTherapy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseid != null">
+        #{caseid,jdbcType=INTEGER},
+      </if>
+      <if test="casename != null">
+        #{casename,jdbcType=VARCHAR},
+      </if>
+      <if test="caseconsult != null">
+        #{caseconsult,jdbcType=VARCHAR},
+      </if>
+      <if test="casediag != null">
+        #{casediag,jdbcType=VARCHAR},
+      </if>
+      <if test="casetherapy != null">
+        #{casetherapy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.Case">
+    update case
+    <set>
+      <if test="casename != null">
+        caseName = #{casename,jdbcType=VARCHAR},
+      </if>
+      <if test="caseconsult != null">
+        caseConsult = #{caseconsult,jdbcType=VARCHAR},
+      </if>
+      <if test="casediag != null">
+        caseDiag = #{casediag,jdbcType=VARCHAR},
+      </if>
+      <if test="casetherapy != null">
+        caseTherapy = #{casetherapy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.Case">
+    update case
+    set caseName = #{casename,jdbcType=VARCHAR},
+      caseConsult = #{caseconsult,jdbcType=VARCHAR},
+      caseDiag = #{casediag,jdbcType=VARCHAR},
+      caseTherapy = #{casetherapy,jdbcType=VARCHAR}
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.Case">
+    <constructor>
+      <idArg column="caseId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="caseName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseConsult" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseDiag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseTherapy" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    caseId, caseName, caseConsult, caseDiag, caseTherapy
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from case
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from case
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.Case">
+    insert into case (caseId, caseName, caseConsult, 
+      caseDiag, caseTherapy)
+    values (#{caseid,jdbcType=INTEGER}, #{casename,jdbcType=VARCHAR}, #{caseconsult,jdbcType=VARCHAR}, 
+      #{casediag,jdbcType=VARCHAR}, #{casetherapy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.Case">
+    insert into case
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseid != null">
+        caseId,
+      </if>
+      <if test="casename != null">
+        caseName,
+      </if>
+      <if test="caseconsult != null">
+        caseConsult,
+      </if>
+      <if test="casediag != null">
+        caseDiag,
+      </if>
+      <if test="casetherapy != null">
+        caseTherapy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseid != null">
+        #{caseid,jdbcType=INTEGER},
+      </if>
+      <if test="casename != null">
+        #{casename,jdbcType=VARCHAR},
+      </if>
+      <if test="caseconsult != null">
+        #{caseconsult,jdbcType=VARCHAR},
+      </if>
+      <if test="casediag != null">
+        #{casediag,jdbcType=VARCHAR},
+      </if>
+      <if test="casetherapy != null">
+        #{casetherapy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.Case">
+    update case
+    <set>
+      <if test="casename != null">
+        caseName = #{casename,jdbcType=VARCHAR},
+      </if>
+      <if test="caseconsult != null">
+        caseConsult = #{caseconsult,jdbcType=VARCHAR},
+      </if>
+      <if test="casediag != null">
+        caseDiag = #{casediag,jdbcType=VARCHAR},
+      </if>
+      <if test="casetherapy != null">
+        caseTherapy = #{casetherapy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.Case">
+    update case
+    set caseName = #{casename,jdbcType=VARCHAR},
+      caseConsult = #{caseconsult,jdbcType=VARCHAR},
+      caseDiag = #{casediag,jdbcType=VARCHAR},
+      caseTherapy = #{casetherapy,jdbcType=VARCHAR}
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.Case">
+    <constructor>
+      <idArg column="caseId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="caseName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseConsult" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseDiag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseTherapy" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    caseId, caseName, caseConsult, caseDiag, caseTherapy
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from case
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from case
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.Case">
+    insert into case (caseId, caseName, caseConsult, 
+      caseDiag, caseTherapy)
+    values (#{caseid,jdbcType=INTEGER}, #{casename,jdbcType=VARCHAR}, #{caseconsult,jdbcType=VARCHAR}, 
+      #{casediag,jdbcType=VARCHAR}, #{casetherapy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.Case">
+    insert into case
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseid != null">
+        caseId,
+      </if>
+      <if test="casename != null">
+        caseName,
+      </if>
+      <if test="caseconsult != null">
+        caseConsult,
+      </if>
+      <if test="casediag != null">
+        caseDiag,
+      </if>
+      <if test="casetherapy != null">
+        caseTherapy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseid != null">
+        #{caseid,jdbcType=INTEGER},
+      </if>
+      <if test="casename != null">
+        #{casename,jdbcType=VARCHAR},
+      </if>
+      <if test="caseconsult != null">
+        #{caseconsult,jdbcType=VARCHAR},
+      </if>
+      <if test="casediag != null">
+        #{casediag,jdbcType=VARCHAR},
+      </if>
+      <if test="casetherapy != null">
+        #{casetherapy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.Case">
+    update case
+    <set>
+      <if test="casename != null">
+        caseName = #{casename,jdbcType=VARCHAR},
+      </if>
+      <if test="caseconsult != null">
+        caseConsult = #{caseconsult,jdbcType=VARCHAR},
+      </if>
+      <if test="casediag != null">
+        caseDiag = #{casediag,jdbcType=VARCHAR},
+      </if>
+      <if test="casetherapy != null">
+        caseTherapy = #{casetherapy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.Case">
+    update case
+    set caseName = #{casename,jdbcType=VARCHAR},
+      caseConsult = #{caseconsult,jdbcType=VARCHAR},
+      caseDiag = #{casediag,jdbcType=VARCHAR},
+      caseTherapy = #{casetherapy,jdbcType=VARCHAR}
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </update>
+  <resultMap id="BaseResultMap" type="edu.sdp.project.pethospital.entity.Case">
+    <constructor>
+      <idArg column="caseId" javaType="java.lang.Integer" jdbcType="INTEGER" />
+      <arg column="caseName" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseConsult" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseDiag" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="caseTherapy" javaType="java.lang.String" jdbcType="VARCHAR" />
+    </constructor>
+  </resultMap>
+  <sql id="Base_Column_List">
+    caseId, caseName, caseConsult, caseDiag, caseTherapy
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from case
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from case
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.sdp.project.pethospital.entity.Case">
+    insert into case (caseId, caseName, caseConsult, 
+      caseDiag, caseTherapy)
+    values (#{caseid,jdbcType=INTEGER}, #{casename,jdbcType=VARCHAR}, #{caseconsult,jdbcType=VARCHAR}, 
+      #{casediag,jdbcType=VARCHAR}, #{casetherapy,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.sdp.project.pethospital.entity.Case">
+    insert into case
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="caseid != null">
+        caseId,
+      </if>
+      <if test="casename != null">
+        caseName,
+      </if>
+      <if test="caseconsult != null">
+        caseConsult,
+      </if>
+      <if test="casediag != null">
+        caseDiag,
+      </if>
+      <if test="casetherapy != null">
+        caseTherapy,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="caseid != null">
+        #{caseid,jdbcType=INTEGER},
+      </if>
+      <if test="casename != null">
+        #{casename,jdbcType=VARCHAR},
+      </if>
+      <if test="caseconsult != null">
+        #{caseconsult,jdbcType=VARCHAR},
+      </if>
+      <if test="casediag != null">
+        #{casediag,jdbcType=VARCHAR},
+      </if>
+      <if test="casetherapy != null">
+        #{casetherapy,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.sdp.project.pethospital.entity.Case">
+    update case
+    <set>
+      <if test="casename != null">
+        caseName = #{casename,jdbcType=VARCHAR},
+      </if>
+      <if test="caseconsult != null">
+        caseConsult = #{caseconsult,jdbcType=VARCHAR},
+      </if>
+      <if test="casediag != null">
+        caseDiag = #{casediag,jdbcType=VARCHAR},
+      </if>
+      <if test="casetherapy != null">
+        caseTherapy = #{casetherapy,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.sdp.project.pethospital.entity.Case">
+    update case
+    set caseName = #{casename,jdbcType=VARCHAR},
+      caseConsult = #{caseconsult,jdbcType=VARCHAR},
+      caseDiag = #{casediag,jdbcType=VARCHAR},
+      caseTherapy = #{casetherapy,jdbcType=VARCHAR}
+    where caseId = #{caseid,jdbcType=INTEGER}
+  </update>
+</mapper>
