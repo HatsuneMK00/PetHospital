@@ -51,6 +51,7 @@ public class UserService {
         User exist = userMapper.selectByAccount(account);
         if(exist!=null) return 0;
         return userMapper.insert(user);
+
     }
     public boolean loginCheck(String account,String password){
         User user = userMapper.selectByAccount(account);

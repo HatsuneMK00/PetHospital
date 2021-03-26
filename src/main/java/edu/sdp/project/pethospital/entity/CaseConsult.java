@@ -1,54 +1,67 @@
 package edu.sdp.project.pethospital.entity;
 
+import java.util.Map;
+
 public class CaseConsult {
-    private Integer caseconsultid;
+    private Integer caseConsultId;
 
-    private String consultdescrip;
+    private String consultDescrip;
 
-    private String consultimageurl;
+    private String consultImageUrl;
 
-    private String consultvideourl;
+    private String consultVideoUrl;
 
-    public CaseConsult(Integer caseconsultid, String consultdescrip, String consultimageurl, String consultvideourl) {
-        this.caseconsultid = caseconsultid;
-        this.consultdescrip = consultdescrip;
-        this.consultimageurl = consultimageurl;
-        this.consultvideourl = consultvideourl;
+    public CaseConsult(Integer caseConsultId, String consultDescrip, String consultImageUrl, String consultVideoUrl) {
+        this.caseConsultId = caseConsultId;
+        this.consultDescrip = consultDescrip;
+        this.consultImageUrl = consultImageUrl;
+        this.consultVideoUrl = consultVideoUrl;
     }
 
     public CaseConsult() {
         super();
     }
 
-    public Integer getCaseconsultid() {
-        return caseconsultid;
+    public Integer getCaseConsultId() {
+        return caseConsultId;
     }
 
-    public void setCaseconsultid(Integer caseconsultid) {
-        this.caseconsultid = caseconsultid;
+    public void setCaseConsultId(Integer caseConsultId) {
+        this.caseConsultId = caseConsultId;
     }
 
-    public String getConsultdescrip() {
-        return consultdescrip;
+    public String getConsultDescrip() {
+        return consultDescrip;
     }
 
-    public void setConsultdescrip(String consultdescrip) {
-        this.consultdescrip = consultdescrip == null ? null : consultdescrip.trim();
+    public void setConsultDescrip(String consultDescrip) {
+        this.consultDescrip = consultDescrip;
     }
 
-    public String getConsultimageurl() {
-        return consultimageurl;
+    public String getConsultImageUrl() {
+        return consultImageUrl;
     }
 
-    public void setConsultimageurl(String consultimageurl) {
-        this.consultimageurl = consultimageurl == null ? null : consultimageurl.trim();
+    public void setConsultImageUrl(String consultImageUrl) {
+        this.consultImageUrl = consultImageUrl;
     }
 
-    public String getConsultvideourl() {
-        return consultvideourl;
+    public String getConsultVideoUrl() {
+        return consultVideoUrl;
     }
 
-    public void setConsultvideourl(String consultvideourl) {
-        this.consultvideourl = consultvideourl == null ? null : consultvideourl.trim();
+    public void setConsultVideoUrl(String consultVideoUrl) {
+        this.consultVideoUrl = consultVideoUrl;
+    }
+
+    public void updateCaseConsult(Map params) {
+        if (params.containsKey("caseConsultId"))
+            this.caseConsultId= Integer.valueOf(params.get("caseConsultId").toString());
+        if (params.containsKey("consultDescrip"))
+            this.consultDescrip = params.get("consultDescrip").toString();
+        if (params.containsKey("consultImageUrl"))
+            this.consultImageUrl = params.get("consultImageUrl").toString();
+        if (params.containsKey("consultVideoUrl"))
+            this.consultVideoUrl = params.get("consultImageUrl").toString();
     }
 }

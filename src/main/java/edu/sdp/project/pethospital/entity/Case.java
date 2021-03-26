@@ -1,65 +1,79 @@
 package edu.sdp.project.pethospital.entity;
 
+import java.util.Map;
+
 public class Case {
-    private Integer caseid;
+    private Integer caseId;
 
-    private String casename;
+    private String caseName;
 
-    private String caseconsult;
+    private int caseConsultId;
 
-    private String casediag;
+    private int caseDiagId;
 
-    private String casetherapy;
+    private int caseTherapyId;
 
-    public Case(Integer caseid, String casename, String caseconsult, String casediag, String casetherapy) {
-        this.caseid = caseid;
-        this.casename = casename;
-        this.caseconsult = caseconsult;
-        this.casediag = casediag;
-        this.casetherapy = casetherapy;
+    public Case(Integer caseId, String caseName, int caseConsultId, int caseDiagId, int caseTherapyId) {
+        this.caseId = caseId;
+        this.caseName = caseName;
+        this.caseConsultId = caseConsultId;
+        this.caseDiagId = caseDiagId;
+        this.caseTherapyId = caseTherapyId;
     }
 
     public Case() {
         super();
     }
 
-    public Integer getCaseid() {
-        return caseid;
+    public Integer getCaseId() {
+        return caseId;
     }
 
-    public void setCaseid(Integer caseid) {
-        this.caseid = caseid;
+    public void setCaseId(Integer caseId) {
+        this.caseId = caseId;
     }
 
-    public String getCasename() {
-        return casename;
+    public String getCaseName() {
+        return caseName;
     }
 
-    public void setCasename(String casename) {
-        this.casename = casename == null ? null : casename.trim();
+    public void setCaseName(String caseName) {
+        this.caseName = caseName;
     }
 
-    public String getCaseconsult() {
-        return caseconsult;
+    public int getCaseConsultId() {
+        return caseConsultId;
     }
 
-    public void setCaseconsult(String caseconsult) {
-        this.caseconsult = caseconsult == null ? null : caseconsult.trim();
+    public void setCaseConsultId(int caseConsultId) {
+        this.caseConsultId = caseConsultId;
     }
 
-    public String getCasediag() {
-        return casediag;
+    public int getCaseDiagId() {
+        return caseDiagId;
     }
 
-    public void setCasediag(String casediag) {
-        this.casediag = casediag == null ? null : casediag.trim();
+    public void setCaseDiagId(int caseDiagId) {
+        this.caseDiagId = caseDiagId;
     }
 
-    public String getCasetherapy() {
-        return casetherapy;
+    public int getCaseTherapyId() {
+        return caseTherapyId;
     }
 
-    public void setCasetherapy(String casetherapy) {
-        this.casetherapy = casetherapy == null ? null : casetherapy.trim();
+    public void setCaseTherapyId(int caseTherapyId) {
+        this.caseTherapyId = caseTherapyId;
+    }
+    public void updateCase(Map params) {
+        if (params.containsKey("caseId"))
+            this.caseId = Integer.valueOf(params.get("caseId").toString());
+        if (params.containsKey("caseName"))
+            this.caseName = params.get("caseName").toString();
+        if (params.containsKey("caseConsultId"))
+            this.caseConsultId = Integer.parseInt(params.get("caseConsultId").toString());
+        if (params.containsKey("caseDiagId"))
+            this.caseDiagId = Integer.parseInt(params.get("caseDiagId").toString());
+        if (params.containsKey("caseTherapyId"))
+            this.caseTherapyId = Integer.parseInt(params.get("caseTherapyId").toString());
     }
 }
