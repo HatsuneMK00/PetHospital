@@ -1,20 +1,29 @@
 package edu.sdp.project.pethospital.mapper;
 
 import edu.sdp.project.pethospital.entity.Test;
-import edu.sdp.project.pethospital.entity.TestKey;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface TestMapper {
-    int deleteByPrimaryKey(TestKey key);
+    @Delete("delete from test where testId=#{testId}")
+    int deleteById(int testId);
 
-    int insert(Test record);
+    @Options(useGeneratedKeys = true,keyProperty = "testId")
+    @Insert("insert into test (userId,testOptionId,beginDate) values(#{userId},#{testOptionId},#{beginDate})")
+    int insert(Test test);
 
-    int insertSelective(Test record);
+    @Select("select * from test where testId=#{testId}")
+    Test selectById(int testId);
+    @Select("select * from test where userId=#{userId}")
+    List<Test> selectByUserId(int userId);
+    @Select("select * from test where testOptionId=#{testOptionId}")
+    List<Test> selectByTestOptionId(int testOptionId);
+    @Select("select * from test")
+    List<Test> selectAllTest();
 
-    Test selectByPrimaryKey(TestKey key);
-
-    int updateByPrimaryKeySelective(Test record);
-
-    int updateByPrimaryKey(Test record);
+    @Update("update test set testId=#{testId},userId=#{userId},testOptionId=#{testOptionId},beginDate=#{beginDate},endDate=#{endDate},score=#{score}")
+    int updateByModel(Test record);
 }

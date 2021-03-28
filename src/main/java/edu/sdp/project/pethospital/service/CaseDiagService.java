@@ -1,7 +1,6 @@
 package edu.sdp.project.pethospital.service;
 
 import edu.sdp.project.pethospital.config.PHServerConfig;
-import edu.sdp.project.pethospital.entity.Case;
 import edu.sdp.project.pethospital.entity.CaseDiag;
 import edu.sdp.project.pethospital.mapper.CaseDiagMapper;
 import lombok.extern.slf4j.Slf4j;

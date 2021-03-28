@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CaseConsultMapper {
-    @Delete("delete from caseconsultId where caseConsultId=#{caseConsultId}")
+    @Delete("delete from caseconsult where caseConsultId=#{caseConsultId}")
     int deleteById(Integer caseConsultId);
 
     @Options(useGeneratedKeys = true,keyProperty = "caseConsultId")

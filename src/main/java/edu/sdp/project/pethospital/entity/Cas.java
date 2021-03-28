@@ -2,7 +2,7 @@ package edu.sdp.project.pethospital.entity;
 
 import java.util.Map;
 
-public class Case {
+public class Cas {
     private Integer caseId;
 
     private String caseName;
@@ -13,7 +13,7 @@ public class Case {
 
     private int caseTherapyId;
 
-    public Case(Integer caseId, String caseName, int caseConsultId, int caseDiagId, int caseTherapyId) {
+    public Cas(Integer caseId, String caseName, int caseConsultId, int caseDiagId, int caseTherapyId) {
         this.caseId = caseId;
         this.caseName = caseName;
         this.caseConsultId = caseConsultId;
@@ -21,7 +21,7 @@ public class Case {
         this.caseTherapyId = caseTherapyId;
     }
 
-    public Case() {
+    public Cas() {
         super();
     }
 

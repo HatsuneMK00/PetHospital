@@ -1,7 +1,9 @@
 package edu.sdp.project.pethospital.entity;
 
+import java.util.Map;
+
 public class Question {
-    private Integer quesid;
+    private Integer quesId;
 
     private String type;
 
@@ -15,8 +17,8 @@ public class Question {
 
     private String tag;
 
-    public Question(Integer quesid, String type, String descrip, String answer, Integer score, String image, String tag) {
-        this.quesid = quesid;
+    public Question(Integer quesId, String type, String descrip, String answer, Integer score, String image, String tag) {
+        this.quesId = quesId;
         this.type = type;
         this.descrip = descrip;
         this.answer = answer;
@@ -26,15 +28,14 @@ public class Question {
     }
 
     public Question() {
-        super();
     }
 
-    public Integer getQuesid() {
-        return quesid;
+    public Integer getQuesId() {
+        return quesId;
     }
 
-    public void setQuesid(Integer quesid) {
-        this.quesid = quesid;
+    public void setQuesId(Integer quesId) {
+        this.quesId = quesId;
     }
 
     public String getType() {
@@ -42,7 +43,7 @@ public class Question {
     }
 
     public void setType(String type) {
-        this.type = type == null ? null : type.trim();
+        this.type = type;
     }
 
     public String getDescrip() {
@@ -50,7 +51,7 @@ public class Question {
     }
 
     public void setDescrip(String descrip) {
-        this.descrip = descrip == null ? null : descrip.trim();
+        this.descrip = descrip;
     }
 
     public String getAnswer() {
@@ -58,7 +59,7 @@ public class Question {
     }
 
     public void setAnswer(String answer) {
-        this.answer = answer == null ? null : answer.trim();
+        this.answer = answer;
     }
 
     public Integer getScore() {
@@ -74,7 +75,7 @@ public class Question {
     }
 
     public void setImage(String image) {
-        this.image = image == null ? null : image.trim();
+        this.image = image;
     }
 
     public String getTag() {
@@ -82,6 +83,23 @@ public class Question {
     }
 
     public void setTag(String tag) {
-        this.tag = tag == null ? null : tag.trim();
+        this.tag = tag;
+    }
+
+    public void updateQuestion(Map params) {
+        if (params.containsKey("quesId"))
+            this.quesId= Integer.valueOf(params.get("quesId").toString());
+        if (params.containsKey("type"))
+            this.type = params.get("type").toString();
+        if (params.containsKey("descrip"))
+            this.descrip = params.get("descrip").toString();
+        if (params.containsKey("answer"))
+            this.answer = params.get("answer").toString();
+        if(params.containsKey("score"))
+            this.score=Integer.valueOf(params.get("score").toString());
+        if(params.containsKey("image"))
+            this.image=params.get("image").toString();
+        if(params.containsKey("tag"))
+            this.tag=params.get("tag").toString();
     }
 }

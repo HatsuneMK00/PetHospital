@@ -1,19 +1,30 @@
 package edu.sdp.project.pethospital.mapper;
 
 import edu.sdp.project.pethospital.entity.TestOption;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface TestOptionMapper {
-    int deleteByPrimaryKey(Integer testoptionid);
+    @Delete("delete from testoption where testOptionId=#{testOptionId}")
+    int deleteById(Integer testOptionId);
 
-    int insert(TestOption record);
+    @Options(useGeneratedKeys = true,keyProperty = "testOptionId")
+    @Insert("insert into testoption (testOptionName,goal,startDate,selectNum,judgeNum,qaNum,totalScore,selectTag,judgeTag,qaTag,duration) "+
+    "values(#{testOptionName},#{goal},#{startDate},#{selectNum},#{judgeNum},#{qaNum},#{totalScore},#{selectTag},#{judgeTag},#{qaTag},#{duration})")
+    int insert(TestOption testOption);
 
-    int insertSelective(TestOption record);
+    @Select("select * from testoption")
+    List<TestOption> selectAllTestOptions();
 
-    TestOption selectByPrimaryKey(Integer testoptionid);
+    @Select("select * from testoption where testOptionId=#{testOptionId}")
+    TestOption selectById(Integer testOptionID);
 
-    int updateByPrimaryKeySelective(TestOption record);
+    @Select("select * from testoption where testOptionName=!{testOptionName}")
+    TestOption selectByName(String testOptionName);
 
-    int updateByPrimaryKey(TestOption record);
+    @Update("update testoption set testOptionName=#{testOptionName},goal=#{goal},startDate=#{startDate},selectNum=#{selectName},judgeNum=#{judgeName},qaNum=#{qaNum},totalScore=#{totalScore},selectTag=#{selectTag},judgeTag=#{judge},qaTag=#{qaTag},duration=#{duration}")
+    int updateByModel(TestOption testOption);
 }

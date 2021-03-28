@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @Slf4j
@@ -38,7 +37,7 @@ public class CaseController {
     ResponseMsg fetchAllCases(){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        List<Case> result = caseService.traverseCases();
+        List<Cas> result = caseService.traverseCases();
         if(result==null) return msg;
         msg.setStatus(200);
         msg.getResponseMap().put("result",result);
@@ -55,7 +54,7 @@ public class CaseController {
     ResponseMsg fetchCaseDetail(@PathVariable("caseId") Integer caseId){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        Case record = caseService.getCaseById(caseId);
+        Cas record = caseService.getCaseById(caseId);
         if(record==null) return msg;
         CaseConsult caseConsult = caseConsultService.getConsultById(caseService.getCaseConsultId(caseId));
         CaseDiag caseDiag = caseDiagService.getCaseDiagById(caseService.getCaseDiagId(caseId));

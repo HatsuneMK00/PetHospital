@@ -1,60 +1,77 @@
 package edu.sdp.project.pethospital.entity;
 
-public class TestOption {
-    private Integer testoptionid;
+import java.sql.Time;
+import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Map;
 
-    private String testoptionname;
+public class TestOption {
+    private Integer testOptionId;
+
+    private String testOptionName;
 
     private Integer goal;
 
-    private Integer selectnum;
+    private Integer selectNum;
 
-    private Integer judgenum;
+    private Integer judgeNum;
 
-    private Integer qanum;
+    private Integer qaNum;
 
-    private Integer totalscore;
+    private Integer totalScore;
 
-    private String selecttag;
+    private String selectTag;
 
-    private String judgetag;
+    private String judgeTag;
 
-    private String qatag;
+    private String qaTag;
 
     private Integer duration;
 
-    public TestOption(Integer testoptionid, String testoptionname, Integer goal, Integer selectnum, Integer judgenum, Integer qanum, Integer totalscore, String selecttag, String judgetag, String qatag, Integer duration) {
-        this.testoptionid = testoptionid;
-        this.testoptionname = testoptionname;
+    private Timestamp startDate;
+
+    public TestOption(Integer testOptionId, String testOptionName, Integer goal, Integer selectNum, Integer judgeNum, Integer qaNum, Integer totalScore, String selectTag, String judgeTag, String qaTag, Integer duration, Timestamp startDate) {
+        this.testOptionId = testOptionId;
+        this.testOptionName = testOptionName;
         this.goal = goal;
-        this.selectnum = selectnum;
-        this.judgenum = judgenum;
-        this.qanum = qanum;
-        this.totalscore = totalscore;
-        this.selecttag = selecttag;
-        this.judgetag = judgetag;
-        this.qatag = qatag;
+        this.selectNum = selectNum;
+        this.judgeNum = judgeNum;
+        this.qaNum = qaNum;
+        this.totalScore = totalScore;
+        this.selectTag = selectTag;
+        this.judgeTag = judgeTag;
+        this.qaTag = qaTag;
         this.duration = duration;
+        this.startDate = startDate;
     }
 
     public TestOption() {
-        super();
     }
 
-    public Integer getTestoptionid() {
-        return testoptionid;
+    public Timestamp getStartDate() {
+        return startDate;
     }
 
-    public void setTestoptionid(Integer testoptionid) {
-        this.testoptionid = testoptionid;
+    public void setStartDate(Timestamp startDate) {
+        this.startDate = startDate;
     }
 
-    public String getTestoptionname() {
-        return testoptionname;
+    public Integer getTestOptionId() {
+        return testOptionId;
     }
 
-    public void setTestoptionname(String testoptionname) {
-        this.testoptionname = testoptionname == null ? null : testoptionname.trim();
+    public void setTestOptionId(Integer testOptionId) {
+        this.testOptionId = testOptionId;
+    }
+
+    public String getTestOptionName() {
+        return testOptionName;
+    }
+
+    public void setTestOptionName(String testOptionName) {
+        this.testOptionName = testOptionName;
     }
 
     public Integer getGoal() {
@@ -65,60 +82,60 @@ public class TestOption {
         this.goal = goal;
     }
 
-    public Integer getSelectnum() {
-        return selectnum;
+    public Integer getSelectNum() {
+        return selectNum;
     }
 
-    public void setSelectnum(Integer selectnum) {
-        this.selectnum = selectnum;
+    public void setSelectNum(Integer selectNum) {
+        this.selectNum = selectNum;
     }
 
-    public Integer getJudgenum() {
-        return judgenum;
+    public Integer getJudgeNum() {
+        return judgeNum;
     }
 
-    public void setJudgenum(Integer judgenum) {
-        this.judgenum = judgenum;
+    public void setJudgeNum(Integer judgeNum) {
+        this.judgeNum = judgeNum;
     }
 
-    public Integer getQanum() {
-        return qanum;
+    public Integer getQaNum() {
+        return qaNum;
     }
 
-    public void setQanum(Integer qanum) {
-        this.qanum = qanum;
+    public void setQaNum(Integer qaNum) {
+        this.qaNum = qaNum;
     }
 
-    public Integer getTotalscore() {
-        return totalscore;
+    public Integer getTotalScore() {
+        return totalScore;
     }
 
-    public void setTotalscore(Integer totalscore) {
-        this.totalscore = totalscore;
+    public void setTotalScore(Integer totalScore) {
+        this.totalScore = totalScore;
     }
 
-    public String getSelecttag() {
-        return selecttag;
+    public String getSelectTag() {
+        return selectTag;
     }
 
-    public void setSelecttag(String selecttag) {
-        this.selecttag = selecttag == null ? null : selecttag.trim();
+    public void setSelectTag(String selectTag) {
+        this.selectTag = selectTag;
     }
 
-    public String getJudgetag() {
-        return judgetag;
+    public String getJudgeTag() {
+        return judgeTag;
     }
 
-    public void setJudgetag(String judgetag) {
-        this.judgetag = judgetag == null ? null : judgetag.trim();
+    public void setJudgeTag(String judgeTag) {
+        this.judgeTag = judgeTag;
     }
 
-    public String getQatag() {
-        return qatag;
+    public String getQaTag() {
+        return qaTag;
     }
 
-    public void setQatag(String qatag) {
-        this.qatag = qatag == null ? null : qatag.trim();
+    public void setQaTag(String qaTag) {
+        this.qaTag = qaTag;
     }
 
     public Integer getDuration() {
@@ -127,5 +144,37 @@ public class TestOption {
 
     public void setDuration(Integer duration) {
         this.duration = duration;
+    }
+    public void updateTestOption(Map params) {
+        if (params.containsKey("testOptionId"))
+            this.testOptionId= Integer.valueOf(params.get("testOptionId").toString());
+        if (params.containsKey("goal"))
+            this.goal = Integer.valueOf(params.get("goal").toString());
+        if (params.containsKey("startDate")){
+            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date date = null;
+            try {
+                date = format.parse(params.get("startDate").toString());
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+            this.startDate = Timestamp.valueOf(format.format(date));
+        }
+        if (params.containsKey("selectNum"))
+            this.selectNum = Integer.valueOf(params.get("answer").toString());
+        if(params.containsKey("judgeNum"))
+            this.judgeNum=Integer.valueOf(params.get("judgeNum").toString());
+        if(params.containsKey("qaNum"))
+            this.qaNum=Integer.valueOf(params.get("qaNum").toString());
+        if(params.containsKey("totalScore"))
+            this.totalScore=Integer.valueOf(params.get("totalScore").toString());
+        if(params.containsKey("selectTag"))
+            this.selectTag=params.get("selectTag").toString();
+        if(params.containsKey("judgeTag"))
+            this.judgeTag=params.get("judgeTag").toString();
+        if(params.containsKey("qaTag"))
+            this.qaTag=params.get("qaTag").toString();
+        if(params.containsKey("duration"))
+            this.duration=Integer.valueOf(params.get("duration").toString());
     }
 }
