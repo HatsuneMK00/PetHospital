@@ -12,6 +12,7 @@ import java.util.Map;
 
 @Service
 @Slf4j
+@CrossOrigin(origins="*")
 public class TestOptionController {
     private final TestOptionService testOptionService;
 

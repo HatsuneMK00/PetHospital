@@ -1,19 +1,27 @@
 package edu.sdp.project.pethospital.mapper;
 
 import edu.sdp.project.pethospital.entity.Fee;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface FeeMapper {
-    int deleteByPrimaryKey(Integer feeid);
+    @Delete("delete from fee where feeId=#{feeId}")
+    int deleteById(Integer feeId);
 
-    int insert(Fee record);
+    @Options(useGeneratedKeys = true,keyProperty = "feeId")
+    @Insert("insert into fee (feeName,feePrice,feeDescrip) values(#{feeName},#{feePrice},#{fee)")
+    int insert(Fee fee);
 
-    int insertSelective(Fee record);
+    @Select("select * from fee where feeId=#{feeId}")
+    Fee selectById(int feeId);
+    @Select("select * from fee where feeName=#{feeName}")
+    Fee selectByName(String feeName);
+    @Select("select * from fee")
+    List<Fee> selectAllFees();
 
-    Fee selectByPrimaryKey(Integer feeid);
-
-    int updateByPrimaryKeySelective(Fee record);
-
-    int updateByPrimaryKey(Fee record);
+    @Update("update fee set feeName=#{feeName},feePrice=#{feePrice},feeDescrip=#{feeDescrip} where feeId=#{feeId}")
+    int updateByModel(Fee fee);
 }

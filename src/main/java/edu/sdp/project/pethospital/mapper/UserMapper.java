@@ -13,11 +13,11 @@ public interface UserMapper {
     int deleteByUserId(Integer userId);
 
     @Options(useGeneratedKeys = true,keyProperty = "userId")
-    @Insert("insert into user (account, name password, role) values (#{account}, #{name}, #{password}, #{role})")
+    @Insert("insert into user (account, name,password, role) values (#{account}, #{name}, #{password}, #{role})")
     int insert(User user);
 
-    @Update("update user set userId=#{userId}"+
-            ", password=#{password}" +
+    @Update("update user set "+
+            "password=#{password}" +
             ", name=#{name}" +
             ", account=#{account}" +
             ", role=#{role}" +

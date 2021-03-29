@@ -18,15 +18,15 @@ public interface CaseDiagMapper {
     @Select("select * from casediag where diagDescrip=#{diagDescrip}")
     CaseDiag selectByDescrip(String diagDescrip);
 
-    @Update("update casetherapy set therapyDescrip=#{therapyDescrip},therapyImageUrl=#{therapyImageUrl},therapyVideoUrl=#{therapyVideoUrl} where caseTherapyId=#{caseTherapyId}")
+    @Update("update casediag set diagDescrip=#{diagDescrip},diagImageUrl=#{diagImageUrl},diagVideoUrl=#{diagVideoUrl} where caseDiagId=#{caseDiagId}")
     int updateByModel(CaseDiag record);
 
-    @Update("update casetherapy set therapyDescrip=#{therapyDescrip} where caseTherapyId=#{caseTherapyId}")
-    int updateDescripById(int caseTherapyId,String therapyDescrip);
+    @Update("update casediag set diagDescrip=#{diagDescrip} where caseDiagId=#{caseDiagId}")
+    int updateDescripById(int caseDiagId,String DiagDescrip);
 
-    @Update("update casetherapy set therapyImageUrl=#{therapyImageUrl} where caeTherapyId=#{caseTherapyId}")
-    int updateImageUrlById(int caseTherapyId,String therapyImageUrl);
+    @Update("update casediag set diagImageUrl=#{diagImageUrl} where caeDiagId=#{caseDiagId}")
+    int updateImageUrlById(int caseDiagId,String diagImageUrl);
 
-    @Update("update casetherapy set therapyVideoUrl=#{therapyVideoUrl} where caseTherapyId=#{caseTherapyId}")
-    int updateVideoUrlById(int caseTherapyId,String therapyVideoUrl);
+    @Update("update casediag set diagVideoUrl=#{diagVideoUrl} where caseDiagId=#{caseDiagId}")
+    int updateVideoUrlById(int caseDiagId,String diagVideoUrl);
 }

@@ -24,6 +24,6 @@ public interface TestMapper {
     @Select("select * from test")
     List<Test> selectAllTest();
 
-    @Update("update test set testId=#{testId},userId=#{userId},testOptionId=#{testOptionId},beginDate=#{beginDate},endDate=#{endDate},score=#{score}")
+    @Update("update test set userId=#{userId},testOptionId=#{testOptionId},beginDate=#{beginDate},endDate=#{endDate},score=#{score} where testId=#{testId}")
     int updateByModel(Test record);
 }

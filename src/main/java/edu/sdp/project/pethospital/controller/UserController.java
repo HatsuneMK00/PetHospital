@@ -12,6 +12,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
+@CrossOrigin(origins="*")
 public class UserController {
     private final UserService userService;
 
@@ -59,6 +60,19 @@ public class UserController {
         User user = userService.getUserById(userId);
         if(user!=null) msg.setStatus(200);
         msg.getResponseMap().put("result",user);
+        return msg;
+    }
+    @ResponseBody
+    @GetMapping("/login")
+    ResponseMsg logIn(@RequestParam("userName") String userName,@RequestParam("password") String password){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        User user = userService.getUserByAccount(userName);
+        if(user==null) return msg;
+        msg.setStatus(400);
+        if(!password.equals(user.getPassword())) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",user.getuserId());
         return msg;
     }
 
@@ -116,5 +130,4 @@ public class UserController {
         msg.setStatus(200);
         return msg;
     }
-
 }

@@ -1,19 +1,25 @@
 package edu.sdp.project.pethospital.mapper;
 
 import edu.sdp.project.pethospital.entity.HospRecord;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface HospRecordMapper {
-    int deleteByPrimaryKey(Integer hosid);
+    @Delete("delete from hospitalize where hosId=#{hosId}")
+    int deleteById(Integer hosId);
 
-    int insert(HospRecord record);
+    @Options(useGeneratedKeys = true,keyProperty = "hosId")
+    @Insert("insert into hospitalize (hosAnimalName,disease) values(#{hosAnimalName},#{disease})")
+    int insert(HospRecord hospRecord);
 
-    int insertSelective(HospRecord record);
+    @Select("select * from hospitalize where hosId=#{hosId}")
+    HospRecord selectById(Integer hosId);
+    @Select("select * from hospitalize")
+    List<HospRecord> selectAllHospRecord();
 
-    HospRecord selectByPrimaryKey(Integer hosid);
-
-    int updateByPrimaryKeySelective(HospRecord record);
-
-    int updateByPrimaryKey(HospRecord record);
+    @Update("update hospitalize set hosAnimalName=#{hosAnimalName}, disease=#{disease}")
+    int updateByModel(HospRecord hospRecord);
 }

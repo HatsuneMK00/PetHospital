@@ -12,6 +12,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
+@CrossOrigin(origins="*")
 public class TestController {
     private final TestService testService;
 

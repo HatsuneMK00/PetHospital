@@ -1,19 +1,29 @@
 package edu.sdp.project.pethospital.mapper;
 
 import edu.sdp.project.pethospital.entity.Exam;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public interface ExamMapper {
-    int deleteByPrimaryKey(Integer examid);
+    @Delete("delete from exam where examId=#{examId}")
+    int deleteById(Integer examId);
 
-    int insert(Exam record);
+    @Options(useGeneratedKeys = true,keyProperty = "examId")
+    @Insert("insert into exam (examName,examDescrip) values(#{examName},#{examDescrip})")
+    int insert(Exam exam);
 
-    int insertSelective(Exam record);
+    @Select("select * from exam")
+    List<Exam> selectAllUser();
+    @Select("select * from exam where examName=#{examName}")
+    Exam selectByName(String examName);
+    @Select("select * from exam where examId=#{examId}")
+    Exam selectById(Integer examId);
 
-    Exam selectByPrimaryKey(Integer examid);
+    @Update("update exam set examName=#{examName},examDescrip=#{examDescrip} where examId=#{examId}")
+    int updateByModel(Exam exam);
 
-    int updateByPrimaryKeySelective(Exam record);
 
-    int updateByPrimaryKey(Exam record);
 }

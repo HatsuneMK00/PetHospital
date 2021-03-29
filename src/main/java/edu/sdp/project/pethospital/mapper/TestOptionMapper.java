@@ -25,6 +25,6 @@ public interface TestOptionMapper {
     @Select("select * from testoption where testOptionName=!{testOptionName}")
     TestOption selectByName(String testOptionName);
 
-    @Update("update testoption set testOptionName=#{testOptionName},goal=#{goal},startDate=#{startDate},selectNum=#{selectName},judgeNum=#{judgeName},qaNum=#{qaNum},totalScore=#{totalScore},selectTag=#{selectTag},judgeTag=#{judge},qaTag=#{qaTag},duration=#{duration}")
+    @Update("update testoption set testOptionName=#{testOptionName},goal=#{goal},startDate=#{startDate},selectNum=#{selectName},judgeNum=#{judgeName},qaNum=#{qaNum},totalScore=#{totalScore},selectTag=#{selectTag},judgeTag=#{judge},qaTag=#{qaTag},duration=#{duration} where testOptionId=#{testOptionId}")
     int updateByModel(TestOption testOption);
 }

@@ -6,6 +6,7 @@ import edu.sdp.project.pethospital.mapper.QuestionMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -18,6 +19,25 @@ public class QuestionService {
     }
     public List<Question> getAllQues(){
         return questionMapper.selectAllQues();
+    }
+    public List<Question> getAllQuesByTag(String tag){
+        return questionMapper.selectByTag(tag);
+    }
+    public List<Question> getQuesBySearch(String searchParam){
+        if (searchParam.equals("")) {
+            return questionMapper.selectAllQues();
+        } else if (searchParam.startsWith("qid:")) {
+            String param = searchParam.split(":")[1];
+            String[] ids = param.split(",");
+            ArrayList<Question> result = new ArrayList<>();
+            for (String id : ids) {
+                result.add(questionMapper.selectById(Integer.valueOf(id.trim())));
+            }
+            return result;
+        } else {
+            List<Question> result = questionMapper.selectQuestionByDescripMatch(searchParam);
+            return result;
+        }
     }
     public int addQuestion(Question question){
         Question exist = questionMapper.selectByDescrip(question.getDescrip());
@@ -48,4 +68,5 @@ public class QuestionService {
         Question question = questionMapper.selectById(quesId);
         return question!=null;
     }
+
 }

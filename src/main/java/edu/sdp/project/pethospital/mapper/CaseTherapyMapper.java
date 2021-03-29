@@ -18,7 +18,7 @@ public interface CaseTherapyMapper {
     @Select("select * from casetherapy where therapyDescrip=#{therapyDescrip}")
     CaseTherapy selectByDescrip(String therapyDescrip);
 
-    @Update("update casetherapy set caseTherapyId=#{caseTherapyId},therapyDescrip=#{therapyDescrip},therapyImageUrl=#{therapyImageUrl},therapyVideoUrl=#{therapyVideoUrl} where caseTherapyId=#{caseTherapyId}")
+    @Update("update casetherapy set therapyDescrip=#{therapyDescrip},therapyImageUrl=#{therapyImageUrl},therapyVideoUrl=#{therapyVideoUrl} where caseTherapyId=#{caseTherapyId}")
     int updateByModel(CaseTherapy record);
 
     @Update("update casetherapy set therapyDescrip=#{therapyDescrip} where caseTherapyId=#{caseTherapyId}")

@@ -6,7 +6,6 @@ import edu.sdp.project.pethospital.exception.FileException;
 import edu.sdp.project.pethospital.service.ImageService;
 import edu.sdp.project.pethospital.service.QuestionService;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,6 +14,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
+@CrossOrigin(origins="*")
 public class QuestionController {
     private final QuestionService questionService;
     private final ImageService imageService;
@@ -44,7 +44,31 @@ public class QuestionController {
         msg.getResponseMap().put("result",question);
         return msg;
     }
+    @ResponseBody
+    @GetMapping("/admin/test/question/tag/{tag}")
+    ResponseMsg fetchQuestionByTag(@PathVariable("tag") String tag){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        List<Question> result = questionService.getAllQuesByTag(tag);
+        if(result!=null) msg.setStatus(200);
+        msg.getResponseMap().put("result",result);
+        return msg;
+    }
 
+    /**
+     * 本接口支持通过id搜索，格式为：qid:{id1},{id2},...
+     * 如果不按以上格式则按照关键词处理，处理方式为返回描述中有匹配关键字的问题
+     */
+    @ResponseBody
+    @GetMapping("/admin/test/question/search")
+    ResponseMsg fetchQuestionBySearch(@RequestParam("searchParam") String searchParam){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        List<Question> result = questionService.getQuesBySearch(searchParam);
+        if(result!=null) msg.setStatus(200);
+        msg.getResponseMap().put("result",result);
+        return msg;
+    }
 
     /**
      * 新增问题时不用给出id，id自增管理
@@ -57,7 +81,7 @@ public class QuestionController {
     ResponseMsg addQuestion(@RequestBody Map param){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(400);
-        if(!param.containsKey("descrip")) return msg;
+        if(!(param.containsKey("descrip")&&param.containsKey("type"))) return msg;
         msg.setStatus(404);
         Question question = new Question();
         question.updateQuestion(param);
@@ -99,7 +123,7 @@ public class QuestionController {
      * TODO: 增加自动删除相关图片的功能
      */
     @ResponseBody
-    @Delete("/admin/test/question")
+    @DeleteMapping("/admin/test/question")
     ResponseMsg deleteQuestion(@RequestParam("quesId") int quesId){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);

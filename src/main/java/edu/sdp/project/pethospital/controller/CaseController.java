@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
+@CrossOrigin(origins="*")
 public class CaseController {
     private final CaseService caseService;
     private final CaseConsultService caseConsultService;

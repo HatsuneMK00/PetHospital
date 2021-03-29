@@ -1,43 +1,52 @@
 package edu.sdp.project.pethospital.entity;
 
+import java.util.Map;
+
 public class Exam {
-    private Integer examid;
+    private Integer examId;
 
-    private String examname;
+    private String examName;
 
-    private String examdescrip;
+    private String examDescrip;
 
-    public Exam(Integer examid, String examname, String examdescrip) {
-        this.examid = examid;
-        this.examname = examname;
-        this.examdescrip = examdescrip;
+    public Exam(Integer examId, String examName, String examDescrip) {
+        this.examId = examId;
+        this.examName = examName;
+        this.examDescrip = examDescrip;
     }
 
     public Exam() {
-        super();
     }
 
-    public Integer getExamid() {
-        return examid;
+    public Integer getExamId() {
+        return examId;
     }
 
-    public void setExamid(Integer examid) {
-        this.examid = examid;
+    public void setExamId(Integer examId) {
+        this.examId = examId;
     }
 
-    public String getExamname() {
-        return examname;
+    public String getExamName() {
+        return examName;
     }
 
-    public void setExamname(String examname) {
-        this.examname = examname == null ? null : examname.trim();
+    public void setExamName(String examName) {
+        this.examName = examName;
     }
 
-    public String getExamdescrip() {
-        return examdescrip;
+    public String getExamDescrip() {
+        return examDescrip;
     }
 
-    public void setExamdescrip(String examdescrip) {
-        this.examdescrip = examdescrip == null ? null : examdescrip.trim();
+    public void setExamDescrip(String examDescrip) {
+        this.examDescrip = examDescrip;
+    }
+    public void updateExam(Map params){
+        if(params.containsKey("examId"))
+            this.examId=Integer.valueOf(params.get("examId").toString());
+        if(params.containsKey("examName"))
+            this.examName=params.get("examName").toString();
+        if(params.containsKey("examDescrip"))
+            this.examDescrip=params.get("examDescrip").toString();
     }
 }

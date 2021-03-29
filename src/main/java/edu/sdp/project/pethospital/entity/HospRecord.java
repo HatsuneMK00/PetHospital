@@ -1,36 +1,37 @@
 package edu.sdp.project.pethospital.entity;
 
-public class HospRecord {
-    private Integer hosid;
+import java.util.Map;
 
-    private String hosanimalname;
+public class HospRecord {
+    private Integer hosId;
+
+    private String hosAnimalName;
 
     private String disease;
 
-    public HospRecord(Integer hosid, String hosanimalname, String disease) {
-        this.hosid = hosid;
-        this.hosanimalname = hosanimalname;
+    public HospRecord(Integer hosId, String hosAnimalName, String disease) {
+        this.hosId = hosId;
+        this.hosAnimalName = hosAnimalName;
         this.disease = disease;
     }
 
     public HospRecord() {
-        super();
     }
 
-    public Integer getHosid() {
-        return hosid;
+    public Integer getHosId() {
+        return hosId;
     }
 
-    public void setHosid(Integer hosid) {
-        this.hosid = hosid;
+    public void setHosId(Integer hosId) {
+        this.hosId = hosId;
     }
 
-    public String getHosanimalname() {
-        return hosanimalname;
+    public String getHosAnimalName() {
+        return hosAnimalName;
     }
 
-    public void setHosanimalname(String hosanimalname) {
-        this.hosanimalname = hosanimalname == null ? null : hosanimalname.trim();
+    public void setHosAnimalName(String hosAnimalName) {
+        this.hosAnimalName = hosAnimalName;
     }
 
     public String getDisease() {
@@ -38,6 +39,12 @@ public class HospRecord {
     }
 
     public void setDisease(String disease) {
-        this.disease = disease == null ? null : disease.trim();
+        this.disease = disease;
+    }
+    public void updateHospRecord(Map param){
+        if(param.containsKey("hosAnimalName"))
+            this.hosAnimalName=param.get("hosAnimalName").toString();
+        if(param.containsKey("disease"))
+            this.disease=param.get("disease").toString();
     }
 }
