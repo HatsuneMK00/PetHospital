@@ -1,76 +1,91 @@
 package edu.sdp.project.pethospital.entity;
 
+import java.util.Map;
+
 public class Section {
-    private Integer sectionid;
+    private Integer sectionId;
 
-    private String sectionname;
+    private String sectionName;
 
-    private String recdescrip;
+    private String recDescrip;
 
-    private String docdescrip;
+    private String docDescrip;
 
-    private String asisdescrip;
+    private String assisDescrip;
 
-    private String sectionimageurl;
+    private String sectionImageUrl;
 
-    public Section(Integer sectionid, String sectionname, String recdescrip, String docdescrip, String asisdescrip, String sectionimageurl) {
-        this.sectionid = sectionid;
-        this.sectionname = sectionname;
-        this.recdescrip = recdescrip;
-        this.docdescrip = docdescrip;
-        this.asisdescrip = asisdescrip;
-        this.sectionimageurl = sectionimageurl;
+    public Section(Integer sectionId, String sectionName, String recDescrip, String docDescrip, String assisDescrip, String sectionImageUrl) {
+        this.sectionId = sectionId;
+        this.sectionName = sectionName;
+        this.recDescrip = recDescrip;
+        this.docDescrip = docDescrip;
+        this.assisDescrip = assisDescrip;
+        this.sectionImageUrl = sectionImageUrl;
     }
 
     public Section() {
-        super();
     }
 
-    public Integer getSectionid() {
-        return sectionid;
+    public Integer getSectionId() {
+        return sectionId;
     }
 
-    public void setSectionid(Integer sectionid) {
-        this.sectionid = sectionid;
+    public void setSectionId(Integer sectionId) {
+        this.sectionId = sectionId;
     }
 
-    public String getSectionname() {
-        return sectionname;
+    public String getSectionName() {
+        return sectionName;
     }
 
-    public void setSectionname(String sectionname) {
-        this.sectionname = sectionname == null ? null : sectionname.trim();
+    public void setSectionName(String sectionName) {
+        this.sectionName = sectionName;
     }
 
-    public String getRecdescrip() {
-        return recdescrip;
+    public String getRecDescrip() {
+        return recDescrip;
     }
 
-    public void setRecdescrip(String recdescrip) {
-        this.recdescrip = recdescrip == null ? null : recdescrip.trim();
+    public void setRecDescrip(String recDescrip) {
+        this.recDescrip = recDescrip;
     }
 
-    public String getDocdescrip() {
-        return docdescrip;
+    public String getDocDescrip() {
+        return docDescrip;
     }
 
-    public void setDocdescrip(String docdescrip) {
-        this.docdescrip = docdescrip == null ? null : docdescrip.trim();
+    public void setDocDescrip(String docDescrip) {
+        this.docDescrip = docDescrip;
     }
 
-    public String getAsisdescrip() {
-        return asisdescrip;
+    public String getAssisDescrip() {
+        return assisDescrip;
     }
 
-    public void setAsisdescrip(String asisdescrip) {
-        this.asisdescrip = asisdescrip == null ? null : asisdescrip.trim();
+    public void setAssisDescrip(String assisDescrip) {
+        this.assisDescrip = assisDescrip;
     }
 
-    public String getSectionimageurl() {
-        return sectionimageurl;
+    public String getSectionImageUrl() {
+        return sectionImageUrl;
     }
 
-    public void setSectionimageurl(String sectionimageurl) {
-        this.sectionimageurl = sectionimageurl == null ? null : sectionimageurl.trim();
+    public void setSectionImageUrl(String sectionImageUrl) {
+        this.sectionImageUrl = sectionImageUrl;
+    }
+    public void updateSection(Map param){
+        if(param.containsKey("sectionId"))
+            this.sectionId=Integer.valueOf(param.get("sectionId").toString());
+        if(param.containsKey("sectionName"))
+            this.sectionName=param.get("sectionName").toString();
+        if(param.containsKey("recDescrip"))
+            this.recDescrip=param.get("recDescrip").toString();
+        if(param.containsKey("docDescrip"))
+            this.docDescrip=param.get("docDescrip").toString();
+        if(param.containsKey("assisDescrip"))
+            this.assisDescrip=param.get("assisDescrip").toString();
+        if(param.containsKey("sectionImageUrl"))
+            this.sectionImageUrl=param.get("sectionImageUrl").toString();
     }
 }

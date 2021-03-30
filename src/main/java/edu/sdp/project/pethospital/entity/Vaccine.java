@@ -1,43 +1,52 @@
 package edu.sdp.project.pethospital.entity;
 
+import java.util.Map;
+
 public class Vaccine {
-    private Integer vacid;
+    private Integer vacId;
 
-    private String vacname;
+    private String vacName;
 
-    private String vacdescrip;
+    private String vacDescrip;
 
-    public Vaccine(Integer vacid, String vacname, String vacdescrip) {
-        this.vacid = vacid;
-        this.vacname = vacname;
-        this.vacdescrip = vacdescrip;
+    public Vaccine(Integer vacId, String vacName, String vacDescrip) {
+        this.vacId = vacId;
+        this.vacName = vacName;
+        this.vacDescrip = vacDescrip;
     }
 
     public Vaccine() {
-        super();
     }
 
-    public Integer getVacid() {
-        return vacid;
+    public Integer getVacId() {
+        return vacId;
     }
 
-    public void setVacid(Integer vacid) {
-        this.vacid = vacid;
+    public void setVacId(Integer vacId) {
+        this.vacId = vacId;
     }
 
-    public String getVacname() {
-        return vacname;
+    public String getVacName() {
+        return vacName;
     }
 
-    public void setVacname(String vacname) {
-        this.vacname = vacname == null ? null : vacname.trim();
+    public void setVacName(String vacName) {
+        this.vacName = vacName;
     }
 
-    public String getVacdescrip() {
-        return vacdescrip;
+    public String getVacDescrip() {
+        return vacDescrip;
     }
 
-    public void setVacdescrip(String vacdescrip) {
-        this.vacdescrip = vacdescrip == null ? null : vacdescrip.trim();
+    public void setVacDescrip(String vacDescrip) {
+        this.vacDescrip = vacDescrip;
+    }
+    public void updateVaccine(Map params){
+        if(params.containsKey("vacId"))
+            this.vacId=Integer.valueOf(params.get("vacId").toString());
+        if(params.containsKey("vacName"))
+            this.vacName=params.get("vacName").toString();
+        if(params.containsKey("vacDescrip"))
+            this.vacDescrip=params.get("vacDescrip").toString();
     }
 }

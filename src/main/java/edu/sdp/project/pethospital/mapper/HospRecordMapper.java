@@ -12,7 +12,7 @@ public interface HospRecordMapper {
     int deleteById(Integer hosId);
 
     @Options(useGeneratedKeys = true,keyProperty = "hosId")
-    @Insert("insert into hospitalize (hosAnimalName,disease) values(#{hosAnimalName},#{disease})")
+    @Insert("insert into hospitalize (hosAnimalName,disease,inDate) values(#{hosAnimalName},#{disease},#{inDate})")
     int insert(HospRecord hospRecord);
 
     @Select("select * from hospitalize where hosId=#{hosId}")
@@ -20,6 +20,6 @@ public interface HospRecordMapper {
     @Select("select * from hospitalize")
     List<HospRecord> selectAllHospRecord();
 
-    @Update("update hospitalize set hosAnimalName=#{hosAnimalName}, disease=#{disease}")
+    @Update("update hospitalize set hosAnimalName=#{hosAnimalName}, disease=#{disease},inDate=#{inDate},outDate=#{outDate} where hosId=#{hosId}")
     int updateByModel(HospRecord hospRecord);
 }
