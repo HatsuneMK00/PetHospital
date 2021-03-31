@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -125,40 +126,71 @@ public class CaseController {
         msg.setStatus(200);
         return msg;
     }
+//    @ResponseBody
+//    @PostMapping("/admin/case/{caseId}/consult")
+//    ResponseMsg updateCaseConsultDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip){
+//        ResponseMsg msg = new ResponseMsg();
+//        msg.setStatus(404);
+//        if (!caseService.checkId(caseId)) return msg;
+//        int caseConsultId = caseService.getCaseConsultId(caseId);
+//        if(!caseConsultService.checkId(caseConsultId)) return msg;
+//        if(caseConsultService.setDescrip(caseConsultId,descrip)<=0) return msg;
+//        msg.setStatus(200);
+//        return msg;
+//    }
+//    @ResponseBody
+//    @PostMapping("/admin/case/{caseId}/diag")
+//    ResponseMsg updateCaseDiagDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip ){
+//        ResponseMsg msg = new ResponseMsg();
+//        msg.setStatus(404);
+//        if(!caseService.checkId(caseId)) return msg;
+//        int caseDiagId=caseService.getCaseDiagId(caseId);
+//        if(!caseDiagService.checkId(caseDiagId)) return msg;
+//        if(caseDiagService.setDescrip(caseDiagId,descrip)<=0) return msg;
+//        msg.setStatus(200);
+//        return msg;
+//    }
+//    @ResponseBody
+//    @PostMapping("/admin/case/{caseId}/therapy")
+//    ResponseMsg updateCaseTherapyDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip){
+//        ResponseMsg msg = new ResponseMsg();
+//        msg.setStatus(404);
+//        if(!caseService.checkId(caseId)) return msg;
+//        int caseTherapyId=caseService.getCaseTherapyId(caseId);
+//        if(!caseTherapyService.checkId(caseTherapyId)) return msg;
+//        if(caseTherapyService.setDescrip(caseTherapyId,descrip)<=0) return msg;
+//        msg.setStatus(200);
+//        return msg;
+//    }
+
+    /**
+     * 如果要修改相应部分，请分别给出consultDescrip，diagDescrip和therapyDescrip
+     */
     @ResponseBody
-    @PostMapping("/admin/case/{caseId}/consult")
-    ResponseMsg updateCaseConsultDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip){
-        ResponseMsg msg = new ResponseMsg();
-        msg.setStatus(404);
-        if (!caseService.checkId(caseId)) return msg;
-        int caseConsultId = caseService.getCaseConsultId(caseId);
-        if(!caseConsultService.checkId(caseConsultId)) return msg;
-        if(caseConsultService.setDescrip(caseConsultId,descrip)<=0) return msg;
-        msg.setStatus(200);
-        return msg;
-    }
-    @ResponseBody
-    @PostMapping("/admin/case/{caseId}/diag")
-    ResponseMsg updateCaseDiagDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip ){
+    @PostMapping("/admin/case/{caseId}/descrip")
+    ResponseMsg updateCaseDescrips(@PathVariable("caseId") int caseId,@RequestBody Map param){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
-        int caseDiagId=caseService.getCaseDiagId(caseId);
-        if(!caseDiagService.checkId(caseDiagId)) return msg;
-        if(caseDiagService.setDescrip(caseDiagId,descrip)<=0) return msg;
-        msg.setStatus(200);
-        return msg;
-    }
-    @ResponseBody
-    @PostMapping("/admin/case/{caseId}/therapy")
-    ResponseMsg updateCaseTherapyDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip){
-        ResponseMsg msg = new ResponseMsg();
-        msg.setStatus(404);
-        if(!caseService.checkId(caseId)) return msg;
-        int caseTherapyId=caseService.getCaseTherapyId(caseId);
-        if(!caseTherapyService.checkId(caseTherapyId)) return msg;
-        if(caseTherapyService.setDescrip(caseTherapyId,descrip)<=0) return msg;
-        msg.setStatus(200);
+        int consultId = caseService.getCaseConsultId(caseId);
+        int diagId = caseService.getCaseDiagId(caseId);
+        int therapyId = caseService.getCaseTherapyId(caseId);
+        int result1=0;
+        int result2=0;
+        int result3=0;
+        if(param.containsKey("consultDescrip")){
+            if(!caseConsultService.checkId(consultId)) return msg;
+            result1 = caseConsultService.setDescrip(consultId,param.get("consultDescrip").toString());
+        }
+        if(param.containsKey("diagDescrip")){
+            if(!caseDiagService.checkId(diagId)) return msg;
+            result2=caseDiagService.setDescrip(diagId, param.get("diagDescrip").toString());
+        }
+        if(param.containsKey("therapyDescrip")){
+            if(!caseTherapyService.checkId(therapyId)) return msg;
+            result3=caseTherapyService.setDescrip(therapyId,param.get("therapyDescrip").toString());
+        }
+        if(result1>0&&result2>0&&result3>0) msg.setStatus(200);
         return msg;
     }
 
