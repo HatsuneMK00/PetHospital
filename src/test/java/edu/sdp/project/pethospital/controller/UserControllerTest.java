@@ -1,15 +1,21 @@
 package edu.sdp.project.pethospital.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 import edu.sdp.project.pethospital.entity.User;
 import edu.sdp.project.pethospital.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.mockito.ArgumentCaptor;
 import org.mockito.InOrder;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -144,4 +150,34 @@ public class UserControllerTest {
         verify(userService).getUserById(userId);
         verifyNoMoreInteractions(userService);
     }
+    @Test
+    void null_path_when_get_user() throws Exception {
+        when(userService.getUserById(1)).thenReturn(null);
+        mockMvc.perform(get("/admin/user/getById").param("userId","1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.status").value(404));
+        verify(userService).getUserById(1);
+    }
+    @Test
+    void happy_path_when_add_user() throws Exception {
+        Map param = new HashMap();
+        String account = "account";
+        String name= "name";
+        String password="123456";
+        String role = "user";
+        param.put("account",account);
+        param.put("name",name);
+        param.put("password",password);
+        param.put("role",role);
+        when(userService.addUser(account,name,password,role)).thenReturn(1);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer().withDefaultPrettyPrinter();
+        String json = objectWriter.writeValueAsString(param);
+        mockMvc.perform(put("/admin/user/newUser").contentType(MediaType.APPLICATION_JSON)
+                        .content(json))
+                .andExpect(status().isOk());
+        verify(userService).addUser(account,name,password,role);
+        verifyNoMoreInteractions(userService);
+    }
+
 }
