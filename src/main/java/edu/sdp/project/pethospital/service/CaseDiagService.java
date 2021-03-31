@@ -24,6 +24,9 @@ public class CaseDiagService {
         if(exist!=null) return 0;
         return caseDiagMapper.insert(caseDiag);
     }
+    public String getDiagDescrip(int caseDiagId){
+        return caseDiagMapper.selectDescripById(caseDiagId);
+    }
     public int changeCaseDiag(CaseDiag caseDiag){
         return caseDiagMapper.updateByModel(caseDiag);
     }

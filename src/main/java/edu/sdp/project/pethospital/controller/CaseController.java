@@ -7,6 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -30,8 +31,8 @@ public class CaseController {
     }
 
     /**
-     * @return 返回两个对象，一个包含所有case的列表和case总数统计
-     * 分别通过result和count拿取
+     * @return 返回3个对象，一个包含所有case的列表,case总数统计,以及相应case的所有文字描述（一个嵌套列表，分别是consult描述，diag描述和therapy描述）
+     * 分别通过result,count和descrip拿取
      */
     @ResponseBody
     @GetMapping("/admin/case")
@@ -41,8 +42,21 @@ public class CaseController {
         List<Cas> result = caseService.traverseCases();
         if(result==null) return msg;
         msg.setStatus(200);
+        List<List<String>> descrips = new ArrayList<>();
+        for (int i = 0; i < result.size(); i++) {
+            Cas cas = result.get(i);
+            String consultDescrip = caseConsultService.getConsultDescrip(cas.getCaseConsultId());
+            String diagDescrip = caseDiagService.getDiagDescrip(cas.getCaseDiagId());
+            String therapyDecrip = caseTherapyService.getTherapyDescrip(cas.getCaseTherapyId());
+            List<String> tem = new ArrayList<>();
+            tem.add(consultDescrip);
+            tem.add(diagDescrip);
+            tem.add(therapyDecrip);
+            descrips.add(tem);
+        }
         msg.getResponseMap().put("result",result);
         msg.getResponseMap().put("count",result.size());
+        msg.getResponseMap().put("descrip",descrips);
         return msg;
     }
 

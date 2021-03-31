@@ -19,6 +19,9 @@ public class CaseTherapyService {
         return caseTherapyMapper.selectById(caseTherapyId);
     }
 
+    public String getTherapyDescrip(int caseTherapyId){
+        return caseTherapyMapper.selectDescripById(caseTherapyId);
+    }
     public int deleteCaseTherapy(int caseTherapyId){
         return caseTherapyMapper.deleteById(caseTherapyId);
     }

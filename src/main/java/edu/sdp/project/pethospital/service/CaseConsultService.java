@@ -23,6 +23,9 @@ public class CaseConsultService {
     public String getConsultVideoUrl(int caseConsultId){
         return caseConsultMapper.selectVideoUrlById(caseConsultId);
     }
+    public String getConsultDescrip(int caseConsultId){
+        return caseConsultMapper.selectDescripById(caseConsultId);
+    }
     public int setImageUrl(int caseConsultId, String imageUrl){
         String[] temp = imageUrl.split("/");
         String realUrl = PHServerConfig.server + ":" + PHServerConfig.port + "/images/";

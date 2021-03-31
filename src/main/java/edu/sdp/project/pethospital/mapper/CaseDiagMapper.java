@@ -17,6 +17,8 @@ public interface CaseDiagMapper {
     CaseDiag selectById(Integer caseDiagId);
     @Select("select * from casediag where diagDescrip=#{diagDescrip}")
     CaseDiag selectByDescrip(String diagDescrip);
+    @Select("select diagDescrip from casediag where caseDiagId=#{caseDiagId}")
+    String selectDescripById(int caseDiagId);
 
     @Update("update casediag set diagDescrip=#{diagDescrip},diagImageUrl=#{diagImageUrl},diagVideoUrl=#{diagVideoUrl} where caseDiagId=#{caseDiagId}")
     int updateByModel(CaseDiag record);
