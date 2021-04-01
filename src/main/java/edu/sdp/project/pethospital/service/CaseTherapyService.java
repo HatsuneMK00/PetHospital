@@ -30,7 +30,8 @@ public class CaseTherapyService {
         caseTherapy.setTherapyDescrip(descrip);
         CaseTherapy exist = caseTherapyMapper.selectByDescrip(descrip);
         if(exist!=null) return 0;
-        return caseTherapyMapper.insert(caseTherapy);
+        caseTherapyMapper.insert(caseTherapy);
+        return caseTherapyMapper.selectByDescrip(descrip).getCaseTherapyId();
     }
     public int changeCaseTherapy(CaseTherapy caseTherapy){
         return caseTherapyMapper.updateByModel(caseTherapy);

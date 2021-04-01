@@ -56,7 +56,8 @@ public class CaseConsultService {
         caseConsult.setConsultDescrip(consultDescrip);
         CaseConsult exist = caseConsultMapper.selectByDescrip(consultDescrip);
         if(exist!=null) return 0;
-        return caseConsultMapper.insert(caseConsult);
+        caseConsultMapper.insert(caseConsult);
+        return caseConsultMapper.selectByDescrip(consultDescrip).getCaseConsultId();
     }
     public int setDescrip(int caseConsultId,String descrip){
         return caseConsultMapper.updateDescripById(caseConsultId,descrip);

@@ -210,13 +210,16 @@ public class CaseController {
     /**
      * 新建case时只需要提供一个name就好
      * 添加图片和视频的操作应该在创建好case之后的页面进行
+     * 返回的caseId通过result拿取
      */
     @ResponseBody
     @PutMapping("/admin/case")
     ResponseMsg addCase(@RequestParam("caseName") String caseName){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        if(caseService.addCase(caseName)>0) msg.setStatus(200);
+        int result = caseService.addCase(caseName);
+        if(result>0) msg.setStatus(200);
+        msg.getResponseMap().put("result",result);
         return msg;
     }
 
@@ -229,6 +232,7 @@ public class CaseController {
     ResponseMsg addCaseConsult(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
+        log.info(String.valueOf(caseService.checkId(caseId)));
         if(!caseService.checkId(caseId)) return msg;
         int result = caseConsultService.addCaseConsult(descrip);
         if(result>0) {

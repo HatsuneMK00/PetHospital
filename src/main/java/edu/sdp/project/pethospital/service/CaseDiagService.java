@@ -22,7 +22,8 @@ public class CaseDiagService {
         caseDiag.setDiagDescrip(descrip);
         CaseDiag exist = caseDiagMapper.selectByDescrip(descrip);
         if(exist!=null) return 0;
-        return caseDiagMapper.insert(caseDiag);
+        caseDiagMapper.insert(caseDiag);
+        return caseDiagMapper.selectByDescrip(descrip).getCaseDiagId();
     }
     public String getDiagDescrip(int caseDiagId){
         return caseDiagMapper.selectDescripById(caseDiagId);
