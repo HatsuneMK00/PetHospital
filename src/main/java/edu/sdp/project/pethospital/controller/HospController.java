@@ -57,6 +57,7 @@ public class HospController {
         msg.setStatus(404);
         HospRecord hospRecord = hospService.getHospRecord(hosId);
         if(hospRecord==null) return msg;
+        hospRecord.updateHospRecord(param);
         if(hospService.updateHospRecord(hospRecord)>0) msg.setStatus(200);
         return msg;
     }
