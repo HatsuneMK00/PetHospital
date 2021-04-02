@@ -42,7 +42,9 @@ public class QuestionService {
     public int addQuestion(Question question){
         Question exist = questionMapper.selectByDescrip(question.getDescrip());
         if(exist!=null) return 0;
-        return questionMapper.insert(question);
+        int result = questionMapper.insert(question);
+        if(result >0) return question.getQuesId();
+        return result;
     }
     public Question getQuestionById(int quesId){
         return questionMapper.selectById(quesId);

@@ -88,7 +88,10 @@ public class UserController {
         String password = map.get("password").toString();
         String role = map.get("role").toString();
         int result = userService.addUser(account,name,password,role);
-        if(result>0) msg.setStatus(200);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
 

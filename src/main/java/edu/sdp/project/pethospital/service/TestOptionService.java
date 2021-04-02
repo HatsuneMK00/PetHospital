@@ -29,7 +29,9 @@ public class TestOptionService {
     }
     public int addOption(TestOption option){
         if(checkId(option.getTestOptionId())) return 0;
-        return testOptionMapper.insert(option);
+        int result = testOptionMapper.insert(option);
+        if(result>0) return option.getTestOptionId();
+        return result;
     }
     public int updateTestOption(TestOption testOption){
         return testOptionMapper.updateByModel(testOption);

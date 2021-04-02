@@ -47,7 +47,11 @@ public class MedicineController {
         Medicine medicine = new Medicine();
         medicine.setMedDescrip(medDescrip);
         medicine.setMedName(medName);
-        if(medicineService.addMedicine(medicine)>0) msg.setStatus(200);
+        int result = medicineService.addMedicine(medicine);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
     @ResponseBody

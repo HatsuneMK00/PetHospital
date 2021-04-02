@@ -26,7 +26,9 @@ public class VaccineService {
     public int addVaccine(Vaccine vaccine){
         Vaccine exist = vaccineMapper.selectByName(vaccine.getVacName());
         if(exist!=null) return 0;
-        return vaccineMapper.insert(vaccine);
+        int result = vaccineMapper.insert(vaccine);
+        if(result>0) return vaccine.getVacId();
+        return result;
     }
     public int changeVaccine(Vaccine vaccine){
         return vaccineMapper.updateByModel(vaccine);

@@ -82,10 +82,14 @@ public class QuestionController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(400);
         if(!(param.containsKey("descrip")&&param.containsKey("type"))) return msg;
-        msg.setStatus(404);
+        msg.setStatus(500);
         Question question = new Question();
         question.updateQuestion(param);
-        if(questionService.addQuestion(question)>0) msg.setStatus(200);
+        int result = questionService.addQuestion(question);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
     @ResponseBody

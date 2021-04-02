@@ -25,7 +25,9 @@ public class SectionService {
     public int addSection(Section section){
         Section exist = sectionMapper.selectByName(section.getSectionName());
         if(exist!=null) return 0;
-        return sectionMapper.insert(section);
+        int result = sectionMapper.insert(section);
+        if(result>0) return section.getSectionId();
+        return result;
     }
     public int changeSection(Section section){
         return sectionMapper.updateByModel(section);

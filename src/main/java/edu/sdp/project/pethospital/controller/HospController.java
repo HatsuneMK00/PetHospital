@@ -46,7 +46,11 @@ public class HospController {
     ResponseMsg addHospRecord(@RequestParam("hosAnimalName") String hosAnimalName, @RequestParam("disease") String disease, @RequestParam("inDate")Timestamp inDate){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        if(hospService.addHospRecord(hosAnimalName,disease,inDate)>0) msg.setStatus(200);
+        int result =hospService.addHospRecord(hosAnimalName,disease,inDate);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
 

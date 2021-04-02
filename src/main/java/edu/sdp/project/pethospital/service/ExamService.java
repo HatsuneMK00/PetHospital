@@ -24,7 +24,9 @@ public class ExamService {
     public int addExam(Exam exam){
         Exam exist = examMapper.selectByName(exam.getExamName());
         if(exist!=null) return 0;
-        return examMapper.insert(exam);
+        int result = examMapper.insert(exam);
+        if(result>0) return exam.getExamId();
+        return result;
     }
     public int changeExam(Exam exam){
         return examMapper.updateByModel(exam);

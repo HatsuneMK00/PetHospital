@@ -25,7 +25,9 @@ public class MedicineService {
     public int addMedicine(Medicine medicine){
         Medicine exist = medicineMapper.selectByName(medicine.getMedName());
         if(exist!=null) return 0;
-        return medicineMapper.insert(medicine);
+        int result = medicineMapper.insert(medicine);
+        if(result >0) return medicine.getMedId();
+        return result;
     }
     public int changeMedicine(Medicine medicine){
         return medicineMapper.updateByModel(medicine);

@@ -50,7 +50,11 @@ public class TestOptionController {
         msg.setStatus(404);
         TestOption testOption = new TestOption();
         testOption.updateTestOption(params);
-        if(testOptionService.addOption(testOption)>0) msg.setStatus(200);
+        int result = testOptionService.addOption(testOption);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
     @ResponseBody

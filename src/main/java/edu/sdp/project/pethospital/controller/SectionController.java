@@ -57,7 +57,11 @@ public class SectionController {
         msg.setStatus(404);
         Section section = new Section();
         section.setSectionName(sectionName);
-        if(sectionService.addSection(section)>0) msg.setStatus(200);
+        int result = sectionService.addSection(section);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
     @ResponseBody
