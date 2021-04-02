@@ -26,7 +26,7 @@ public interface CaseDiagMapper {
     @Update("update casediag set diagDescrip=#{diagDescrip} where caseDiagId=#{caseDiagId}")
     int updateDescripById(int caseDiagId,String diagDescrip);
 
-    @Update("update casediag set diagImageUrl=#{diagImageUrl} where caeDiagId=#{caseDiagId}")
+    @Update("update casediag set diagImageUrl=#{diagImageUrl} where caseDiagId=#{caseDiagId}")
     int updateImageUrlById(int caseDiagId,String diagImageUrl);
 
     @Update("update casediag set diagVideoUrl=#{diagVideoUrl} where caseDiagId=#{caseDiagId}")
