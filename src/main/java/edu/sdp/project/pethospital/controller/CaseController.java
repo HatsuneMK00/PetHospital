@@ -135,7 +135,8 @@ public class CaseController {
     ResponseMsg updateCaseName(@PathVariable("caseId") Integer caseId,@RequestParam("caseName") String caseName){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        if(caseService.checkId(caseId)) return msg;
+        if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         if(caseService.setCaseName(caseId,caseName)<=0) return msg;
         msg.setStatus(200);
         return msg;
@@ -216,7 +217,7 @@ public class CaseController {
     @PutMapping("/admin/case")
     ResponseMsg addCase(@RequestParam("caseName") String caseName){
         ResponseMsg msg = new ResponseMsg();
-        msg.setStatus(404);
+        msg.setStatus(500);
         int result = caseService.addCase(caseName);
         if(result>0) msg.setStatus(200);
         msg.getResponseMap().put("result",result);

@@ -25,10 +25,11 @@ public class PHServerConfig implements ApplicationListener<WebServerInitializedE
             server = InetAddress.getLocalHost().getHostAddress();
             if (server.startsWith("192.168"))
                 server = "localhost";
-            log.info(String.format("--------------------------------------server ip address: %s", server));
+            log.info(String.format("--------------------------------------server ip address without ex: %s", server));
         } catch (UnknownHostException e) {
             log.error(e.getMessage(),e);
             server = "localhost";
+            log.info(String.format("--------------------------------------server ip address with ex: %s", server));
         }
 //        server="47.101.217.16";
     }
@@ -37,5 +38,6 @@ public class PHServerConfig implements ApplicationListener<WebServerInitializedE
     public void onApplicationEvent(WebServerInitializedEvent webServerInitializedEvent) {
         port = String.valueOf(webServerInitializedEvent.getWebServer().getPort());
         log.info(String.format("------------------------------------------port: %s", PHServerConfig.port));
+        log.info(String.format("--------------------------------------server ip address: %s", server));
     }
 }
