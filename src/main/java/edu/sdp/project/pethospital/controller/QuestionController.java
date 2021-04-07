@@ -98,6 +98,7 @@ public class QuestionController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!questionService.checkId(quesId)) return msg;
+        msg.setStatus(500);
         String storeFile = null;
         try {
             storeFile = imageService.storeFile(image);
@@ -105,8 +106,10 @@ public class QuestionController {
             log.error(e.getMessage());
         }
         assert storeFile != null;
-        int result = questionService.setImageUrl(quesId,storeFile);
-        msg.setStatus(result);
+        String url = questionService.setImageUrl(quesId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody

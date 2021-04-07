@@ -26,27 +26,27 @@ public class CaseConsultService {
     public String getConsultDescrip(int caseConsultId){
         return caseConsultMapper.selectDescripById(caseConsultId);
     }
-    public int setImageUrl(int caseConsultId, String imageUrl){
+    public String setImageUrl(int caseConsultId, String imageUrl){
         String[] temp = imageUrl.split("/");
         String realUrl = PHServerConfig.server + ":" + PHServerConfig.port + "/images/";
         log.info(PHServerConfig.port);
         realUrl = realUrl + temp[temp.length - 1];
         int result = caseConsultMapper.updateImageUrlById(caseConsultId, realUrl);
         if (result == 1)
-            return 200;
+            return realUrl;
         else
-            return 500;
+            return null;
     }
-    public int setVideoUrl(int caseConsultId,String videoUrl){
+    public String setVideoUrl(int caseConsultId,String videoUrl){
         String[] temp = videoUrl.split("/");
         String realUrl = PHServerConfig.server + ":" + PHServerConfig.port + "/videos/";
         log.info(PHServerConfig.port);
         realUrl = realUrl + temp[temp.length - 1];
         int result = caseConsultMapper.updateVideoUrlById(caseConsultId, realUrl);
         if (result == 1)
-            return 200;
+            return realUrl;
         else
-            return 500;
+            return null;
     }
     public int deleteCaseConsult(int caseConsultId){
         return caseConsultMapper.deleteById(caseConsultId);

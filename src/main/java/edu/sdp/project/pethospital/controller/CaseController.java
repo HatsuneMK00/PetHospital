@@ -280,6 +280,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseConsultId = caseService.getCaseConsultId(caseId);
         if(!caseConsultService.checkId(caseConsultId)) return msg;
         String storeFile = null;
@@ -289,8 +290,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseConsultService.setImageUrl(caseConsultId,storeFile);
-        msg.setStatus(result);
+        String url = caseConsultService.setImageUrl(caseConsultId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody
@@ -299,6 +302,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseConsultId = caseService.getCaseConsultId(caseId);
         if(!caseConsultService.checkId(caseConsultId)) return msg;
         String storeFile = null;
@@ -308,8 +312,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseConsultService.setVideoUrl(caseConsultId,storeFile);
-        msg.setStatus(result);
+        String url = caseConsultService.setVideoUrl(caseConsultId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody
@@ -318,6 +324,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseDiagId = caseService.getCaseDiagId(caseId);
         if(!caseDiagService.checkId(caseDiagId)) return msg;
         String storeFile = null;
@@ -327,8 +334,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseDiagService.setImageUrl(caseDiagId,storeFile);
-        msg.setStatus(result);
+        String url = caseDiagService.setImageUrl(caseDiagId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody
@@ -337,6 +346,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseDiagId = caseService.getCaseDiagId(caseId);
         if(!caseDiagService.checkId(caseDiagId)) return msg;
         String storeFile = null;
@@ -346,8 +356,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseDiagService.setVideoUrl(caseDiagId,storeFile);
-        msg.setStatus(result);
+        String url = caseDiagService.setVideoUrl(caseDiagId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody
@@ -356,6 +368,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseTherapyId = caseService.getCaseTherapyId(caseId);
         if(!caseTherapyService.checkId(caseTherapyId)) return msg;
         String storeFile = null;
@@ -365,8 +378,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseTherapyService.setImageUrl(caseTherapyId,storeFile);
-        msg.setStatus(result);
+        String url = caseTherapyService.setImageUrl(caseTherapyId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody
@@ -375,6 +390,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseTherapyId = caseService.getCaseTherapyId(caseId);
         if(!caseTherapyService.checkId(caseTherapyId)) return msg;
         String storeFile = null;
@@ -384,8 +400,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseTherapyService.setVideoUrl(caseTherapyId,storeFile);
-        msg.setStatus(result);
+        String url = caseTherapyService.setVideoUrl(caseTherapyId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
 

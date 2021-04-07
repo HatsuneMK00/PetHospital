@@ -148,6 +148,8 @@ public class TestOption {
     public void updateTestOption(Map params) {
         if (params.containsKey("testOptionId"))
             this.testOptionId= Integer.valueOf(params.get("testOptionId").toString());
+        if(params.containsKey("testOptionName"))
+            this.testOptionName=params.get("testOptionName").toString();
         if (params.containsKey("goal"))
             this.goal = Integer.valueOf(params.get("goal").toString());
         if (params.containsKey("startDate")){
@@ -161,7 +163,7 @@ public class TestOption {
             this.startDate = Timestamp.valueOf(format.format(date));
         }
         if (params.containsKey("selectNum"))
-            this.selectNum = Integer.valueOf(params.get("answer").toString());
+            this.selectNum = Integer.valueOf(params.get("selectNum").toString());
         if(params.containsKey("judgeNum"))
             this.judgeNum=Integer.valueOf(params.get("judgeNum").toString());
         if(params.containsKey("qaNum"))
@@ -177,4 +179,5 @@ public class TestOption {
         if(params.containsKey("duration"))
             this.duration=Integer.valueOf(params.get("duration").toString());
     }
+
 }

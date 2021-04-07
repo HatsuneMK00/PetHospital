@@ -26,6 +26,10 @@ public interface QuestionMapper {
     List<Question> selectByTag(String tag);
     @Select("select * from ques where descrip like CONCAT('%',#{matchParam},'%')")
     List<Question> selectQuestionByDescripMatch(String matchParam);
+    @Select("select * from ques where type = #{type}")
+    List<Question> selectQuestionByType(String type);
+    @Select("select * from ques where type = #{type} and tag=#{tag}")
+    List<Question> selectQuestionByTagAndType(String type,String tag);
 
     @Update("update ques set type=#{type},descrip=#{descrip},answer=#{answer},score=#{score},image=#{image},tag=#{tag} where quesId=#{quesId}")
     int updateByModel(Question question);

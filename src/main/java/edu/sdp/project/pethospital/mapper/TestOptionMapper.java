@@ -22,9 +22,9 @@ public interface TestOptionMapper {
     @Select("select * from testoption where testOptionId=#{testOptionId}")
     TestOption selectById(Integer testOptionID);
 
-    @Select("select * from testoption where testOptionName=!{testOptionName}")
+    @Select("select * from testoption where testOptionName=#{testOptionName}")
     TestOption selectByName(String testOptionName);
 
-    @Update("update testoption set testOptionName=#{testOptionName},goal=#{goal},startDate=#{startDate},selectNum=#{selectName},judgeNum=#{judgeName},qaNum=#{qaNum},totalScore=#{totalScore},selectTag=#{selectTag},judgeTag=#{judge},qaTag=#{qaTag},duration=#{duration} where testOptionId=#{testOptionId}")
+    @Update("update testoption set testOptionName=#{testOptionName},goal=#{goal},startDate=#{startDate},selectNum=#{selectNum},judgeNum=#{judgeNum},qaNum=#{qaNum},totalScore=#{totalScore},selectTag=#{selectTag},judgeTag=#{judgeTag},qaTag=#{qaTag},duration=#{duration} where testOptionId=#{testOptionId}")
     int updateByModel(TestOption testOption);
 }
