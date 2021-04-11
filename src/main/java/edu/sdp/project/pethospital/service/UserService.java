@@ -50,8 +50,9 @@ public class UserService {
         user.setRole(role);
         User exist = userMapper.selectByAccount(account);
         if(exist!=null) return 0;
-        return userMapper.insert(user);
-
+        int result = userMapper.insert(user);
+        if(result>0) return user.getuserId();
+        return result;
     }
     public boolean loginCheck(String account,String password){
         User user = userMapper.selectByAccount(account);

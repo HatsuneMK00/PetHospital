@@ -1,5 +1,6 @@
 package edu.sdp.project.pethospital.service;
 
+import edu.sdp.project.pethospital.config.PHServerConfig;
 import edu.sdp.project.pethospital.entity.Section;
 import edu.sdp.project.pethospital.mapper.SectionMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -25,7 +26,9 @@ public class SectionService {
     public int addSection(Section section){
         Section exist = sectionMapper.selectByName(section.getSectionName());
         if(exist!=null) return 0;
-        return sectionMapper.insert(section);
+        int result = sectionMapper.insert(section);
+        if(result>0) return section.getSectionId();
+        return result;
     }
     public int changeSection(Section section){
         return sectionMapper.updateByModel(section);
@@ -37,7 +40,15 @@ public class SectionService {
         Section section = sectionMapper.selectById(sectionId);
         return section!=null;
     }
-    public int setImageUrl(int sectionId,String image){
-        return sectionMapper.updateImageUrlById(sectionId,image);
+    public String setImageUrl(int sectionId,String image){
+        String[] temp = image.split("/");
+        String realUrl = PHServerConfig.server + ":" + PHServerConfig.port + "/images/";
+        log.info(PHServerConfig.port);
+        realUrl = realUrl + temp[temp.length - 1];
+        int result = sectionMapper.updateImageUrlById(sectionId, realUrl);
+        if (result == 1)
+            return realUrl;
+        else
+            return null;
     }
 }

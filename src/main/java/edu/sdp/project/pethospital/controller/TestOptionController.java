@@ -4,13 +4,14 @@ import edu.sdp.project.pethospital.entity.ResponseMsg;
 import edu.sdp.project.pethospital.entity.TestOption;
 import edu.sdp.project.pethospital.service.TestOptionService;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
 
-@Service
+@Controller
 @Slf4j
 @CrossOrigin(origins="*")
 public class TestOptionController {
@@ -46,11 +47,18 @@ public class TestOptionController {
     ResponseMsg addTestOption(@RequestBody Map params){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(400);
+        log.info(params.get("testOptionName").toString());
         if(!params.containsKey("testOptionName")) return null;
         msg.setStatus(404);
+        log.info(params.get("testOptionName").toString());
         TestOption testOption = new TestOption();
         testOption.updateTestOption(params);
-        if(testOptionService.addOption(testOption)>0) msg.setStatus(200);
+        int result = testOptionService.addOption(testOption);
+        if(result>0) {
+            msg.setStatus(200);
+            log.info(params.get("testOptionName").toString());
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
     @ResponseBody

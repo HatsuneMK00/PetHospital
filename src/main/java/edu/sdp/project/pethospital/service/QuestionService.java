@@ -42,7 +42,9 @@ public class QuestionService {
     public int addQuestion(Question question){
         Question exist = questionMapper.selectByDescrip(question.getDescrip());
         if(exist!=null) return 0;
-        return questionMapper.insert(question);
+        int result = questionMapper.insert(question);
+        if(result >0) return question.getQuesId();
+        return result;
     }
     public Question getQuestionById(int quesId){
         return questionMapper.selectById(quesId);
@@ -53,16 +55,16 @@ public class QuestionService {
     public int updateQuestion(Question question){
         return questionMapper.updateByModel(question);
     }
-    public int setImageUrl(int quesId,String imageUrl){
+    public String setImageUrl(int quesId,String imageUrl){
         String[] temp = imageUrl.split("/");
         String realUrl = PHServerConfig.server + ":" + PHServerConfig.port + "/images/";
         log.info(PHServerConfig.port);
         realUrl = realUrl + temp[temp.length - 1];
         int result = questionMapper.updateImageById(quesId, realUrl);
         if (result == 1)
-            return 200;
+            return realUrl;
         else
-            return 500;
+            return null;
     }
     public boolean checkId(int quesId){
         Question question = questionMapper.selectById(quesId);

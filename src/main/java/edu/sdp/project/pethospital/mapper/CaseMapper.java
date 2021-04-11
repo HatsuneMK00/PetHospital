@@ -42,7 +42,7 @@ public interface CaseMapper {
     int updateConsultIdById(int caseId,int caseConsultId);
 
     @Update("update cas set caseDiagId=#{caseDiagId} where caseId=#{caseId}")
-    int updateDiagIdById(int caseId,int caseConsultId);
+    int updateDiagIdById(int caseId,int caseDiagId);
 
     @Update("update cas set caseTherapyId=#{caseTherapyId} where caseId=#{caseId}")
     int updateTherapyIdById(int caseId,int caseTherapyId);

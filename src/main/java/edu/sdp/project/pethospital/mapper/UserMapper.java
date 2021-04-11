@@ -24,7 +24,7 @@ public interface UserMapper {
             "where userId=#{userId}")
     int updateUser(User user);
 
-    @Select("select * from user where account")
+    @Select("select * from user where account=#{account}")
     User selectByAccount(String account);
 
     @Select("select * from user where userId=#{userId}")

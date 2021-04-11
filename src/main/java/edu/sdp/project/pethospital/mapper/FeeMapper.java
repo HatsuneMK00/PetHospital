@@ -12,7 +12,7 @@ public interface FeeMapper {
     int deleteById(Integer feeId);
 
     @Options(useGeneratedKeys = true,keyProperty = "feeId")
-    @Insert("insert into fee (feeName,feePrice,feeDescrip) values(#{feeName},#{feePrice},#{fee)")
+    @Insert("insert into fee (feeName,feePrice,feeDescrip) values(#{feeName},#{feePrice},#{feeDescrip})")
     int insert(Fee fee);
 
     @Select("select * from fee where feeId=#{feeId}")

@@ -58,6 +58,7 @@ public class CaseService {
         record.setCaseName(caseName);
         Cas exist = caseMapper.selectByName(caseName);
         if(exist!=null) return 0;
-        return caseMapper.insert(record);
+        caseMapper.insert(record);
+        return caseMapper.selectByName(caseName).getCaseId();
     }
 }

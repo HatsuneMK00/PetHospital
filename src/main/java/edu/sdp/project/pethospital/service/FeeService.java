@@ -24,7 +24,9 @@ public class FeeService {
     public int addFee(Fee fee){
         Fee exist = feeMapper.selectByName(fee.getFeeName());
         if(exist!=null) return 0;
-        return feeMapper.insert(fee);
+        int result = feeMapper.insert(fee);
+        if(result>0) return fee.getFeeId();
+        return result;
     }
     public int updateFee(Fee fee){
         return feeMapper.updateByModel(fee);

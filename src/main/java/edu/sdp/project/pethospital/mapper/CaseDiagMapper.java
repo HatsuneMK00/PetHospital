@@ -17,14 +17,16 @@ public interface CaseDiagMapper {
     CaseDiag selectById(Integer caseDiagId);
     @Select("select * from casediag where diagDescrip=#{diagDescrip}")
     CaseDiag selectByDescrip(String diagDescrip);
+    @Select("select diagDescrip from casediag where caseDiagId=#{caseDiagId}")
+    String selectDescripById(int caseDiagId);
 
     @Update("update casediag set diagDescrip=#{diagDescrip},diagImageUrl=#{diagImageUrl},diagVideoUrl=#{diagVideoUrl} where caseDiagId=#{caseDiagId}")
     int updateByModel(CaseDiag record);
 
     @Update("update casediag set diagDescrip=#{diagDescrip} where caseDiagId=#{caseDiagId}")
-    int updateDescripById(int caseDiagId,String DiagDescrip);
+    int updateDescripById(int caseDiagId,String diagDescrip);
 
-    @Update("update casediag set diagImageUrl=#{diagImageUrl} where caeDiagId=#{caseDiagId}")
+    @Update("update casediag set diagImageUrl=#{diagImageUrl} where caseDiagId=#{caseDiagId}")
     int updateImageUrlById(int caseDiagId,String diagImageUrl);
 
     @Update("update casediag set diagVideoUrl=#{diagVideoUrl} where caseDiagId=#{caseDiagId}")

@@ -57,7 +57,11 @@ public class SectionController {
         msg.setStatus(404);
         Section section = new Section();
         section.setSectionName(sectionName);
-        if(sectionService.addSection(section)>0) msg.setStatus(200);
+        int result = sectionService.addSection(section);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
     @ResponseBody
@@ -78,14 +82,17 @@ public class SectionController {
         msg.setStatus(404);
         if(!sectionService.checkId(sectionId)) return msg;
         String storeFile = null;
+        msg.setStatus(500);
         try {
             storeFile = imageService.storeFile(image);
         } catch (FileException e) {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = sectionService.setImageUrl(sectionId,storeFile);
-        msg.setStatus(result);
+        String url = sectionService.setImageUrl(sectionId,storeFile);
+        if(url==null) return msg;
+        msg.getResponseMap().put("result",url);
+        msg.setStatus(200);
         return msg;
     }
 

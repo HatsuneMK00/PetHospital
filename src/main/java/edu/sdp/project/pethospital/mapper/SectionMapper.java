@@ -22,7 +22,7 @@ public interface SectionMapper {
     @Select("select * from section where sectionId=#{sectionId}")
     Section selectById(Integer sectionId);
 
-    @Update("update section set sectionName=#{sectionName},recDescrip=#{recDescrip},docDexcrip=#{docDescrip},assisDescrip=#{assisDescrip} where sectionId=#{sectionId}")
+    @Update("update section set sectionName=#{sectionName},recDescrip=#{recDescrip},docDescrip=#{docDescrip},assisDescrip=#{assisDescrip} where sectionId=#{sectionId}")
     int updateByModel(Section section);
     @Update("update section set sectionImageUrl=#{sectionImageUrl} where sectionId=#{sectionId}")
     int updateImageUrlById(int sectionId,String sectionImageUrl);
