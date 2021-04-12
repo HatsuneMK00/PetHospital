@@ -41,10 +41,19 @@ public class OptionUserService {
         int count = 0;
         for (Integer userId : userIds) {
             if(!checkId(testOptionId,userId)){
-                count++;
                 if(optionUserMapper.insert(new OptionUser(testOptionId,userId))>0) count++;
             }
         }
         return count;
     }
+    public int deleteUserOptions(int testOptionId,List<Integer> userIds){
+        int count = 0;
+        for (Integer userId : userIds) {
+            if(!checkId(testOptionId,userId)){
+                if((optionUserMapper.delete(testOptionId,userId))>0) count++;
+            }
+        }
+        return count;
+    }
+
 }

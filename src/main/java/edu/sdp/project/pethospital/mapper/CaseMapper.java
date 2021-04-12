@@ -22,7 +22,7 @@ public interface CaseMapper {
     @Select("select * from cas where caseName=#{caseName}")
     Cas selectByName(String caseName);
 
-    @Update("update cas set caseName=#{caseName},caseConsultId=#{caseConsultId},caseDiagId=#{caseDiagId},caseTherapyId=#{caseTherapyId,caseTag=#{caseTag}} where caseId=#{caseId}")
+    @Update("update cas set caseName=#{caseName},caseConsultId=#{caseConsultId},caseDiagId=#{caseDiagId},caseTherapyId=#{caseTherapyId},caseTag=#{caseTag} where caseId=#{caseId}")
     int updateByModel(Cas record);
     @Update("update cas set caseName=#{caseName} where caseId=#{caseId}")
     int updateCaseNameById(int caseId,String caseName);
