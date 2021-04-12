@@ -13,12 +13,15 @@ public class Cas {
 
     private int caseTherapyId;
 
-    public Cas(Integer caseId, String caseName, int caseConsultId, int caseDiagId, int caseTherapyId) {
+    private String caseTag;
+
+    public Cas(Integer caseId, String caseName, int caseConsultId, int caseDiagId, int caseTherapyId, String caseTag) {
         this.caseId = caseId;
         this.caseName = caseName;
         this.caseConsultId = caseConsultId;
         this.caseDiagId = caseDiagId;
         this.caseTherapyId = caseTherapyId;
+        this.caseTag = caseTag;
     }
 
     public Cas() {
@@ -61,6 +64,14 @@ public class Cas {
         return caseTherapyId;
     }
 
+    public String getCaseTag() {
+        return caseTag;
+    }
+
+    public void setCaseTag(String caseTag) {
+        this.caseTag = caseTag;
+    }
+
     public void setCaseTherapyId(int caseTherapyId) {
         this.caseTherapyId = caseTherapyId;
     }
@@ -75,5 +86,7 @@ public class Cas {
             this.caseDiagId = Integer.parseInt(params.get("caseDiagId").toString());
         if (params.containsKey("caseTherapyId"))
             this.caseTherapyId = Integer.parseInt(params.get("caseTherapyId").toString());
+        if(params.containsKey("caseTag"))
+            this.caseTag= params.get("caseTag").toString();
     }
 }
