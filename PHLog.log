@@ -210,3 +210,359 @@ Caused by: org.apache.ibatis.builder.BuilderException: An invalid property 'case
 2021-04-12 09:14:41.984  INFO 15644 --- [main] e.s.p.pethospital.config.PHServerConfig  : ------------------------------------------port: 8080
 2021-04-12 09:14:41.984  INFO 15644 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address: 172.30.226.116
 2021-04-12 09:14:41.999  INFO 15644 --- [main] e.s.p.p.PetHospitalApplication           : Started PetHospitalApplication in 3.662 seconds (JVM running for 5.349)
+2021-04-12 20:02:15.957  INFO 10932 --- [main] e.s.p.p.PetHospitalApplication           : Starting PetHospitalApplication using Java 13.0.2 on DESKTOP-4OB480A with PID 10932 (C:\Users\my751\IdeaProjects\PetHospital\target\classes started by my751 in C:\Users\my751\IdeaProjects\PetHospital)
+2021-04-12 20:02:15.963  INFO 10932 --- [main] e.s.p.p.PetHospitalApplication           : No active profile set, falling back to default profiles: default
+2021-04-12 20:02:17.890  INFO 10932 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2021-04-12 20:02:17.957  INFO 10932 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2021-04-12 20:02:17.960  INFO 10932 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 20:02:17.960  INFO 10932 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 20:02:17.961  INFO 10932 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2021-04-12 20:02:17.962  INFO 10932 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2021-04-12 20:02:17.963  INFO 10932 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 20:02:17.963  INFO 10932 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-04-12 20:02:17.994  INFO 10932 --- [main] c.u.j.filter.DefaultLazyPropertyFilter   : Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2021-04-12 20:02:18.215  INFO 10932 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2021-04-12 20:02:18.219  INFO 10932 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2021-04-12 20:02:18.467  INFO 10932 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-04-12 20:02:18.481  INFO 10932 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-12 20:02:18.482  INFO 10932 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-04-12 20:02:18.608  INFO 10932 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-12 20:02:18.608  INFO 10932 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2508 ms
+2021-04-12 20:02:18.670  INFO 10932 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address without ex: localhost
+2021-04-12 20:02:18.786  INFO 10932 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2021-04-12 20:02:18.795  INFO 10932 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.algorithm, using default value: PBEWITHHMACSHA512ANDAES_256
+2021-04-12 20:02:18.796  INFO 10932 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+2021-04-12 20:02:18.796  INFO 10932 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+2021-04-12 20:02:18.797  INFO 10932 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+2021-04-12 20:02:18.797  INFO 10932 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+2021-04-12 20:02:18.798  INFO 10932 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+2021-04-12 20:02:18.799  INFO 10932 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
+2021-04-12 20:02:18.802  INFO 10932 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+2021-04-12 20:02:19.387  INFO 10932 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-12 20:02:19.928  INFO 10932 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-04-12 20:02:19.930  INFO 10932 --- [main] e.s.p.pethospital.config.PHServerConfig  : ------------------------------------------port: 8080
+2021-04-12 20:02:19.931  INFO 10932 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address: localhost
+2021-04-12 20:02:19.946  INFO 10932 --- [main] e.s.p.p.PetHospitalApplication           : Started PetHospitalApplication in 4.673 seconds (JVM running for 6.381)
+2021-04-12 20:13:50.951  INFO 10932 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-12 20:13:50.952  INFO 10932 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-12 20:13:50.953  INFO 10932 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-04-12 20:13:50.970  WARN 10932 --- [http-nio-8080-exec-2] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2021-04-12 20:14:11.030  WARN 10932 --- [http-nio-8080-exec-3] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2021-04-12 20:14:32.958  WARN 10932 --- [http-nio-8080-exec-4] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2021-04-12 20:15:09.085  WARN 10932 --- [http-nio-8080-exec-5] .w.s.m.s.DefaultHandlerExceptionResolver : Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' not supported]
+2021-04-12 20:57:44.007  INFO 2152 --- [main] e.s.p.p.PetHospitalApplication           : Starting PetHospitalApplication using Java 13.0.2 on DESKTOP-4OB480A with PID 2152 (C:\Users\my751\IdeaProjects\PetHospital\target\classes started by my751 in C:\Users\my751\IdeaProjects\PetHospital)
+2021-04-12 20:57:44.011  INFO 2152 --- [main] e.s.p.p.PetHospitalApplication           : No active profile set, falling back to default profiles: default
+2021-04-12 20:57:45.509  INFO 2152 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2021-04-12 20:57:45.557  INFO 2152 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2021-04-12 20:57:45.559  INFO 2152 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 20:57:45.560  INFO 2152 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 20:57:45.560  INFO 2152 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2021-04-12 20:57:45.561  INFO 2152 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2021-04-12 20:57:45.562  INFO 2152 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 20:57:45.562  INFO 2152 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-04-12 20:57:45.585  INFO 2152 --- [main] c.u.j.filter.DefaultLazyPropertyFilter   : Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2021-04-12 20:57:45.732  INFO 2152 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2021-04-12 20:57:45.735  INFO 2152 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2021-04-12 20:57:45.983  INFO 2152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-04-12 20:57:46.011  INFO 2152 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-12 20:57:46.012  INFO 2152 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-04-12 20:57:46.107  INFO 2152 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-12 20:57:46.108  INFO 2152 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1995 ms
+2021-04-12 20:57:46.155  INFO 2152 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address without ex: localhost
+2021-04-12 20:57:46.246  INFO 2152 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2021-04-12 20:57:46.257  INFO 2152 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.algorithm, using default value: PBEWITHHMACSHA512ANDAES_256
+2021-04-12 20:57:46.257  INFO 2152 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+2021-04-12 20:57:46.257  INFO 2152 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+2021-04-12 20:57:46.258  INFO 2152 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+2021-04-12 20:57:46.258  INFO 2152 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+2021-04-12 20:57:46.258  INFO 2152 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+2021-04-12 20:57:46.260  INFO 2152 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
+2021-04-12 20:57:46.261  INFO 2152 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+2021-04-12 20:57:46.749  INFO 2152 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-12 20:57:47.485  INFO 2152 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-04-12 20:57:47.487  INFO 2152 --- [main] e.s.p.pethospital.config.PHServerConfig  : ------------------------------------------port: 8080
+2021-04-12 20:57:47.487  INFO 2152 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address: localhost
+2021-04-12 20:57:47.505  INFO 2152 --- [main] e.s.p.p.PetHospitalApplication           : Started PetHospitalApplication in 4.086 seconds (JVM running for 5.475)
+2021-04-12 21:00:12.112  INFO 2152 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-12 21:00:12.113  INFO 2152 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-12 21:00:12.114  INFO 2152 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-04-12 21:00:12.165  INFO 2152 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-04-12 21:00:12.469  INFO 2152 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-04-12 21:00:12.568 ERROR 2152 --- [http-nio-8080-exec-1] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is java.lang.NullPointerException] with root cause
+
+java.lang.NullPointerException: null
+	at edu.sdp.project.pethospital.service.TestService.getQess(TestService.java:88) ~[classes/:na]
+	at edu.sdp.project.pethospital.service.TestService.getNewTest(TestService.java:77) ~[classes/:na]
+	at edu.sdp.project.pethospital.controller.TestController.startTest(TestController.java:101) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.43.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) ~[tomcat-embed-core-9.0.43.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:346) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:887) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1684) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2021-04-12 21:01:08.782  INFO 15716 --- [main] e.s.p.p.PetHospitalApplication           : Starting PetHospitalApplication using Java 13.0.2 on DESKTOP-4OB480A with PID 15716 (C:\Users\my751\IdeaProjects\PetHospital\target\classes started by my751 in C:\Users\my751\IdeaProjects\PetHospital)
+2021-04-12 21:01:08.786  INFO 15716 --- [main] e.s.p.p.PetHospitalApplication           : No active profile set, falling back to default profiles: default
+2021-04-12 21:01:10.240  INFO 15716 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2021-04-12 21:01:10.326  INFO 15716 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2021-04-12 21:01:10.328  INFO 15716 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 21:01:10.329  INFO 15716 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 21:01:10.330  INFO 15716 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2021-04-12 21:01:10.331  INFO 15716 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2021-04-12 21:01:10.332  INFO 15716 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 21:01:10.332  INFO 15716 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-04-12 21:01:10.370  INFO 15716 --- [main] c.u.j.filter.DefaultLazyPropertyFilter   : Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2021-04-12 21:01:10.650  INFO 15716 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2021-04-12 21:01:10.652  INFO 15716 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2021-04-12 21:01:10.917  INFO 15716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-04-12 21:01:10.927  INFO 15716 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-12 21:01:10.927  INFO 15716 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-04-12 21:01:11.432  INFO 15716 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-12 21:01:11.433  INFO 15716 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2513 ms
+2021-04-12 21:01:11.518  INFO 15716 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address without ex: localhost
+2021-04-12 21:01:11.677  INFO 15716 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2021-04-12 21:01:11.690  INFO 15716 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.algorithm, using default value: PBEWITHHMACSHA512ANDAES_256
+2021-04-12 21:01:11.691  INFO 15716 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+2021-04-12 21:01:11.691  INFO 15716 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+2021-04-12 21:01:11.691  INFO 15716 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+2021-04-12 21:01:11.692  INFO 15716 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+2021-04-12 21:01:11.693  INFO 15716 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+2021-04-12 21:01:11.695  INFO 15716 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
+2021-04-12 21:01:11.697  INFO 15716 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+2021-04-12 21:01:12.161  INFO 15716 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-12 21:01:12.634  INFO 15716 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-04-12 21:01:12.635  INFO 15716 --- [main] e.s.p.pethospital.config.PHServerConfig  : ------------------------------------------port: 8080
+2021-04-12 21:01:12.635  INFO 15716 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address: localhost
+2021-04-12 21:01:12.645  INFO 15716 --- [main] e.s.p.p.PetHospitalApplication           : Started PetHospitalApplication in 4.641 seconds (JVM running for 6.056)
+2021-04-12 21:01:19.344  INFO 15716 --- [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-12 21:01:19.346  INFO 15716 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-12 21:01:19.352  INFO 15716 --- [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2021-04-12 21:01:19.454  INFO 15716 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-04-12 21:01:29.164  INFO 15716 --- [http-nio-8080-exec-2] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-04-12 21:01:29.661 ERROR 15716 --- [http-nio-8080-exec-2] o.a.c.c.C.[.[.[/].[dispatcherServlet]    : Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: 
+### Error updating database.  Cause: java.sql.SQLException: Field 'endDate' doesn't have a default value
+### The error may exist in edu/sdp/project/pethospital/mapper/TestMapper.java (best guess)
+### The error may involve edu.sdp.project.pethospital.mapper.TestMapper.insert-Inline
+### The error occurred while setting parameters
+### SQL: insert into test (userId,testOptionId,beginDate) values(?,?,?)
+### Cause: java.sql.SQLException: Field 'endDate' doesn't have a default value
+; Field 'endDate' doesn't have a default value; nested exception is java.sql.SQLException: Field 'endDate' doesn't have a default value] with root cause
+
+java.sql.SQLException: Field 'endDate' doesn't have a default value
+	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:129) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.mysql.cj.jdbc.ClientPreparedStatement.execute(ClientPreparedStatement.java:370) ~[mysql-connector-java-8.0.23.jar:8.0.23]
+	at com.zaxxer.hikari.pool.ProxyPreparedStatement.execute(ProxyPreparedStatement.java:44) ~[HikariCP-3.4.5.jar:na]
+	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.execute(HikariProxyPreparedStatement.java) ~[HikariCP-3.4.5.jar:na]
+	at org.apache.ibatis.executor.statement.PreparedStatementHandler.update(PreparedStatementHandler.java:47) ~[mybatis-3.5.6.jar:3.5.6]
+	at org.apache.ibatis.executor.statement.RoutingStatementHandler.update(RoutingStatementHandler.java:74) ~[mybatis-3.5.6.jar:3.5.6]
+	at org.apache.ibatis.executor.SimpleExecutor.doUpdate(SimpleExecutor.java:50) ~[mybatis-3.5.6.jar:3.5.6]
+	at org.apache.ibatis.executor.BaseExecutor.update(BaseExecutor.java:117) ~[mybatis-3.5.6.jar:3.5.6]
+	at org.apache.ibatis.executor.CachingExecutor.update(CachingExecutor.java:76) ~[mybatis-3.5.6.jar:3.5.6]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.update(DefaultSqlSession.java:197) ~[mybatis-3.5.6.jar:3.5.6]
+	at org.apache.ibatis.session.defaults.DefaultSqlSession.insert(DefaultSqlSession.java:184) ~[mybatis-3.5.6.jar:3.5.6]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate$SqlSessionInterceptor.invoke(SqlSessionTemplate.java:427) ~[mybatis-spring-2.0.6.jar:2.0.6]
+	at com.sun.proxy.$Proxy58.insert(Unknown Source) ~[na:na]
+	at org.mybatis.spring.SqlSessionTemplate.insert(SqlSessionTemplate.java:272) ~[mybatis-spring-2.0.6.jar:2.0.6]
+	at org.apache.ibatis.binding.MapperMethod.execute(MapperMethod.java:62) ~[mybatis-3.5.6.jar:3.5.6]
+	at org.apache.ibatis.binding.MapperProxy$PlainMethodInvoker.invoke(MapperProxy.java:152) ~[mybatis-3.5.6.jar:3.5.6]
+	at org.apache.ibatis.binding.MapperProxy.invoke(MapperProxy.java:85) ~[mybatis-3.5.6.jar:3.5.6]
+	at com.sun.proxy.$Proxy88.insert(Unknown Source) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344) ~[spring-aop-5.3.4.jar:5.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.invokeJoinpoint(ReflectiveMethodInvocation.java:198) ~[spring-aop-5.3.4.jar:5.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163) ~[spring-aop-5.3.4.jar:5.3.4]
+	at org.springframework.dao.support.PersistenceExceptionTranslationInterceptor.invoke(PersistenceExceptionTranslationInterceptor.java:137) ~[spring-tx-5.3.4.jar:5.3.4]
+	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186) ~[spring-aop-5.3.4.jar:5.3.4]
+	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:215) ~[spring-aop-5.3.4.jar:5.3.4]
+	at com.sun.proxy.$Proxy89.insert(Unknown Source) ~[na:na]
+	at edu.sdp.project.pethospital.service.TestService.addTest(TestService.java:56) ~[classes/:na]
+	at edu.sdp.project.pethospital.controller.TestController.startTest(TestController.java:102) ~[classes/:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62) ~[na:na]
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
+	at java.base/java.lang.reflect.Method.invoke(Method.java:567) ~[na:na]
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:197) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:141) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:106) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:894) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:808) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1060) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:962) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at org.springframework.web.servlet.FrameworkServlet.doPut(FrameworkServlet.java:920) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:655) ~[tomcat-embed-core-9.0.43.jar:4.0.FR]
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883) ~[spring-webmvc-5.3.4.jar:5.3.4]
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733) ~[tomcat-embed-core-9.0.43.jar:4.0.FR]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:227) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53) ~[tomcat-embed-websocket-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119) ~[spring-web-5.3.4.jar:5.3.4]
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:189) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:162) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:542) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:346) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:887) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1684) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128) ~[na:na]
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628) ~[na:na]
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61) ~[tomcat-embed-core-9.0.43.jar:9.0.43]
+	at java.base/java.lang.Thread.run(Thread.java:830) ~[na:na]
+
+2021-04-12 21:09:33.147  INFO 4148 --- [main] e.s.p.p.PetHospitalApplication           : Starting PetHospitalApplication using Java 13.0.2 on DESKTOP-4OB480A with PID 4148 (C:\Users\my751\IdeaProjects\PetHospital\target\classes started by my751 in C:\Users\my751\IdeaProjects\PetHospital)
+2021-04-12 21:09:33.154  INFO 4148 --- [main] e.s.p.p.PetHospitalApplication           : No active profile set, falling back to default profiles: default
+2021-04-12 21:09:34.650  INFO 4148 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2021-04-12 21:09:34.713  INFO 4148 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2021-04-12 21:09:34.716  INFO 4148 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 21:09:34.716  INFO 4148 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 21:09:34.717  INFO 4148 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2021-04-12 21:09:34.717  INFO 4148 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2021-04-12 21:09:34.718  INFO 4148 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 21:09:34.718  INFO 4148 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-04-12 21:09:34.748  INFO 4148 --- [main] c.u.j.filter.DefaultLazyPropertyFilter   : Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2021-04-12 21:09:34.992  INFO 4148 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2021-04-12 21:09:34.994  INFO 4148 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2021-04-12 21:09:35.250  INFO 4148 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-04-12 21:09:35.260  INFO 4148 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-12 21:09:35.261  INFO 4148 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-04-12 21:09:35.362  INFO 4148 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-12 21:09:35.362  INFO 4148 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2077 ms
+2021-04-12 21:09:35.421  INFO 4148 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address without ex: localhost
+2021-04-12 21:09:35.511  INFO 4148 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2021-04-12 21:09:35.518  INFO 4148 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.algorithm, using default value: PBEWITHHMACSHA512ANDAES_256
+2021-04-12 21:09:35.518  INFO 4148 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+2021-04-12 21:09:35.519  INFO 4148 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+2021-04-12 21:09:35.519  INFO 4148 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+2021-04-12 21:09:35.519  INFO 4148 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+2021-04-12 21:09:35.519  INFO 4148 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+2021-04-12 21:09:35.521  INFO 4148 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
+2021-04-12 21:09:35.522  INFO 4148 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+2021-04-12 21:09:35.967  INFO 4148 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-12 21:09:36.404  INFO 4148 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-04-12 21:09:36.407  INFO 4148 --- [main] e.s.p.pethospital.config.PHServerConfig  : ------------------------------------------port: 8080
+2021-04-12 21:09:36.407  INFO 4148 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address: localhost
+2021-04-12 21:09:36.420  INFO 4148 --- [main] e.s.p.p.PetHospitalApplication           : Started PetHospitalApplication in 3.867 seconds (JVM running for 5.62)
+2021-04-12 21:09:56.852  INFO 4148 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-12 21:09:56.853  INFO 4148 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-12 21:09:56.855  INFO 4148 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-04-12 21:09:56.899  INFO 4148 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-04-12 21:09:57.175  INFO 4148 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-04-12 21:09:57.274  INFO 4148 --- [http-nio-8080-exec-1] e.s.p.pethospital.service.TestService    : 60000
+2021-04-12 21:09:57.275  INFO 4148 --- [http-nio-8080-exec-1] e.s.p.pethospital.service.TestService    : 1618232280000
+2021-04-12 21:09:57.275  INFO 4148 --- [http-nio-8080-exec-1] e.s.p.pethospital.service.TestService    : 1618232997256
+2021-04-12 21:11:10.920  INFO 1756 --- [main] e.s.p.p.PetHospitalApplication           : Starting PetHospitalApplication using Java 13.0.2 on DESKTOP-4OB480A with PID 1756 (C:\Users\my751\IdeaProjects\PetHospital\target\classes started by my751 in C:\Users\my751\IdeaProjects\PetHospital)
+2021-04-12 21:11:10.924  INFO 1756 --- [main] e.s.p.p.PetHospitalApplication           : No active profile set, falling back to default profiles: default
+2021-04-12 21:11:12.546  INFO 1756 --- [main] ptablePropertiesBeanFactoryPostProcessor : Post-processing PropertySource instances
+2021-04-12 21:11:12.619  INFO 1756 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource configurationProperties [org.springframework.boot.context.properties.source.ConfigurationPropertySourcesPropertySource] to AOP Proxy
+2021-04-12 21:11:12.621  INFO 1756 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletConfigInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 21:11:12.622  INFO 1756 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource servletContextInitParams [org.springframework.core.env.PropertySource$StubPropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 21:11:12.623  INFO 1756 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemProperties [org.springframework.core.env.PropertiesPropertySource] to EncryptableMapPropertySourceWrapper
+2021-04-12 21:11:12.624  INFO 1756 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource systemEnvironment [org.springframework.boot.env.SystemEnvironmentPropertySourceEnvironmentPostProcessor$OriginAwareSystemEnvironmentPropertySource] to EncryptableSystemEnvironmentPropertySourceWrapper
+2021-04-12 21:11:12.624  INFO 1756 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource random [org.springframework.boot.env.RandomValuePropertySource] to EncryptablePropertySourceWrapper
+2021-04-12 21:11:12.624  INFO 1756 --- [main] c.u.j.EncryptablePropertySourceConverter : Converting PropertySource Config resource 'class path resource [application.properties]' via location 'optional:classpath:/' [org.springframework.boot.env.OriginTrackedMapPropertySource] to EncryptableMapPropertySourceWrapper
+2021-04-12 21:11:12.650  INFO 1756 --- [main] c.u.j.filter.DefaultLazyPropertyFilter   : Property Filter custom Bean not found with name 'encryptablePropertyFilter'. Initializing Default Property Filter
+2021-04-12 21:11:12.851  INFO 1756 --- [main] c.u.j.r.DefaultLazyPropertyResolver      : Property Resolver custom Bean not found with name 'encryptablePropertyResolver'. Initializing Default Property Resolver
+2021-04-12 21:11:12.854  INFO 1756 --- [main] c.u.j.d.DefaultLazyPropertyDetector      : Property Detector custom Bean not found with name 'encryptablePropertyDetector'. Initializing Default Property Detector
+2021-04-12 21:11:13.072  INFO 1756 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2021-04-12 21:11:13.084  INFO 1756 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2021-04-12 21:11:13.085  INFO 1756 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.43]
+2021-04-12 21:11:13.186  INFO 1756 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2021-04-12 21:11:13.187  INFO 1756 --- [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2187 ms
+2021-04-12 21:11:13.240  INFO 1756 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address without ex: localhost
+2021-04-12 21:11:13.321  INFO 1756 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : String Encryptor custom Bean not found with name 'jasyptStringEncryptor'. Initializing Default String Encryptor
+2021-04-12 21:11:13.330  INFO 1756 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.algorithm, using default value: PBEWITHHMACSHA512ANDAES_256
+2021-04-12 21:11:13.331  INFO 1756 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.key-obtention-iterations, using default value: 1000
+2021-04-12 21:11:13.331  INFO 1756 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.pool-size, using default value: 1
+2021-04-12 21:11:13.331  INFO 1756 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.provider-name, using default value: null
+2021-04-12 21:11:13.331  INFO 1756 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.provider-class-name, using default value: null
+2021-04-12 21:11:13.332  INFO 1756 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.salt-generator-classname, using default value: org.jasypt.salt.RandomSaltGenerator
+2021-04-12 21:11:13.333  INFO 1756 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.iv-generator-classname, using default value: org.jasypt.iv.RandomIvGenerator
+2021-04-12 21:11:13.334  INFO 1756 --- [main] c.u.j.encryptor.DefaultLazyEncryptor     : Encryptor config not found for property jasypt.encryptor.string-output-type, using default value: base64
+2021-04-12 21:11:13.823  INFO 1756 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2021-04-12 21:11:14.321  INFO 1756 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2021-04-12 21:11:14.324  INFO 1756 --- [main] e.s.p.pethospital.config.PHServerConfig  : ------------------------------------------port: 8080
+2021-04-12 21:11:14.330  INFO 1756 --- [main] e.s.p.pethospital.config.PHServerConfig  : --------------------------------------server ip address: localhost
+2021-04-12 21:11:14.343  INFO 1756 --- [main] e.s.p.p.PetHospitalApplication           : Started PetHospitalApplication in 4.009 seconds (JVM running for 5.738)
+2021-04-12 21:11:29.884  INFO 1756 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2021-04-12 21:11:29.885  INFO 1756 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2021-04-12 21:11:29.886  INFO 1756 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2021-04-12 21:11:29.929  INFO 1756 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2021-04-12 21:11:30.174  INFO 1756 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2021-04-12 21:11:30.244  INFO 1756 --- [http-nio-8080-exec-1] e.s.p.pethospital.service.TestService    : 60000
+2021-04-12 21:11:30.244  INFO 1756 --- [http-nio-8080-exec-1] e.s.p.pethospital.service.TestService    : 1618232280000
+2021-04-12 21:11:30.244  INFO 1756 --- [http-nio-8080-exec-1] e.s.p.pethospital.service.TestService    : 1618233090232
+2021-04-12 21:11:57.211  INFO 1756 --- [http-nio-8080-exec-3] e.s.p.pethospital.service.TestService    : 7200000
+2021-04-12 21:11:57.212  INFO 1756 --- [http-nio-8080-exec-3] e.s.p.pethospital.service.TestService    : 1618232280000
+2021-04-12 21:11:57.212  INFO 1756 --- [http-nio-8080-exec-3] e.s.p.pethospital.service.TestService    : 1618233117199
