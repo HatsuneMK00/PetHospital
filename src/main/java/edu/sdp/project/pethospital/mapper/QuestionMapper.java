@@ -26,6 +26,13 @@ public interface QuestionMapper {
     List<Question> selectByTag(String tag);
     @Select("select * from ques where descrip like CONCAT('%',#{matchParam},'%')")
     List<Question> selectQuestionByDescripMatch(String matchParam);
+    @Select("select * from ques where descrip like CONCAT('%',#{matchParam},'%') and tag = #{tag}" )
+    List<Question> selectByTagAndSearch(String matchParam,String tag);
+    @Select("select * from ques where descrip like CONCAT('%',#{matchParam},'%') and type = #{type}")
+    List<Question> selectByTypeAndSearch(String matchParam,String type);
+    @Select("select * from ques where descrip like CONCAT('%',#{matchParam},'%') and type = #{type} and tag =#{tag}")
+    List<Question> selectByTagAndTypeAndSearch(String matchParam,String tag,String type);
+    @Select("select * ")
     @Select("select * from ques where type = #{type}")
     List<Question> selectQuestionByType(String type);
     @Select("select * from ques where type = #{type} and tag=#{tag}")

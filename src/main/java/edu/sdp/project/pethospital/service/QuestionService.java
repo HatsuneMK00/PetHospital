@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @Service
 @Slf4j
@@ -22,6 +23,27 @@ public class QuestionService {
     }
     public List<Question> getAllQuesByTag(String tag){
         return questionMapper.selectByTag(tag);
+    }
+    public List<Question> getAllQuesByType(String type){
+        return questionMapper.selectQuestionByType(type);
+    }
+    public List<Question> getAllQuesbyTypeAndTag(String type,String tag){
+        return questionMapper.selectQuestionByTagAndType(type,tag);
+    }
+    public List<Question> getQuesByTagSearch(String param ,String tag){
+        if (param.equals("")) {
+            return questionMapper.selectByTag(tag);
+        }else return questionMapper.selectByTagAndSearch(param,tag);
+    }
+    public List<Question> getQuesByTypeSearch(String param,String type){
+        if (param.equals("")) {
+            return questionMapper.selectQuestionByType(type);
+        }else return questionMapper.selectByTypeAndSearch(param,type);
+    }
+    public List<Question> getQuesByTypeTagSearch(String param,String type,String tag){
+        if (param.equals("")) {
+            return questionMapper.selectQuestionByTagAndType(tag,type);
+        }else return questionMapper.selectByTagAndTypeAndSearch(param,tag,type);
     }
     public List<Question> getQuesBySearch(String searchParam){
         if (searchParam.equals("")) {
@@ -38,6 +60,23 @@ public class QuestionService {
             List<Question> result = questionMapper.selectQuestionByDescripMatch(searchParam);
             return result;
         }
+    }
+    public List<Question> unionSearch(Map params){
+        if(params.containsKey("search")&&params.containsKey("tag")&&params.containsKey("type"))
+            return getQuesByTypeTagSearch(params.get("search").toString(),params.get("type").toString(),params.get("tag").toString());
+        else if(params.containsKey("search")&&params.containsKey("tag"))
+            return getQuesByTagSearch(params.get("search").toString(),params.get("tag").toString());
+        else if(params.containsKey("search")&&params.containsKey("type"))
+            return getQuesByTypeSearch(params.get("search").toString(),params.get("type").toString());
+        else if(params.containsKey("type")&&params.containsKey("tag"))
+            return getAllQuesbyTypeAndTag(params.get("type").toString(),params.get("tag").toString());
+        else if(params.containsKey("type"))
+            return getAllQuesByType(params.get("type").toString());
+        else if(params.containsKey("tag"))
+            return getAllQuesByTag(params.get("tag").toString());
+        else if(params.containsKey("search"))
+            return getQuesBySearch(params.get("search").toString());
+        return null;
     }
     public int addQuestion(Question question){
         Question exist = questionMapper.selectByDescrip(question.getDescrip());

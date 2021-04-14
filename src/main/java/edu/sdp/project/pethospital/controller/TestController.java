@@ -3,14 +3,15 @@ package edu.sdp.project.pethospital.controller;
 import edu.sdp.project.pethospital.entity.Question;
 import edu.sdp.project.pethospital.entity.ResponseMsg;
 import edu.sdp.project.pethospital.entity.Test;
+import edu.sdp.project.pethospital.entity.TestOption;
+import edu.sdp.project.pethospital.service.OptionQuesService;
 import edu.sdp.project.pethospital.service.OptionUserService;
+import edu.sdp.project.pethospital.service.TestOptionService;
 import edu.sdp.project.pethospital.service.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @Slf4j
@@ -18,10 +19,14 @@ import java.util.Map;
 public class TestController {
     private final TestService testService;
     private final OptionUserService optionUserService;
+    private final TestOptionService testOptionService;
+    private final OptionQuesService optionQuesService;
 
-    public TestController(TestService testService, OptionUserService optionUserService) {
+    public TestController(TestService testService, OptionUserService optionUserService, TestOptionService testOptionService, OptionQuesService optionQuesService) {
         this.testService = testService;
         this.optionUserService = optionUserService;
+        this.testOptionService = testOptionService;
+        this.optionQuesService = optionQuesService;
     }
 
     @ResponseBody
@@ -90,7 +95,7 @@ public class TestController {
      * 调用该接口会在test表中插入一条新记录，并返回一套试卷（一个Question列表）和新插入的testId
      * 分别通过result和testId拿取
      * 此接口会进行一些条件判断
-     * 返回404表示该用户无权限参加考试
+     * 返回404表示该用户无权限参加考试或考试不存在
      * 返回400表示该用户已经参加过该考试
      * 返回500表示该用户可以参加该考试但是目前事件已经超过或者还未到考试时间
      * 返回501表示出题失败，很有可能是因为出题配置有问题，尤其是某一题型的题数大于数据库中的所有题数
@@ -102,10 +107,20 @@ public class TestController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!optionUserService.checkId(testOptionId,userId)) return msg;
+        TestOption testOption = testOptionService.getOptionById(testOptionId);
+        if(testOption==null) return msg;
         msg.setStatus(400);
         if(testService.checkTest(userId,testOptionId)) return msg;
         msg.setStatus(500);
         if(!testService.checkDate(testOptionId)) return msg;
+        if(testOption.getSelectNum()==0&&testOption.getJudgeNum()==0&&testOption.getQaNum()==0){
+            List<Question> result = optionQuesService.getQuesByOptionId(testOptionId);
+            int testId=testService.addTest(userId,testOptionId);
+            if(result!=null&&testId>0) msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+            msg.getResponseMap().put("testId",testId);
+            return msg;
+        }
         msg.setStatus(501);
         List<Question> result = testService.getNewTest(userId,testOptionId);
         if(result==null||result.size()==0) return msg;
@@ -119,11 +134,17 @@ public class TestController {
     }
     @ResponseBody
     @PostMapping("/exam/{testId}/submit")
-    ResponseMsg endTest(@PathVariable("testId") int testId,@RequestBody List<Integer> quesIds,@RequestBody List<String> answers){
+    ResponseMsg endTest(@PathVariable("testId") int testId,@RequestBody List<String> params){
         Test test = testService.getTestById(testId);
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(test==null) return msg;
+        List<String> answers = new ArrayList<>();
+        List<Integer> quesIds = new ArrayList<>();
+        for (int i = 0; i < params.size(); i+=2) {
+            quesIds.add(Integer.valueOf(params.get(i)));
+            answers.add(params.get(i+1));
+        }
         int score = testService.getScore(quesIds,answers,testId);
         msg.setStatus(500);
         if(score<0) return msg;

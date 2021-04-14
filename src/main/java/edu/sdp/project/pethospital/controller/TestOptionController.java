@@ -2,6 +2,8 @@ package edu.sdp.project.pethospital.controller;
 
 import edu.sdp.project.pethospital.entity.ResponseMsg;
 import edu.sdp.project.pethospital.entity.TestOption;
+import edu.sdp.project.pethospital.entity.User;
+import edu.sdp.project.pethospital.service.OptionQuesService;
 import edu.sdp.project.pethospital.service.OptionUserService;
 import edu.sdp.project.pethospital.service.TestOptionService;
 import lombok.extern.slf4j.Slf4j;
@@ -17,10 +19,12 @@ import java.util.Map;
 public class TestOptionController {
     private final TestOptionService testOptionService;
     private final OptionUserService optionUserService;
+    private final OptionQuesService optionQuesService;
 
-    public TestOptionController(TestOptionService testOptionService, OptionUserService optionUserService) {
+    public TestOptionController(TestOptionService testOptionService, OptionUserService optionUserService, OptionQuesService optionQuesService) {
         this.testOptionService = testOptionService;
         this.optionUserService = optionUserService;
+        this.optionQuesService = optionQuesService;
     }
 
     @ResponseBody
@@ -49,9 +53,19 @@ public class TestOptionController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if (!testOptionService.checkId(testOptionId)) return msg;
-        List<Integer> result = optionUserService.getUserIdsByOptionId(testOptionId);
+        List<User> result = optionUserService.getUsersByOptionId(testOptionId);
         if(result==null) return msg;
         msg.setStatus(200);
+        msg.getResponseMap().put("result",result);
+        return msg;
+    }
+    @ResponseBody
+    @GetMapping("/exam/paper/user/{userId}")
+    ResponseMsg fetchUserExams(@PathVariable("userId") int userId){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        List<TestOption> result = optionUserService.getOptionsByUserId(userId);
+        if(result!=null) msg.setStatus(200);
         msg.getResponseMap().put("result",result);
         return msg;
     }
@@ -72,7 +86,22 @@ public class TestOptionController {
         if(optionUserService.deleteUserOptions(testOptionId,userIds)>0||userIds.size()==0) msg.setStatus(200);
         return msg;
     }
-
+    @ResponseBody
+    @PutMapping("/admin/test/paper/{testOptionId}/addQues")
+    ResponseMsg addQuesToOption(@PathVariable("testOptionId") int testOptionId,@RequestBody List<Integer> quesIds){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(500);
+        if(optionQuesService.addQuesToOption(testOptionId,quesIds)>0||quesIds.size()==0) msg.setStatus(200);
+        return msg;
+    }
+    @ResponseBody
+    @DeleteMapping("/admin/test/paper/{testOptionId}/deleteQues")
+    ResponseMsg deleteQuesFromOption(@PathVariable("testOptionId") int testOptionId,@RequestBody List<Integer> quesIds ){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(500);
+        if(optionQuesService.deleteQuesFromOption(testOptionId,quesIds)>0||quesIds.size()==0) msg.setStatus(200);
+        return msg;
+    }
     @ResponseBody
     @PutMapping("/admin/test/paper")
     ResponseMsg addTestOption(@RequestBody Map params){

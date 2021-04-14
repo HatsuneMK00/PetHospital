@@ -54,6 +54,43 @@ public class QuestionController {
         msg.getResponseMap().put("result",result);
         return msg;
     }
+    @ResponseBody
+    @GetMapping("/admin/test/question/type/{type}")
+    ResponseMsg fetchQuestionByType(@PathVariable("type") String type){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        List<Question> result = questionService.getAllQuesByType(type);
+        if(result!=null) msg.setStatus(200);
+        msg.getResponseMap().put("result",result);
+        return msg;
+    }
+    @ResponseBody
+    @GetMapping("/admin/test/question/type/{type}/tag/{tag}")
+    ResponseMsg fetchQuestionByTypeAndTag(@PathVariable("tag") String tag,@PathVariable("type") String type){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        List<Question> result = questionService.getAllQuesbyTypeAndTag(type,tag);
+        if(result!=null) msg.setStatus(200);
+        msg.getResponseMap().put("result",result);
+        return msg;
+    }
+
+    /**
+     * 三个关键字
+     * search，tag，type
+     * 不需要就不要传
+     * 需压就按对应的键值对给过来
+     */
+    @ResponseBody
+    @GetMapping("/admin/test/question/search")
+    ResponseMsg fetchQuestionByUnionSearch(@RequestBody Map params){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        List<Question> result = questionService.unionSearch(params);
+        if(result!=null) msg.setStatus(200);
+        msg.getResponseMap().put("result",result);
+        return msg;
+    }
 
     /**
      * 本接口支持通过id搜索，格式为：qid:{id1},{id2},...
