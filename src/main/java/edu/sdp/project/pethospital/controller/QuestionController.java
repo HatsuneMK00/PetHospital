@@ -79,7 +79,7 @@ public class QuestionController {
      * 三个关键字
      * search，tag，type
      * 不需要就不要传
-     * 需压就按对应的键值对给过来
+     * 需要就按对应的键值对给过来
      */
     @ResponseBody
     @GetMapping("/admin/test/question/search")
@@ -96,16 +96,16 @@ public class QuestionController {
      * 本接口支持通过id搜索，格式为：qid:{id1},{id2},...
      * 如果不按以上格式则按照关键词处理，处理方式为返回描述中有匹配关键字的问题
      */
-    @ResponseBody
-    @GetMapping("/admin/test/question/search")
-    ResponseMsg fetchQuestionBySearch(@RequestParam("searchParam") String searchParam){
-        ResponseMsg msg = new ResponseMsg();
-        msg.setStatus(404);
-        List<Question> result = questionService.getQuesBySearch(searchParam);
-        if(result!=null) msg.setStatus(200);
-        msg.getResponseMap().put("result",result);
-        return msg;
-    }
+//    @ResponseBody
+//    @GetMapping("/admin/test/question/search")
+//    ResponseMsg fetchQuestionBySearch(@RequestParam("searchParam") String searchParam){
+//        ResponseMsg msg = new ResponseMsg();
+//        msg.setStatus(404);
+//        List<Question> result = questionService.getQuesBySearch(searchParam);
+//        if(result!=null) msg.setStatus(200);
+//        msg.getResponseMap().put("result",result);
+//        return msg;
+//    }
 
     /**
      * 新增问题时不用给出id，id自增管理

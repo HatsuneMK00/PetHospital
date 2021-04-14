@@ -32,7 +32,6 @@ public interface QuestionMapper {
     List<Question> selectByTypeAndSearch(String matchParam,String type);
     @Select("select * from ques where descrip like CONCAT('%',#{matchParam},'%') and type = #{type} and tag =#{tag}")
     List<Question> selectByTagAndTypeAndSearch(String matchParam,String tag,String type);
-    @Select("select * ")
     @Select("select * from ques where type = #{type}")
     List<Question> selectQuestionByType(String type);
     @Select("select * from ques where type = #{type} and tag=#{tag}")
