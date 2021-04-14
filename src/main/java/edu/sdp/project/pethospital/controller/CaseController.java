@@ -43,18 +43,7 @@ public class CaseController {
         List<Cas> result = caseService.traverseCases();
         if(result==null) return msg;
         msg.setStatus(200);
-        List<List<String>> descrips = new ArrayList<>();
-        for (int i = 0; i < result.size(); i++) {
-            Cas cas = result.get(i);
-            String consultDescrip = caseConsultService.getConsultDescrip(cas.getCaseConsultId());
-            String diagDescrip = caseDiagService.getDiagDescrip(cas.getCaseDiagId());
-            String therapyDecrip = caseTherapyService.getTherapyDescrip(cas.getCaseTherapyId());
-            List<String> tem = new ArrayList<>();
-            tem.add(consultDescrip);
-            tem.add(diagDescrip);
-            tem.add(therapyDecrip);
-            descrips.add(tem);
-        }
+        List<List<String>> descrips = getDescrips(result);
         msg.getResponseMap().put("result",result);
         msg.getResponseMap().put("count",result.size());
         msg.getResponseMap().put("descrip",descrips);
@@ -108,6 +97,32 @@ public class CaseController {
         if(caseDiag==null) return msg;
         msg.getResponseMap().put("result",caseDiag);
         msg.setStatus(200);
+        return msg;
+    }
+    @ResponseBody
+    @GetMapping("/admin/case/tag/{caseTag}")
+    ResponseMsg fetchCasesByTag(@PathVariable("caseTag") String caseTag){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        List<Cas> result = caseService.getCasesByTag(caseTag);
+        if(result==null) return msg;
+        msg.setStatus(200);
+        List<List<String>> descrips = getDescrips(result);
+        msg.getResponseMap().put("result",result);
+        msg.getResponseMap().put("descrips",descrips);
+        return msg;
+    }
+    @ResponseBody
+    @GetMapping("/admin/case/search")
+    ResponseMsg fetchCasesBySearch(@RequestParam("searchParam") String searchParam){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        List<Cas> result = caseService.getCasesBySearch(searchParam);
+        if(result==null) return msg;
+        List<List<String>> descrips = getDescrips(result);
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",result);
+        msg.getResponseMap().put("descrips",descrips);
         return msg;
     }
     @ResponseBody
@@ -189,9 +204,9 @@ public class CaseController {
         int consultId = caseService.getCaseConsultId(caseId);
         int diagId = caseService.getCaseDiagId(caseId);
         int therapyId = caseService.getCaseTherapyId(caseId);
-        int result1=0;
-        int result2=0;
-        int result3=0;
+        int result1=1;
+        int result2=1;
+        int result3=1;
         if(param.containsKey("consultDescrip")){
             if(!caseConsultService.checkId(consultId)) return msg;
             result1 = caseConsultService.setDescrip(consultId,param.get("consultDescrip").toString());
@@ -204,6 +219,7 @@ public class CaseController {
             if(!caseTherapyService.checkId(therapyId)) return msg;
             result3=caseTherapyService.setDescrip(therapyId,param.get("therapyDescrip").toString());
         }
+        msg.setStatus(500);
         if(result1>0&&result2>0&&result3>0) msg.setStatus(200);
         return msg;
     }
@@ -423,6 +439,21 @@ public class CaseController {
         int result = caseService.deleteCaseById(caseId);
         if(result>0) msg.setStatus(200);
         return msg;
+    }
+
+    List<List<String>> getDescrips(List<Cas> result){
+        List<List<String>> descrips = new ArrayList<>();
+        for (Cas cas : result) {
+            String consultDescrip = caseConsultService.getConsultDescrip(cas.getCaseConsultId());
+            String diagDescrip = caseDiagService.getDiagDescrip(cas.getCaseDiagId());
+            String therapyDecrip = caseTherapyService.getTherapyDescrip(cas.getCaseTherapyId());
+            List<String> tem = new ArrayList<>();
+            tem.add(consultDescrip);
+            tem.add(diagDescrip);
+            tem.add(therapyDecrip);
+            descrips.add(tem);
+        }
+        return descrips;
     }
 
 }
