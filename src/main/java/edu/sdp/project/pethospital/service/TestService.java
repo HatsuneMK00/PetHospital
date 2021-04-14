@@ -78,11 +78,14 @@ public class TestService {
         List<Question> result = new ArrayList<>();
         List<Question> tem=null;
         tem = getQess("select",option.getSelectNum(),option.getSelectTag());
-        if(tem!=null) result.addAll(tem);
+        if(tem==null) return null;
+        result.addAll(tem);
         tem = getQess("judge",option.getJudgeNum(),option.getJudgeTag());
-        if(tem!=null) result.addAll(tem);
+        if(tem==null) return null;
+        result.addAll(tem);
         tem = getQess("qa",option.getQaNum(),option.getQaTag());
-        if(tem!=null) result.addAll(tem);
+        if(tem==null) return null;
+        result.addAll(tem);
         return result;
     }
     List<Question> getQess(String type,int num,String tag){
@@ -105,5 +108,32 @@ public class TestService {
             result.add(tem.get(integer));
         }
         return result;
+    }
+    public int getScore(List<Integer> quesIds,List<String> answers,int testId){
+        List<Question> quess = new ArrayList<>();
+        for (Integer quesId : quesIds) {
+            Question ques = questionMapper.selectById(quesId);
+            if(ques==null) return -1;
+            quess.add(ques);
+        }
+        Test test = testMapper.selectById(testId);
+        if(test ==null) return -1;
+        int result = 0;
+        int total = 0;
+        for (int i = 0; i < answers.size(); i++) {
+            Question ques = quess.get(i);
+            total+=ques.getScore();
+            String answer = answers.get(i);
+            boolean flag = false;
+            if(ques.getType().equals("qa")) flag = answer.matches(ques.getAnswer());
+            else flag = answer.equals(ques.getAnswer());
+            if(flag) result+=ques.getScore();
+        }
+        double ratio;
+        TestOption testOption = testOptionMapper.selectById(test.getTestOptionId());
+        if(testOption==null) return -1;
+        if(testOption.getTotalScore()<=0) return result;
+        ratio = (double)testOption.getTotalScore()/total;
+        return  (int)(ratio*result);
     }
 }

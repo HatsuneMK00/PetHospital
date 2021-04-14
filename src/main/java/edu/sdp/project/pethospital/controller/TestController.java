@@ -8,6 +8,7 @@ import edu.sdp.project.pethospital.service.TestService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -34,7 +35,7 @@ public class TestController {
         return msg;
     }
     @ResponseBody
-    @GetMapping("/admin/test/exams/user/{userId}")
+    @GetMapping(value = {"/admin/test/exams/user/{userId}","/exam/user/{userId}"})
     ResponseMsg fetchUserTests(@PathVariable("userId") int userId){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
@@ -54,7 +55,7 @@ public class TestController {
         return msg;
     }
     @ResponseBody
-    @GetMapping("/admin/test/exams/{testId}")
+    @GetMapping(value = {"/admin/test/exams/{testId}","/exam/{testId}"})
     ResponseMsg fetchTest(@PathVariable("testId") int testId){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
@@ -92,6 +93,8 @@ public class TestController {
      * 返回404表示该用户无权限参加考试
      * 返回400表示该用户已经参加过该考试
      * 返回500表示该用户可以参加该考试但是目前事件已经超过或者还未到考试时间
+     * 返回501表示出题失败，很有可能是因为出题配置有问题，尤其是某一题型的题数大于数据库中的所有题数
+     * 返回502表示test插入数据库失败，内部原因
      */
     @ResponseBody
     @PutMapping("/exam/{testOptionId}/user/{userId}")
@@ -103,11 +106,33 @@ public class TestController {
         if(testService.checkTest(userId,testOptionId)) return msg;
         msg.setStatus(500);
         if(!testService.checkDate(testOptionId)) return msg;
+        msg.setStatus(501);
         List<Question> result = testService.getNewTest(userId,testOptionId);
+        if(result==null||result.size()==0) return msg;
+        msg.setStatus(502);
         int testId = testService.addTest(userId,testOptionId);
-        if(result!=null&&result.size()>0&&testId>0) msg.setStatus(200);
+        if(testId<=0) return msg;
+        msg.setStatus(200);
         msg.getResponseMap().put("result",result);
         msg.getResponseMap().put("testId",testId);
         return msg;
     }
+    @ResponseBody
+    @PostMapping("/exam/{testId}/submit")
+    ResponseMsg endTest(@PathVariable("testId") int testId,@RequestBody List<Integer> quesIds,@RequestBody List<String> answers){
+        Test test = testService.getTestById(testId);
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        if(test==null) return msg;
+        int score = testService.getScore(quesIds,answers,testId);
+        msg.setStatus(500);
+        if(score<0) return msg;
+        test.setScore(score);
+        test.setEndDate(new Date());
+        int result = testService.changeTest(test);
+        if(result<=0) return msg;
+        msg.setStatus(200);
+        return msg;
+    }
+
 }
