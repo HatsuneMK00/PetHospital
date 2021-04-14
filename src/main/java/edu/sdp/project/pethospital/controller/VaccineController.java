@@ -11,7 +11,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class VaccineController {
     private final VaccineService vaccineService;
 
@@ -21,58 +21,68 @@ public class VaccineController {
 
     @ResponseBody
     @GetMapping("/admin/structure/vaccine")
-    ResponseMsg fetchAllVaccine(){
+    ResponseMsg fetchAllVaccine() {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         List<Vaccine> result = vaccineService.getAllVaccines();
-        if(result!=null) msg.setStatus(200);
-        msg.getResponseMap().put("result",result);
+        if (result != null)
+            msg.setStatus(200);
+        msg.getResponseMap().put("result", result);
         return msg;
     }
 
     @ResponseBody
+    @RequestMapping(value = { "/admin/structure/vaccine/{vacId}" }, method = RequestMethod.PUT)
     @GetMapping("/admin/structure/vaccine/{vacId}")
-    ResponseMsg fetchVaccine(@PathVariable("vacId") int vacId){
+    ResponseMsg fetchVaccine(@PathVariable("vacId") int vacId) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         Vaccine vaccine = vaccineService.getVaccine(vacId);
-        if(vaccine!=null) msg.setStatus(200);
-        msg.getResponseMap().put("result",vaccine);
+        if (vaccine != null)
+            msg.setStatus(200);
+        msg.getResponseMap().put("result", vaccine);
         return msg;
     }
+
     @ResponseBody
     @PutMapping("/admin/structure/vaccine")
-    ResponseMsg addVaccine(@RequestParam("vacName") String vacName,@RequestParam("vacDescrip") String vacDescrip){
-        ResponseMsg msg =new ResponseMsg();
+    ResponseMsg addVaccine(@RequestParam("vacName") String vacName, @RequestParam("vacDescrip") String vacDescrip) {
+        ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         Vaccine vaccine = new Vaccine();
         vaccine.setVacDescrip(vacDescrip);
         vaccine.setVacName(vacName);
         int result = vaccineService.addVaccine(vaccine);
-        if(result>0) {
+        if (result > 0) {
             msg.setStatus(200);
-            msg.getResponseMap().put("result",result);
+            msg.getResponseMap().put("result", result);
         }
         return msg;
     }
+
     @ResponseBody
     @PostMapping("/admin/structure/vaccine/{vacId}")
-    ResponseMsg updateVaccine(@PathVariable("vacId") int vacId, @RequestBody Map params){
+    ResponseMsg updateVaccine(@PathVariable("vacId") int vacId, @RequestBody Map params) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         Vaccine vaccine = vaccineService.getVaccine(vacId);
-        if(vaccine==null) return msg;
+        if (vaccine == null)
+            return msg;
         vaccine.updateVaccine(params);
-        if(vaccineService.changeVaccine(vaccine)>0) msg.setStatus(200);
+        if (vaccineService.changeVaccine(vaccine) > 0)
+            msg.setStatus(200);
         return msg;
     }
+
     @ResponseBody
     @DeleteMapping("/admin/structure/vaccine")
-    ResponseMsg deleteVaccine(@RequestParam("vacId") int vacId){
+    ResponseMsg deleteVaccine(@RequestParam("vacId") int vacId) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        if(!vaccineService.checkId(vacId)) return msg;
-        if(vaccineService.deleteVaccine(vacId)>0) msg.setStatus(200);
+        if (!vaccineService.checkId(vacId))
+            return msg;
+        if (vaccineService.deleteVaccine(vacId) > 0)
+            msg.setStatus(200);
         return msg;
     }
 }
