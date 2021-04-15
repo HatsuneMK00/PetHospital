@@ -132,7 +132,7 @@ public class TestService {
         double ratio;
         TestOption testOption = testOptionMapper.selectById(test.getTestOptionId());
         if(testOption==null) return -1;
-        if(testOption.getTotalScore()<=0) return result;
+        if(testOption.getTotalScore()==null||testOption.getTotalScore()<=0) return result;
         ratio = (double)testOption.getTotalScore()/total;
         return  (int)(ratio*result);
     }

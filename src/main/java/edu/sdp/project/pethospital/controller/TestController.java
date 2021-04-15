@@ -134,7 +134,7 @@ public class TestController {
     }
     @ResponseBody
     @PostMapping("/exam/{testId}/submit")
-    ResponseMsg endTest(@PathVariable("testId") int testId,@RequestBody List<String> params){
+    ResponseMsg endTest(@PathVariable("testId") int testId,@RequestBody List<Object> params){
         Test test = testService.getTestById(testId);
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
@@ -142,11 +142,12 @@ public class TestController {
         List<String> answers = new ArrayList<>();
         List<Integer> quesIds = new ArrayList<>();
         for (int i = 0; i < params.size(); i+=2) {
-            quesIds.add(Integer.valueOf(params.get(i)));
-            answers.add(params.get(i+1));
+            quesIds.add(Integer.valueOf(params.get(i).toString()));
+            answers.add(params.get(i+1).toString());
         }
         int score = testService.getScore(quesIds,answers,testId);
         msg.setStatus(500);
+        log.info(score+" ");
         if(score<0) return msg;
         test.setScore(score);
         test.setEndDate(new Date());
