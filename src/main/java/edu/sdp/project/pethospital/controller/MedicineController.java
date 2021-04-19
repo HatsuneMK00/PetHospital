@@ -11,67 +11,79 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class MedicineController {
     private final MedicineService medicineService;
 
     public MedicineController(MedicineService medicineService) {
         this.medicineService = medicineService;
     }
+
     @ResponseBody
     @GetMapping("/admin/structure/medicine")
-    ResponseMsg fetchAllMedicine(){
+    ResponseMsg fetchAllMedicine() {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         List<Medicine> result = medicineService.getAllMedicines();
-        if(result!=null) msg.setStatus(200);
-        msg.getResponseMap().put("result",result);
+        if (result != null)
+            msg.setStatus(200);
+        msg.getResponseMap().put("result", result);
         return msg;
     }
 
     @ResponseBody
     @GetMapping("/admin/structure/medicine/{medId}")
-    ResponseMsg fetchMedicine(@PathVariable("medId") int medId){
+    @RequestMapping(value = { "/admin/structure/medicine/{medId}" }, method = RequestMethod.PUT)
+
+    ResponseMsg fetchMedicine(@PathVariable("medId") int medId) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         Medicine medicine = medicineService.getMedicine(medId);
-        if(medicine!=null) msg.setStatus(200);
-        msg.getResponseMap().put("result",medicine);
+        if (medicine != null)
+            msg.setStatus(200);
+        msg.getResponseMap().put("result", medicine);
         return msg;
     }
+
     @ResponseBody
     @PutMapping("/admin/structure/medicine")
-    ResponseMsg addMedicine(@RequestParam("medName") String medName,@RequestParam("medDescrip") String medDescrip){
-        ResponseMsg msg =new ResponseMsg();
+    ResponseMsg addMedicine(@RequestParam("medName") String medName, @RequestParam("medDescrip") String medDescrip) {
+        ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         Medicine medicine = new Medicine();
         medicine.setMedDescrip(medDescrip);
         medicine.setMedName(medName);
         int result = medicineService.addMedicine(medicine);
-        if(result>0) {
+        if (result > 0) {
             msg.setStatus(200);
-            msg.getResponseMap().put("result",result);
+            msg.getResponseMap().put("result", result);
         }
         return msg;
     }
+
     @ResponseBody
     @PostMapping("/admin/structure/medicine/{medId}")
-    ResponseMsg updateMedicine(@PathVariable("medId") int medId, @RequestBody Map params){
+    ResponseMsg updateMedicine(@PathVariable("medId") int medId, @RequestBody Map params) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         Medicine medicine = medicineService.getMedicine(medId);
-        if(medicine==null) return msg;
+        if (medicine == null)
+            return msg;
         medicine.updateMedicine(params);
-        if(medicineService.changeMedicine(medicine)>0) msg.setStatus(200);
+        if (medicineService.changeMedicine(medicine) > 0)
+            msg.setStatus(200);
         return msg;
     }
+
     @ResponseBody
     @DeleteMapping("/admin/structure/medicine")
-    ResponseMsg deleteMedicine(@RequestParam("medId") int medId){
+    ResponseMsg deleteMedicine(@RequestParam("medId") int medId) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        if(!medicineService.checkId(medId)) return msg;
-        if(medicineService.deleteMedicine(medId)>0) msg.setStatus(200);
+        if (!medicineService.checkId(medId))
+            return msg;
+        if (medicineService.deleteMedicine(medId) > 0)
+            msg.setStatus(200);
         return msg;
     }
 }

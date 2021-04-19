@@ -59,7 +59,7 @@ public class VaccineControllerTest {
     }
 
     @Test
-    public void null_path_when_fatch_all_vaccine() throws Exception {
+    public void null_path_when_fetch_all_vaccine() throws Exception {
         when(vaccineService.getAllVaccines()).thenReturn(null);
         mockMvc.perform(get("/admin/structure/vaccine")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value(404));
