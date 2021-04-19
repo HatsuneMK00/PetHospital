@@ -83,6 +83,6 @@ public class VaccineController {
             return msg;
         if (vaccineService.deleteVaccine(vacId) > 0)
             msg.setStatus(200);
-        return msg;
+        return msg; 
     }
 }
