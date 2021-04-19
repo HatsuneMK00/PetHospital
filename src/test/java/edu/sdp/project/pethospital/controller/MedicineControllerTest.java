@@ -148,6 +148,7 @@ public class MedicineControllerTest {
         mockMvc.perform(delete("/admin/structure/medicine").param("medId", "101")).andExpect(status().isOk())
                 .andExpect(jsonPath("$.status").value(404));
     }
+
     @Test
     void happy_path_when_update_medicine() throws Exception {
         int medId = 101;
@@ -182,8 +183,7 @@ public class MedicineControllerTest {
         Medicine medicine = new Medicine(101, "vaccine1", "descriptiontest1");
         when(medicineService.getMedicine(medId)).thenReturn(null);
         mockMvc.perform(post("/admin/structure/medicine/101").content(json).contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.status").value(404));
+                .andExpect(status().isOk()).andExpect(jsonPath("$.status").value(404));
 
     }
 
