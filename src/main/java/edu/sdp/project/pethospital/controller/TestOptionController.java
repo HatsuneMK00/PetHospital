@@ -3,7 +3,7 @@ package edu.sdp.project.pethospital.controller;
 import edu.sdp.project.pethospital.entity.ResponseMsg;
 import edu.sdp.project.pethospital.entity.TestOption;
 import edu.sdp.project.pethospital.entity.User;
-import edu.sdp.project.pethospital.service.OptionQuesService;
+import edu.sdp.project.pethospital.service.PaperQuesService;
 import edu.sdp.project.pethospital.service.OptionUserService;
 import edu.sdp.project.pethospital.service.TestOptionService;
 import lombok.extern.slf4j.Slf4j;
@@ -19,12 +19,12 @@ import java.util.Map;
 public class TestOptionController {
     private final TestOptionService testOptionService;
     private final OptionUserService optionUserService;
-    private final OptionQuesService optionQuesService;
+    private final PaperQuesService paperQuesService;
 
-    public TestOptionController(TestOptionService testOptionService, OptionUserService optionUserService, OptionQuesService optionQuesService) {
+    public TestOptionController(TestOptionService testOptionService, OptionUserService optionUserService, PaperQuesService paperQuesService) {
         this.testOptionService = testOptionService;
         this.optionUserService = optionUserService;
-        this.optionQuesService = optionQuesService;
+        this.paperQuesService = paperQuesService;
     }
 
     @ResponseBody
@@ -74,34 +74,18 @@ public class TestOptionController {
     ResponseMsg addUserToOption(@PathVariable("testOptionId") int testOptionId,@RequestBody List<Integer> userIds){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(500);
-        if(optionUserService.addUserOptions(testOptionId,userIds)>0||userIds.size()==0) msg.setStatus(200);
+        if(userIds.size()==0||(optionUserService.deleteUserByOptionId(testOptionId)>=0&&optionUserService.addUserOptions(testOptionId,userIds)>0)) msg.setStatus(200);
         return msg;
     }
 
-    @ResponseBody
-    @DeleteMapping("/admin/test/paper/{testOptionId}/deleteUser")
-    ResponseMsg deleteUserFromOption(@PathVariable("testOptionId") int testOptionId,@RequestBody List<Integer> userIds){
-        ResponseMsg msg = new ResponseMsg();
-        msg.setStatus(500);
-        if(optionUserService.deleteUserOptions(testOptionId,userIds)>0||userIds.size()==0) msg.setStatus(200);
-        return msg;
-    }
-    @ResponseBody
-    @PutMapping("/admin/test/paper/{testOptionId}/addQues")
-    ResponseMsg addQuesToOption(@PathVariable("testOptionId") int testOptionId,@RequestBody List<Integer> quesIds){
-        ResponseMsg msg = new ResponseMsg();
-        msg.setStatus(500);
-        if(optionQuesService.addQuesToOption(testOptionId,quesIds)>0||quesIds.size()==0) msg.setStatus(200);
-        return msg;
-    }
-    @ResponseBody
-    @DeleteMapping("/admin/test/paper/{testOptionId}/deleteQues")
-    ResponseMsg deleteQuesFromOption(@PathVariable("testOptionId") int testOptionId,@RequestBody List<Integer> quesIds ){
-        ResponseMsg msg = new ResponseMsg();
-        msg.setStatus(500);
-        if(optionQuesService.deleteQuesFromOption(testOptionId,quesIds)>0||quesIds.size()==0) msg.setStatus(200);
-        return msg;
-    }
+//    @ResponseBody
+//    @DeleteMapping("/admin/test/paper/{testOptionId}/deleteUser")
+//    ResponseMsg deleteUserFromOption(@PathVariable("testOptionId") int testOptionId,@RequestBody List<Integer> userIds){
+//        ResponseMsg msg = new ResponseMsg();
+//        msg.setStatus(500);
+//        if(optionUserService.deleteUserOptions(testOptionId,userIds)>0||userIds.size()==0) msg.setStatus(200);
+//        return msg;
+//    }
     @ResponseBody
     @PutMapping("/admin/test/paper")
     ResponseMsg addTestOption(@RequestBody Map params){
@@ -138,7 +122,7 @@ public class TestOptionController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!testOptionService.checkId(testOptionId)) return msg;
-        if(testOptionService.deleteOptionById(testOptionId)>0) msg.setStatus(200);
+        if(testOptionService.deleteOptionById(testOptionId)>0&&optionUserService.deleteUserByOptionId(testOptionId)>0) msg.setStatus(200);
         return msg;
     }
 }

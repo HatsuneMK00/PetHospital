@@ -55,5 +55,8 @@ public class OptionUserService {
         }
         return count;
     }
+    public int deleteUserByOptionId(int testOptionId){
+        return optionUserMapper.deleteByTestOptionId(testOptionId);
+    }
 
 }
