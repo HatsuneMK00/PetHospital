@@ -1,10 +1,12 @@
 package edu.sdp.project.pethospital.service;
 
 import edu.sdp.project.pethospital.entity.Cas;
+import edu.sdp.project.pethospital.entity.Question;
 import edu.sdp.project.pethospital.mapper.CaseMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,6 +39,28 @@ public class CaseService {
     public int changeCaseByModel(Cas record){
         return caseMapper.updateByModel(record);
     }
+    public int setCaseTag(int caseId,String caseTag){
+        return caseMapper.updateCaseTag(caseId,caseTag);
+    }
+    public List<Cas> getCasesByTag(String tag){
+        return caseMapper.selectCasesByTag(tag);
+    }
+    public List<Cas> getCasesBySearch(String searchParam){
+        if (searchParam.equals("")) {
+            return caseMapper.selectAllCases();
+        } else if (searchParam.startsWith("cid:")) {
+            String param = searchParam.split(":")[1];
+            String[] ids = param.split(",");
+            ArrayList<Cas> result = new ArrayList<>();
+            for (String id : ids) {
+                result.add(caseMapper.selectById(Integer.valueOf(id.trim())));
+            }
+            return result;
+        } else {
+            List<Cas> result = caseMapper.selectCasesByNameMatch(searchParam);
+            return result;
+        }
+    }
     public int changeCaseConsultId(int caseId,int caseConsultId){
         return caseMapper.updateConsultIdById(caseId,caseConsultId);
     }
@@ -58,6 +82,7 @@ public class CaseService {
         record.setCaseName(caseName);
         Cas exist = caseMapper.selectByName(caseName);
         if(exist!=null) return 0;
-        return caseMapper.insert(record);
+        caseMapper.insert(record);
+        return caseMapper.selectByName(caseName).getCaseId();
     }
 }

@@ -49,7 +49,11 @@ public class FeeController {
         fee.setFeeName(feeName);
         fee.setFeePrice(feePrice);
         fee.setFeeDescrip(feeDescrip);
-        if(feeService.addFee(fee)>0) msg.setStatus(200);
+        int result = feeService.addFee(fee);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
 

@@ -48,7 +48,11 @@ public class VaccineController {
         Vaccine vaccine = new Vaccine();
         vaccine.setVacDescrip(vacDescrip);
         vaccine.setVacName(vacName);
-        if(vaccineService.addVaccine(vaccine)>0) msg.setStatus(200);
+        int result = vaccineService.addVaccine(vaccine);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
     @ResponseBody

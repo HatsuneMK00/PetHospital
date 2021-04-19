@@ -30,7 +30,9 @@ public class HospService {
         hospRecord.setHosAnimalName(hosAnimalName);
         hospRecord.setDisease(disease);
         hospRecord.setInDate(inDate);
-        return hospRecordMapper.insert(hospRecord);
+        int result = hospRecordMapper.insert(hospRecord);
+        if(result>0) return hospRecord.getHosId();
+        return result;
     }
     public int updateHospRecord(HospRecord hospRecord){
         return hospRecordMapper.updateByModel(hospRecord);

@@ -22,7 +22,11 @@ public class CaseDiagService {
         caseDiag.setDiagDescrip(descrip);
         CaseDiag exist = caseDiagMapper.selectByDescrip(descrip);
         if(exist!=null) return 0;
-        return caseDiagMapper.insert(caseDiag);
+        caseDiagMapper.insert(caseDiag);
+        return caseDiagMapper.selectByDescrip(descrip).getCaseDiagId();
+    }
+    public String getDiagDescrip(int caseDiagId){
+        return caseDiagMapper.selectDescripById(caseDiagId);
     }
     public int changeCaseDiag(CaseDiag caseDiag){
         return caseDiagMapper.updateByModel(caseDiag);
@@ -30,27 +34,27 @@ public class CaseDiagService {
     public int deleteCaseDiag(int caseDiagId){
         return caseDiagMapper.deleteById(caseDiagId);
     }
-    public int setImageUrl(int caseDiagId, String imageUrl){
+    public String setImageUrl(int caseDiagId, String imageUrl){
         String[] temp = imageUrl.split("/");
         String realUrl = PHServerConfig.server + ":" + PHServerConfig.port + "/images/";
         log.info(PHServerConfig.port);
         realUrl = realUrl + temp[temp.length - 1];
         int result = caseDiagMapper.updateImageUrlById(caseDiagId, realUrl);
         if (result == 1)
-            return 200;
+            return realUrl;
         else
-            return 500;
+            return null;
     }
-    public int setVideoUrl(int caseDiagId,String videoUrl){
+    public String setVideoUrl(int caseDiagId,String videoUrl){
         String[] temp = videoUrl.split("/");
         String realUrl = PHServerConfig.server + ":" + PHServerConfig.port + "/videos/";
         log.info(PHServerConfig.port);
         realUrl = realUrl + temp[temp.length - 1];
         int result = caseDiagMapper.updateVideoUrlById(caseDiagId, realUrl);
         if (result == 1)
-            return 200;
+            return realUrl;
         else
-            return 500;
+            return null;
     }
     public int setDescrip(int caseDiagId,String descrip){
         return caseDiagMapper.updateDescripById(caseDiagId,descrip);

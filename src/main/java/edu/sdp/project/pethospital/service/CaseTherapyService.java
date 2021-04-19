@@ -19,6 +19,9 @@ public class CaseTherapyService {
         return caseTherapyMapper.selectById(caseTherapyId);
     }
 
+    public String getTherapyDescrip(int caseTherapyId){
+        return caseTherapyMapper.selectDescripById(caseTherapyId);
+    }
     public int deleteCaseTherapy(int caseTherapyId){
         return caseTherapyMapper.deleteById(caseTherapyId);
     }
@@ -27,32 +30,33 @@ public class CaseTherapyService {
         caseTherapy.setTherapyDescrip(descrip);
         CaseTherapy exist = caseTherapyMapper.selectByDescrip(descrip);
         if(exist!=null) return 0;
-        return caseTherapyMapper.insert(caseTherapy);
+        caseTherapyMapper.insert(caseTherapy);
+        return caseTherapyMapper.selectByDescrip(descrip).getCaseTherapyId();
     }
     public int changeCaseTherapy(CaseTherapy caseTherapy){
         return caseTherapyMapper.updateByModel(caseTherapy);
     }
-    public int setImageUrl(int caseTherapyId, String imageUrl){
+    public String setImageUrl(int caseTherapyId, String imageUrl){
         String[] temp = imageUrl.split("/");
         String realUrl = PHServerConfig.server + ":" + PHServerConfig.port + "/images/";
         log.info(PHServerConfig.port);
         realUrl = realUrl + temp[temp.length - 1];
         int result = caseTherapyMapper.updateImageUrlById(caseTherapyId, realUrl);
         if (result == 1)
-            return 200;
+            return realUrl;
         else
-            return 500;
+            return null;
     }
-    public int setVideoUrl(int caseTherapyId,String videoUrl){
+    public String setVideoUrl(int caseTherapyId,String videoUrl){
         String[] temp = videoUrl.split("/");
         String realUrl = PHServerConfig.server + ":" + PHServerConfig.port + "/videos/";
         log.info(PHServerConfig.port);
         realUrl = realUrl + temp[temp.length - 1];
         int result = caseTherapyMapper.updateVideoUrlById(caseTherapyId, realUrl);
         if (result == 1)
-            return 200;
+            return realUrl;
         else
-            return 500;
+            return null;
     }
     public int setDescrip(int caseTherapyId,String descrip){
         return caseTherapyMapper.updateDescripById(caseTherapyId,descrip);

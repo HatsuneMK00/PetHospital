@@ -7,7 +7,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Slf4j
@@ -30,8 +32,8 @@ public class CaseController {
     }
 
     /**
-     * @return 返回两个对象，一个包含所有case的列表和case总数统计
-     * 分别通过result和count拿取
+     * @return 返回3个对象，一个包含所有case的列表,case总数统计,以及相应case的所有文字描述（一个嵌套列表，分别是consult描述，diag描述和therapy描述）
+     * 分别通过result,count和descrip拿取
      */
     @ResponseBody
     @GetMapping("/admin/case")
@@ -41,8 +43,10 @@ public class CaseController {
         List<Cas> result = caseService.traverseCases();
         if(result==null) return msg;
         msg.setStatus(200);
+        List<List<String>> descrips = getDescrips(result);
         msg.getResponseMap().put("result",result);
         msg.getResponseMap().put("count",result.size());
+        msg.getResponseMap().put("descrip",descrips);
         return msg;
     }
 
@@ -96,6 +100,32 @@ public class CaseController {
         return msg;
     }
     @ResponseBody
+    @GetMapping("/admin/case/tag/{caseTag}")
+    ResponseMsg fetchCasesByTag(@PathVariable("caseTag") String caseTag){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        List<Cas> result = caseService.getCasesByTag(caseTag);
+        if(result==null) return msg;
+        msg.setStatus(200);
+        List<List<String>> descrips = getDescrips(result);
+        msg.getResponseMap().put("result",result);
+        msg.getResponseMap().put("descrips",descrips);
+        return msg;
+    }
+    @ResponseBody
+    @GetMapping("/admin/case/search")
+    ResponseMsg fetchCasesBySearch(@RequestParam("searchParam") String searchParam){
+        ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(404);
+        List<Cas> result = caseService.getCasesBySearch(searchParam);
+        if(result==null) return msg;
+        List<List<String>> descrips = getDescrips(result);
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",result);
+        msg.getResponseMap().put("descrips",descrips);
+        return msg;
+    }
+    @ResponseBody
     @GetMapping("/admin/case/{caseId}/therapy")
     ResponseMsg fetchCaseTherapy(@PathVariable("caseId") Integer caseId){
         ResponseMsg msg = new ResponseMsg();
@@ -120,58 +150,93 @@ public class CaseController {
     ResponseMsg updateCaseName(@PathVariable("caseId") Integer caseId,@RequestParam("caseName") String caseName){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        if(caseService.checkId(caseId)) return msg;
+        if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         if(caseService.setCaseName(caseId,caseName)<=0) return msg;
         msg.setStatus(200);
         return msg;
     }
+//    @ResponseBody
+//    @PostMapping("/admin/case/{caseId}/consult")
+//    ResponseMsg updateCaseConsultDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip){
+//        ResponseMsg msg = new ResponseMsg();
+//        msg.setStatus(404);
+//        if (!caseService.checkId(caseId)) return msg;
+//        int caseConsultId = caseService.getCaseConsultId(caseId);
+//        if(!caseConsultService.checkId(caseConsultId)) return msg;
+//        if(caseConsultService.setDescrip(caseConsultId,descrip)<=0) return msg;
+//        msg.setStatus(200);
+//        return msg;
+//    }
+//    @ResponseBody
+//    @PostMapping("/admin/case/{caseId}/diag")
+//    ResponseMsg updateCaseDiagDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip ){
+//        ResponseMsg msg = new ResponseMsg();
+//        msg.setStatus(404);
+//        if(!caseService.checkId(caseId)) return msg;
+//        int caseDiagId=caseService.getCaseDiagId(caseId);
+//        if(!caseDiagService.checkId(caseDiagId)) return msg;
+//        if(caseDiagService.setDescrip(caseDiagId,descrip)<=0) return msg;
+//        msg.setStatus(200);
+//        return msg;
+//    }
+//    @ResponseBody
+//    @PostMapping("/admin/case/{caseId}/therapy")
+//    ResponseMsg updateCaseTherapyDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip){
+//        ResponseMsg msg = new ResponseMsg();
+//        msg.setStatus(404);
+//        if(!caseService.checkId(caseId)) return msg;
+//        int caseTherapyId=caseService.getCaseTherapyId(caseId);
+//        if(!caseTherapyService.checkId(caseTherapyId)) return msg;
+//        if(caseTherapyService.setDescrip(caseTherapyId,descrip)<=0) return msg;
+//        msg.setStatus(200);
+//        return msg;
+//    }
+    /**
+     * 如果要修改相应部分，请分别给出consultDescrip，diagDescrip和therapyDescrip
+     */
     @ResponseBody
-    @PostMapping("/admin/case/{caseId}/consult")
-    ResponseMsg updateCaseConsultDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip){
-        ResponseMsg msg = new ResponseMsg();
-        msg.setStatus(404);
-        if (!caseService.checkId(caseId)) return msg;
-        int caseConsultId = caseService.getCaseConsultId(caseId);
-        if(!caseConsultService.checkId(caseConsultId)) return msg;
-        if(caseConsultService.setDescrip(caseConsultId,descrip)<=0) return msg;
-        msg.setStatus(200);
-        return msg;
-    }
-    @ResponseBody
-    @PostMapping("/admin/case/{caseId}/diag")
-    ResponseMsg updateCaseDiagDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip ){
+    @PostMapping("/admin/case/{caseId}/descrip")
+    ResponseMsg updateCaseDescrips(@PathVariable("caseId") int caseId,@RequestBody Map param){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
-        int caseDiagId=caseService.getCaseDiagId(caseId);
-        if(!caseDiagService.checkId(caseDiagId)) return msg;
-        if(caseDiagService.setDescrip(caseDiagId,descrip)<=0) return msg;
-        msg.setStatus(200);
-        return msg;
-    }
-    @ResponseBody
-    @PostMapping("/admin/case/{caseId}/therapy")
-    ResponseMsg updateCaseTherapyDescrip(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip){
-        ResponseMsg msg = new ResponseMsg();
-        msg.setStatus(404);
-        if(!caseService.checkId(caseId)) return msg;
-        int caseTherapyId=caseService.getCaseTherapyId(caseId);
-        if(!caseTherapyService.checkId(caseTherapyId)) return msg;
-        if(caseTherapyService.setDescrip(caseTherapyId,descrip)<=0) return msg;
-        msg.setStatus(200);
+        int consultId = caseService.getCaseConsultId(caseId);
+        int diagId = caseService.getCaseDiagId(caseId);
+        int therapyId = caseService.getCaseTherapyId(caseId);
+        int result1=1;
+        int result2=1;
+        int result3=1;
+        if(param.containsKey("consultDescrip")){
+            if(!caseConsultService.checkId(consultId)) return msg;
+            result1 = caseConsultService.setDescrip(consultId,param.get("consultDescrip").toString());
+        }
+        if(param.containsKey("diagDescrip")){
+            if(!caseDiagService.checkId(diagId)) return msg;
+            result2=caseDiagService.setDescrip(diagId, param.get("diagDescrip").toString());
+        }
+        if(param.containsKey("therapyDescrip")){
+            if(!caseTherapyService.checkId(therapyId)) return msg;
+            result3=caseTherapyService.setDescrip(therapyId,param.get("therapyDescrip").toString());
+        }
+        msg.setStatus(500);
+        if(result1>0&&result2>0&&result3>0) msg.setStatus(200);
         return msg;
     }
 
     /**
      * 新建case时只需要提供一个name就好
      * 添加图片和视频的操作应该在创建好case之后的页面进行
+     * 返回的caseId通过result拿取
      */
     @ResponseBody
     @PutMapping("/admin/case")
     ResponseMsg addCase(@RequestParam("caseName") String caseName){
         ResponseMsg msg = new ResponseMsg();
-        msg.setStatus(404);
-        if(caseService.addCase(caseName)>0) msg.setStatus(200);
+        msg.setStatus(500);
+        int result = caseService.addCase(caseName);
+        if(result>0) msg.setStatus(200);
+        msg.getResponseMap().put("result",result);
         return msg;
     }
 
@@ -184,6 +249,7 @@ public class CaseController {
     ResponseMsg addCaseConsult(@PathVariable("caseId") Integer caseId,@RequestParam("descrip") String descrip){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
+        log.info(String.valueOf(caseService.checkId(caseId)));
         if(!caseService.checkId(caseId)) return msg;
         int result = caseConsultService.addCaseConsult(descrip);
         if(result>0) {
@@ -230,6 +296,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseConsultId = caseService.getCaseConsultId(caseId);
         if(!caseConsultService.checkId(caseConsultId)) return msg;
         String storeFile = null;
@@ -239,8 +306,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseConsultService.setImageUrl(caseConsultId,storeFile);
-        msg.setStatus(result);
+        String url = caseConsultService.setImageUrl(caseConsultId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody
@@ -249,6 +318,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseConsultId = caseService.getCaseConsultId(caseId);
         if(!caseConsultService.checkId(caseConsultId)) return msg;
         String storeFile = null;
@@ -258,8 +328,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseConsultService.setVideoUrl(caseConsultId,storeFile);
-        msg.setStatus(result);
+        String url = caseConsultService.setVideoUrl(caseConsultId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody
@@ -268,6 +340,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseDiagId = caseService.getCaseDiagId(caseId);
         if(!caseDiagService.checkId(caseDiagId)) return msg;
         String storeFile = null;
@@ -277,8 +350,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseDiagService.setImageUrl(caseDiagId,storeFile);
-        msg.setStatus(result);
+        String url = caseDiagService.setImageUrl(caseDiagId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody
@@ -287,6 +362,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseDiagId = caseService.getCaseDiagId(caseId);
         if(!caseDiagService.checkId(caseDiagId)) return msg;
         String storeFile = null;
@@ -296,8 +372,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseDiagService.setVideoUrl(caseDiagId,storeFile);
-        msg.setStatus(result);
+        String url = caseDiagService.setVideoUrl(caseDiagId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody
@@ -306,6 +384,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseTherapyId = caseService.getCaseTherapyId(caseId);
         if(!caseTherapyService.checkId(caseTherapyId)) return msg;
         String storeFile = null;
@@ -315,8 +394,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseTherapyService.setImageUrl(caseTherapyId,storeFile);
-        msg.setStatus(result);
+        String url = caseTherapyService.setImageUrl(caseTherapyId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
     @ResponseBody
@@ -325,6 +406,7 @@ public class CaseController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!caseService.checkId(caseId)) return msg;
+        msg.setStatus(500);
         int caseTherapyId = caseService.getCaseTherapyId(caseId);
         if(!caseTherapyService.checkId(caseTherapyId)) return msg;
         String storeFile = null;
@@ -334,8 +416,10 @@ public class CaseController {
             log.error(e.getMessage(), e);
         }
         assert storeFile != null;
-        int result = caseTherapyService.setVideoUrl(caseTherapyId,storeFile);
-        msg.setStatus(result);
+        String url = caseTherapyService.setVideoUrl(caseTherapyId,storeFile);
+        if(url==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",url);
         return msg;
     }
 
@@ -355,6 +439,21 @@ public class CaseController {
         int result = caseService.deleteCaseById(caseId);
         if(result>0) msg.setStatus(200);
         return msg;
+    }
+
+    List<List<String>> getDescrips(List<Cas> result){
+        List<List<String>> descrips = new ArrayList<>();
+        for (Cas cas : result) {
+            String consultDescrip = caseConsultService.getConsultDescrip(cas.getCaseConsultId());
+            String diagDescrip = caseDiagService.getDiagDescrip(cas.getCaseDiagId());
+            String therapyDecrip = caseTherapyService.getTherapyDescrip(cas.getCaseTherapyId());
+            List<String> tem = new ArrayList<>();
+            tem.add(consultDescrip);
+            tem.add(diagDescrip);
+            tem.add(therapyDecrip);
+            descrips.add(tem);
+        }
+        return descrips;
     }
 
 }

@@ -28,8 +28,11 @@ public class TestOptionService {
         return exist!=null;
     }
     public int addOption(TestOption option){
-        if(checkId(option.getTestOptionId())) return 0;
-        return testOptionMapper.insert(option);
+        TestOption testOption = testOptionMapper.selectByName(option.getTestOptionName());
+        if(testOption!=null) return 0;
+        int result = testOptionMapper.insert(option);
+        if(result>0) return option.getTestOptionId();
+        return result;
     }
     public int updateTestOption(TestOption testOption){
         return testOptionMapper.updateByModel(testOption);

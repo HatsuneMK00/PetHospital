@@ -1,6 +1,7 @@
 package edu.sdp.project.pethospital.mapper;
 
 import edu.sdp.project.pethospital.entity.Cas;
+import edu.sdp.project.pethospital.entity.Question;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -12,7 +13,7 @@ public interface CaseMapper {
     int deleteById(Integer caseId);
 
     @Options(useGeneratedKeys = true,keyProperty = "caseId")
-    @Insert("insert into cas (caseName, caseConsultId,caseDiagId, caseTherapyId) values (#{caseName}, #{caseConsultId},#{caseDiagId}, #{caseTherapyId})")
+    @Insert("insert into cas (caseName, caseConsultId,caseDiagId, caseTherapyId,caseTag) values (#{caseName}, #{caseConsultId},#{caseDiagId}, #{caseTherapyId},#{caseTag})")
     int insert(Cas record);
 
     @Select("select * from cas where caseId=#{caseId}")
@@ -21,16 +22,22 @@ public interface CaseMapper {
     @Select("select * from cas where caseName=#{caseName}")
     Cas selectByName(String caseName);
 
-    @Update("update cas set caseName=#{caseName},caseConsultId=#{caseConsultId},caseDiagId=#{caseDiagId},caseTherapyId=#{caseTherapyId} where caseId=#{caseId}")
+    @Update("update cas set caseName=#{caseName},caseConsultId=#{caseConsultId},caseDiagId=#{caseDiagId},caseTherapyId=#{caseTherapyId},caseTag=#{caseTag} where caseId=#{caseId}")
     int updateByModel(Cas record);
     @Update("update cas set caseName=#{caseName} where caseId=#{caseId}")
     int updateCaseNameById(int caseId,String caseName);
+    @Update("update cas set caseTag=#{caseTag} where caseId=#{caseId}")
+    int updateCaseTag(int caseId,String caseTag);
 
     @Select("select * from cas")
     List<Cas> selectAllCases();
 
     @Select("select caseConsultId from cas where caseId = #{caseId}")
     int selectCaseConsultIdById(int caseId);
+    @Select("select * from cas where caseTag=#{caseTag}")
+    List<Cas> selectCasesByTag(String caseTag);
+    @Select("select * from cas where caseName like CONCAT('%',#{matchParam},'%')")
+    List<Cas> selectCasesByNameMatch(String matchParam);
 
     @Select("select caseDiagId from cas where caseId=#{caseId}")
     int selectCaseDiagIdById(int caseId);
@@ -42,7 +49,7 @@ public interface CaseMapper {
     int updateConsultIdById(int caseId,int caseConsultId);
 
     @Update("update cas set caseDiagId=#{caseDiagId} where caseId=#{caseId}")
-    int updateDiagIdById(int caseId,int caseConsultId);
+    int updateDiagIdById(int caseId,int caseDiagId);
 
     @Update("update cas set caseTherapyId=#{caseTherapyId} where caseId=#{caseId}")
     int updateTherapyIdById(int caseId,int caseTherapyId);

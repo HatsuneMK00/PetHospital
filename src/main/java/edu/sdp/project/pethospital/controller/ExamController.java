@@ -41,6 +41,10 @@ public class ExamController {
         msg.getResponseMap().put("result",exam);
         return msg;
     }
+
+    /**
+     * 通过result拿取examId
+     */
     @ResponseBody
     @PutMapping("/admin/structure/examination")
     ResponseMsg addExam(@RequestParam("examName") String examName,@RequestParam("examDescrip") String examDescrip){
@@ -49,7 +53,11 @@ public class ExamController {
         Exam exam = new Exam();
         exam.setExamDescrip(examDescrip);
         exam.setExamName(examName);
-        if(examService.addExam(exam)>0) msg.setStatus(200);
+        int result = examService.addExam(exam);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
     @ResponseBody

@@ -63,13 +63,17 @@ public class UserController {
         return msg;
     }
     @ResponseBody
-    @GetMapping("/login")
-    ResponseMsg logIn(@RequestParam("userName") String userName,@RequestParam("password") String password){
+    @PostMapping("/login")
+    ResponseMsg logIn(@RequestBody Map param){
         ResponseMsg msg = new ResponseMsg();
+        msg.setStatus(400);
+        if(!(param.containsKey("userName")&&param.containsKey("password"))) return msg;
         msg.setStatus(404);
+        String userName = param.get("userName").toString();
+        String password = param.get("password").toString();
         User user = userService.getUserByAccount(userName);
         if(user==null) return msg;
-        msg.setStatus(400);
+        msg.setStatus(500);
         if(!password.equals(user.getPassword())) return msg;
         msg.setStatus(200);
         msg.getResponseMap().put("result",user.getuserId());
@@ -88,7 +92,10 @@ public class UserController {
         String password = map.get("password").toString();
         String role = map.get("role").toString();
         int result = userService.addUser(account,name,password,role);
-        if(result>0) msg.setStatus(200);
+        if(result>0) {
+            msg.setStatus(200);
+            msg.getResponseMap().put("result",result);
+        }
         return msg;
     }
 

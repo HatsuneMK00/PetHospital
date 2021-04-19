@@ -4,6 +4,8 @@ import edu.sdp.project.pethospital.entity.CaseConsult;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface CaseConsultMapper {
     @Delete("delete from caseconsult where caseConsultId=#{caseConsultId}")
@@ -21,6 +23,9 @@ public interface CaseConsultMapper {
     String selectVideoUrlById(int caseConsultId);
     @Select("select * from caseconsult where consultDescrip=#{consultDescrip}")
     CaseConsult selectByDescrip(String consultDescrip);
+    @Select("select consultDescrip from caseconsult where caseConsultId=#{caseConsultId}")
+    String selectDescripById(int caseConsultId);
+
 
     @Update("update caseconsult set consultDescrip = #{consultDescrip},consultImageUrl=#{consultImageUrl},consultVideoUrl=#{consultVideoUrl} where caseConsultId=#{caseConsultId}")
     int updateByModel(CaseConsult record);
