@@ -37,6 +37,8 @@ public class SectionController {
 
     @ResponseBody
     @GetMapping("/admin/structure/section/{sectionId}")
+    @RequestMapping(value = { "/admin/structure/section/{sectionId}" }, method = RequestMethod.PUT)
+
     ResponseMsg fetchSection(@PathVariable("sectionId") int sectionId){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);

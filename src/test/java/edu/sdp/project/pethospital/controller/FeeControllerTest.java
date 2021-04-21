@@ -171,7 +171,7 @@ public class FeeControllerTest {
     }
 
     @Test
-    void null_path_when_update_medicine() throws Exception {
+    void null_path_when_update_fee() throws Exception {
         int feeId = 101;
         Map param = new HashMap();
         String feeName = "fee1";
