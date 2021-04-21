@@ -34,7 +34,7 @@ public class TestOption {
 
     private Integer paperId;
 
-    public TestOption(Integer testOptionId, String testOptionName, Integer goal, Integer selectNum, Integer judgeNum, Integer qaNum, Integer totalScore, String selectTag, String judgeTag, String qaTag, Integer duration, Timestamp startDate, int paperId) {
+    public TestOption(Integer testOptionId, String testOptionName, Integer goal, Integer selectNum, Integer judgeNum, Integer qaNum, Integer totalScore, String selectTag, String judgeTag, String qaTag, Integer duration, Timestamp startDate, Integer paperId) {
         this.testOptionId = testOptionId;
         this.testOptionName = testOptionName;
         this.goal = goal;
@@ -150,11 +150,11 @@ public class TestOption {
         this.duration = duration;
     }
 
-    public int getPaperId() {
+    public Integer getPaperId() {
         return paperId;
     }
 
-    public void setPaperId(int paperId) {
+    public void setPaperId(Integer paperId) {
         this.paperId = paperId;
     }
 
