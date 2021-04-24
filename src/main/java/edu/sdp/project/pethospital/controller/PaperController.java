@@ -1,6 +1,7 @@
 package edu.sdp.project.pethospital.controller;
 
 import edu.sdp.project.pethospital.entity.Paper;
+import edu.sdp.project.pethospital.entity.Question;
 import edu.sdp.project.pethospital.entity.ResponseMsg;
 import edu.sdp.project.pethospital.service.PaperQuesService;
 import edu.sdp.project.pethospital.service.PaperService;
@@ -35,7 +36,11 @@ public class PaperController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         Paper paper = paperService.getPaper(paperId);
-        if(paper!=null) msg.setStatus(200);
+        if(paper==null) return msg;
+        msg.setStatus(200);
+        msg.getResponseMap().put("result",paper);
+        List<Question> ques = paperQuesService.getQuesByPaperId(paperId);
+        msg.getResponseMap().put("questions",ques);
         return msg;
     }
     @ResponseBody
@@ -69,7 +74,7 @@ public class PaperController {
     }
     @ResponseBody
     @PutMapping("/admin/test/problemSet/{paperId}/addQues")
-    ResponseMsg addQuesToOption(@PathVariable("paperId") int paperId,@RequestBody List<Integer> quesIds){
+    ResponseMsg addQuesToPaper(@PathVariable("paperId") int paperId,@RequestBody List<Integer> quesIds){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(500);
         int result1 = paperQuesService.deleteQuesByPaperId(paperId);
@@ -80,7 +85,7 @@ public class PaperController {
     }
     @ResponseBody
     @DeleteMapping("/admin/test/problemSet/{paperId}/deleteQues")
-    ResponseMsg deleteQuesFromOption(@PathVariable("paperId") int paperId,@RequestBody List<Integer> quesIds ){
+    ResponseMsg deleteQuesFromPaper(@PathVariable("paperId") int paperId,@RequestBody List<Integer> quesIds ){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(500);
         if(paperQuesService.deleteQuesFromPaper(paperId,quesIds)>0||quesIds.size()==0) msg.setStatus(200);
