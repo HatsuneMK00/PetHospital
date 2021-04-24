@@ -22,6 +22,6 @@ public interface PaperMapper {
     @Update("update paper set paperName=#{paperName} where paperId=#{paperId}")
     int updatePaperName(int paperId,String paperName);
 
-    @Delete("delete from paper wher paperId=#{paperId}")
+    @Delete("delete from paper where paperId=#{paperId}")
     int deleteById(int paperId);
 }

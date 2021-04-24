@@ -12,6 +12,7 @@ import java.util.List;
 
 @RestController
 @Slf4j
+@CrossOrigin(origins="*")
 public class PaperController {
     private final PaperService paperService;
     private final PaperQuesService paperQuesService;
@@ -69,7 +70,7 @@ public class PaperController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!paperService.checkId(paperId)) return msg;
-        if(paperQuesService.deleteQuesByPaperId(paperId)>0&&paperService.deletePaper(paperId)>0) msg.setStatus(200);
+        if(paperQuesService.deleteQuesByPaperId(paperId)>=0&&paperService.deletePaper(paperId)>=0) msg.setStatus(200);
         return msg;
     }
     @ResponseBody
