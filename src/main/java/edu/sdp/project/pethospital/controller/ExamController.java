@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class ExamController {
     private final ExamService examService;
 
@@ -22,23 +22,27 @@ public class ExamController {
 
     @ResponseBody
     @GetMapping("/admin/structure/examination")
-    ResponseMsg fetchAllExam(){
+    ResponseMsg fetchAllExam() {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         List<Exam> result = examService.getAllExams();
-        if(result!=null) msg.setStatus(200);
-        msg.getResponseMap().put("result",result);
+        if (result != null)
+            msg.setStatus(200);
+        msg.getResponseMap().put("result", result);
         return msg;
     }
 
     @ResponseBody
     @GetMapping("/admin/structure/examination/{examId}")
-    ResponseMsg fetchExam(@PathVariable("examId") int examId){
+    @RequestMapping(value = { "/admin/structure/examination/{examId}" }, method = RequestMethod.PUT)
+
+    ResponseMsg fetchExam(@PathVariable("examId") int examId) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         Exam exam = examService.getExam(examId);
-        if(exam!=null) msg.setStatus(200);
-        msg.getResponseMap().put("result",exam);
+        if (exam != null)
+            msg.setStatus(200);
+        msg.getResponseMap().put("result", exam);
         return msg;
     }
 
@@ -47,37 +51,43 @@ public class ExamController {
      */
     @ResponseBody
     @PutMapping("/admin/structure/examination")
-    ResponseMsg addExam(@RequestParam("examName") String examName,@RequestParam("examDescrip") String examDescrip){
-        ResponseMsg msg =new ResponseMsg();
+    ResponseMsg addExam(@RequestParam("examName") String examName, @RequestParam("examDescrip") String examDescrip) {
+        ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         Exam exam = new Exam();
         exam.setExamDescrip(examDescrip);
         exam.setExamName(examName);
         int result = examService.addExam(exam);
-        if(result>0) {
+        if (result > 0) {
             msg.setStatus(200);
-            msg.getResponseMap().put("result",result);
+            msg.getResponseMap().put("result", result);
         }
         return msg;
     }
+
     @ResponseBody
     @PostMapping("/admin/structure/examination/{examId}")
-    ResponseMsg updateExam(@PathVariable("examId") int examId, @RequestBody Map params){
+    ResponseMsg updateExam(@PathVariable("examId") int examId, @RequestBody Map params) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         Exam exam = examService.getExam(examId);
-        if(exam==null) return msg;
+        if (exam == null)
+            return msg;
         exam.updateExam(params);
-        if(examService.changeExam(exam)>0) msg.setStatus(200);
+        if (examService.changeExam(exam) > 0)
+            msg.setStatus(200);
         return msg;
     }
+
     @ResponseBody
     @DeleteMapping("/admin/structure/examination")
-    ResponseMsg deleteExam(@RequestParam("examId") int examId){
+    ResponseMsg deleteExam(@RequestParam("examId") int examId) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        if(!examService.checkId(examId)) return msg;
-        if(examService.deleteExam(examId)>0) msg.setStatus(200);
+        if (!examService.checkId(examId))
+            return msg;
+        if (examService.deleteExam(examId) > 0)
+            msg.setStatus(200);
         return msg;
     }
 

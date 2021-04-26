@@ -94,7 +94,7 @@ public class SectionControllerTest {
     @Test
     public void happy_path_when_fetch_section() throws Exception {
         int sectionId = 101;
-        Section section = new Section(100, "Sec1", "rec1", "doc1", "assis1", "url1");
+        Section section = new Section(101, "Sec1", "rec1", "doc1", "assis1", "url1");
         when(sectionService.getSection(sectionId)).thenReturn(section);
         mockMvc.perform(put("/admin/structure/section/{sectionId}", 101)).andExpect(status().isOk());
         verify(sectionService).getSection(sectionId);

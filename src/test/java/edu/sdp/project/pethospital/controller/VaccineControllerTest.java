@@ -130,4 +130,41 @@ public class VaccineControllerTest {
         verify(vaccineService).checkId(vacId);
     }
 
+    @Test
+    void happy_path_when_update_vaccine() throws Exception {
+        int vacId = 101;
+        Map param = new HashMap();
+        String vacName = "vacName1";
+        String vacDescrip = "vacDescrip1";
+        param.put("vacName", vacName);
+        param.put("vacDescrip", vacDescrip);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer().withDefaultPrettyPrinter();
+        String json = objectWriter.writeValueAsString(param);
+
+        Vaccine vaccine = new Vaccine(101, "vaccine1", "descriptiontest1");
+        when(vaccineService.getVaccine(vacId)).thenReturn(vaccine);
+        mockMvc.perform(post("/admin/structure/vaccine/101").content(json).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    void null_path_when_update_medicine() throws Exception {
+        int vacId = 101;
+        Map param = new HashMap();
+        String vacName = "vacName1";
+        String vacDescrip = "vacDescrip1";
+        param.put("vacName", vacName);
+        param.put("vacDescrip", vacDescrip);
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectWriter objectWriter = objectMapper.writer().withDefaultPrettyPrinter();
+        String json = objectWriter.writeValueAsString(param);
+
+        Vaccine vaccine = new Vaccine(101, "vaccine1", "descriptiontest1");
+        when(vaccineService.getVaccine(vacId)).thenReturn(null);
+        mockMvc.perform(post("/admin/structure/vaccine/101").content(json).contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.status").value(404));
+
+    }
 }

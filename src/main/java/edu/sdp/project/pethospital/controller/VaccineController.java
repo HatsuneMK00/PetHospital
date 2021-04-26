@@ -62,7 +62,7 @@ public class VaccineController {
 
     @ResponseBody
     @PostMapping("/admin/structure/vaccine/{vacId}")
-    @RequestMapping(value = { "/admin/structure/vaccine/{vacId}" }, method = RequestMethod.PUT)
+    // @RequestMapping(value = { "/admin/structure/vaccine/{vacId}" }, method = RequestMethod.PUT)
     ResponseMsg updateVaccine(@PathVariable("vacId") int vacId, @RequestBody Map params) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);

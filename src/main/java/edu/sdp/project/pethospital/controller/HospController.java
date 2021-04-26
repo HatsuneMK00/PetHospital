@@ -12,7 +12,7 @@ import java.util.Map;
 
 @RestController
 @Slf4j
-@CrossOrigin(origins="*")
+@CrossOrigin(origins = "*")
 public class HospController {
     private final HospService hospService;
 
@@ -22,57 +22,66 @@ public class HospController {
 
     @ResponseBody
     @GetMapping("/admin/structure/hospitalize/{hosId}")
-    ResponseMsg fetchHospRecord(@PathVariable("hosId") int hosId){
+    @RequestMapping(value = { "/admin/structure/hospitalize/{hosId}" }, method = RequestMethod.PUT)
+    ResponseMsg fetchHospRecord(@PathVariable("hosId") int hosId) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         HospRecord hospRecord = hospService.getHospRecord(hosId);
-        if(hospRecord!=null) msg.setStatus(200);
-        msg.getResponseMap().put("result",hospRecord);
+        if (hospRecord != null)
+            msg.setStatus(200);
+        msg.getResponseMap().put("result", hospRecord);
         return msg;
     }
+
     @ResponseBody
     @GetMapping("/admin/structure/hospitalize")
-    ResponseMsg fetchAllHospRecords(){
+    ResponseMsg fetchAllHospRecords() {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         List<HospRecord> result = hospService.getAllHospRecord();
-        if(result!=null) msg.setStatus(200);
-        msg.getResponseMap().put("result",result);
+        if (result != null)
+            msg.setStatus(200);
+        msg.getResponseMap().put("result", result);
         return msg;
     }
 
     @ResponseBody
     @PutMapping("/admin/structure/hospitalize")
-    ResponseMsg addHospRecord(@RequestParam("hosAnimalName") String hosAnimalName, @RequestParam("disease") String disease, @RequestParam("inDate")Timestamp inDate){
+    ResponseMsg addHospRecord(@RequestParam("hosAnimalName") String hosAnimalName,
+            @RequestParam("disease") String disease, @RequestParam("inDate") Timestamp inDate) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        int result =hospService.addHospRecord(hosAnimalName,disease,inDate);
-        if(result>0) {
+        int result = hospService.addHospRecord(hosAnimalName, disease, inDate);
+        if (result > 0) {
             msg.setStatus(200);
-            msg.getResponseMap().put("result",result);
+            msg.getResponseMap().put("result", result);
         }
         return msg;
     }
 
     @ResponseBody
     @PostMapping("/admin/structure/hospitalize/{hosId}")
-    ResponseMsg updateHospRecord(@PathVariable("hosId") int hosId, @RequestBody Map param){
+    ResponseMsg updateHospRecord(@PathVariable("hosId") int hosId, @RequestBody Map param) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         HospRecord hospRecord = hospService.getHospRecord(hosId);
-        if(hospRecord==null) return msg;
+        if (hospRecord == null)
+            return msg;
         hospRecord.updateHospRecord(param);
-        if(hospService.updateHospRecord(hospRecord)>0) msg.setStatus(200);
+        if (hospService.updateHospRecord(hospRecord) > 0)
+            msg.setStatus(200);
         return msg;
     }
 
     @ResponseBody
     @DeleteMapping("/admin/structure/hospitalize")
-    ResponseMsg deleteHospRecord(@RequestParam("hosId") int hosId){
+    ResponseMsg deleteHospRecord(@RequestParam("hosId") int hosId) {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
-        if(!hospService.checkId(hosId)) return msg;
-        if(hospService.deleteHospRecord(hosId)>0) msg.setStatus(200);
+        if (!hospService.checkId(hosId))
+            return msg;
+        if (hospService.deleteHospRecord(hosId) > 0)
+            msg.setStatus(200);
         return msg;
     }
 }
