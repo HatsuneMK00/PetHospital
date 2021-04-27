@@ -122,7 +122,7 @@ public class TestOptionController {
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
         if(!testOptionService.checkId(testOptionId)) return msg;
-        if(testOptionService.deleteOptionById(testOptionId)>0&&optionUserService.deleteUserByOptionId(testOptionId)>0) msg.setStatus(200);
+        if(testOptionService.deleteOptionById(testOptionId)>=0&&optionUserService.deleteUserByOptionId(testOptionId)>=0) msg.setStatus(200);
         return msg;
     }
 }
