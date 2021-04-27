@@ -81,7 +81,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @PutMapping("/admin/user/newUser")
+    @PutMapping(value = {"/admin/user/newUser","/sign-up"})
     ResponseMsg addUser(@RequestBody Map map){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(404);
