@@ -91,11 +91,10 @@ public class TestOptionController {
     ResponseMsg addTestOption(@RequestBody Map params){
         ResponseMsg msg = new ResponseMsg();
         msg.setStatus(400);
-        log.info(params.get("testOptionName").toString());
         if(!params.containsKey("testOptionName")) return null;
         msg.setStatus(404);
-        log.info(params.get("testOptionName").toString());
         TestOption testOption = new TestOption();
+        if(!params.containsKey("totalScore")) testOption.setTotalScore(100);
         testOption.updateTestOption(params);
         int result = testOptionService.addOption(testOption);
         if(result>0) {
