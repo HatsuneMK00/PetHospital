@@ -4,7 +4,7 @@ import edu.sdp.project.pethospital.entity.Question;
 import edu.sdp.project.pethospital.entity.ResponseMsg;
 import edu.sdp.project.pethospital.entity.Test;
 import edu.sdp.project.pethospital.entity.TestOption;
-import edu.sdp.project.pethospital.service.OptionQuesService;
+import edu.sdp.project.pethospital.service.PaperQuesService;
 import edu.sdp.project.pethospital.service.OptionUserService;
 import edu.sdp.project.pethospital.service.TestOptionService;
 import edu.sdp.project.pethospital.service.TestService;
@@ -20,13 +20,13 @@ public class TestController {
     private final TestService testService;
     private final OptionUserService optionUserService;
     private final TestOptionService testOptionService;
-    private final OptionQuesService optionQuesService;
+    private final PaperQuesService paperQuesService;
 
-    public TestController(TestService testService, OptionUserService optionUserService, TestOptionService testOptionService, OptionQuesService optionQuesService) {
+    public TestController(TestService testService, OptionUserService optionUserService, TestOptionService testOptionService, PaperQuesService paperQuesService) {
         this.testService = testService;
         this.optionUserService = optionUserService;
         this.testOptionService = testOptionService;
-        this.optionQuesService = optionQuesService;
+        this.paperQuesService = paperQuesService;
     }
 
     @ResponseBody
@@ -114,7 +114,7 @@ public class TestController {
         msg.setStatus(500);
         if(!testService.checkDate(testOptionId)) return msg;
         if(testOption.getSelectNum()==0&&testOption.getJudgeNum()==0&&testOption.getQaNum()==0){
-            List<Question> result = optionQuesService.getQuesByOptionId(testOptionId);
+            List<Question> result = paperQuesService.getQuesByPaperId(testOption.getPaperId());
             int testId=testService.addTest(userId,testOptionId);
             if(result!=null&&testId>0) msg.setStatus(200);
             msg.getResponseMap().put("result",result);
@@ -154,6 +154,7 @@ public class TestController {
         int result = testService.changeTest(test);
         if(result<=0) return msg;
         msg.setStatus(200);
+        msg.getResponseMap().put("result",score);
         return msg;
     }
 

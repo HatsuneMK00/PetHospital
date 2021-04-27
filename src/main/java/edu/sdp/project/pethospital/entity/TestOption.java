@@ -32,7 +32,9 @@ public class TestOption {
 
     private Timestamp startDate;
 
-    public TestOption(Integer testOptionId, String testOptionName, Integer goal, Integer selectNum, Integer judgeNum, Integer qaNum, Integer totalScore, String selectTag, String judgeTag, String qaTag, Integer duration, Timestamp startDate) {
+    private Integer paperId;
+
+    public TestOption(Integer testOptionId, String testOptionName, Integer goal, Integer selectNum, Integer judgeNum, Integer qaNum, Integer totalScore, String selectTag, String judgeTag, String qaTag, Integer duration, Timestamp startDate, Integer paperId) {
         this.testOptionId = testOptionId;
         this.testOptionName = testOptionName;
         this.goal = goal;
@@ -45,6 +47,7 @@ public class TestOption {
         this.qaTag = qaTag;
         this.duration = duration;
         this.startDate = startDate;
+        this.paperId = paperId;
     }
 
     public TestOption() {
@@ -142,9 +145,19 @@ public class TestOption {
         return duration;
     }
 
+
     public void setDuration(Integer duration) {
         this.duration = duration;
     }
+
+    public Integer getPaperId() {
+        return paperId;
+    }
+
+    public void setPaperId(Integer paperId) {
+        this.paperId = paperId;
+    }
+
     public void updateTestOption(Map params) {
         if (params.containsKey("testOptionId"))
             this.testOptionId= Integer.valueOf(params.get("testOptionId").toString());
@@ -178,6 +191,8 @@ public class TestOption {
             this.qaTag=params.get("qaTag").toString();
         if(params.containsKey("duration"))
             this.duration=Integer.valueOf(params.get("duration").toString());
+        if(params.containsKey("paperId"))
+            this.paperId = Integer.valueOf(params.get("paperId").toString());
     }
 
 }

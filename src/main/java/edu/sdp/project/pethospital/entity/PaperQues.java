@@ -1,15 +1,15 @@
 package edu.sdp.project.pethospital.entity;
 
-public class OptionQues {
+public class PaperQues {
     private int testOptionId;
     private int quesId;
 
-    public OptionQues(int testOptionId, int quesId) {
+    public PaperQues(int testOptionId, int quesId) {
         this.testOptionId = testOptionId;
         this.quesId = quesId;
     }
 
-    public OptionQues() {
+    public PaperQues() {
     }
 
     public int getTestOptionId() {

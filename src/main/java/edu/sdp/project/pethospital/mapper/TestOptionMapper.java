@@ -12,8 +12,8 @@ public interface TestOptionMapper {
     int deleteById(Integer testOptionId);
 
     @Options(useGeneratedKeys = true,keyProperty = "testOptionId")
-    @Insert("insert into testoption (testOptionName,goal,startDate,selectNum,judgeNum,qaNum,totalScore,selectTag,judgeTag,qaTag,duration) "+
-    "values(#{testOptionName},#{goal},#{startDate},#{selectNum},#{judgeNum},#{qaNum},#{totalScore},#{selectTag},#{judgeTag},#{qaTag},#{duration})")
+    @Insert("insert into testoption (testOptionName,goal,startDate,selectNum,judgeNum,qaNum,totalScore,selectTag,judgeTag,qaTag,duration,paperId) "+
+    "values(#{testOptionName},#{goal},#{startDate},#{selectNum},#{judgeNum},#{qaNum},#{totalScore},#{selectTag},#{judgeTag},#{qaTag},#{duration},#{paperId})")
     int insert(TestOption testOption);
 
     @Select("select * from testoption")
@@ -25,6 +25,6 @@ public interface TestOptionMapper {
     @Select("select * from testoption where testOptionName=#{testOptionName}")
     TestOption selectByName(String testOptionName);
 
-    @Update("update testoption set testOptionName=#{testOptionName},goal=#{goal},startDate=#{startDate},selectNum=#{selectNum},judgeNum=#{judgeNum},qaNum=#{qaNum},totalScore=#{totalScore},selectTag=#{selectTag},judgeTag=#{judgeTag},qaTag=#{qaTag},duration=#{duration} where testOptionId=#{testOptionId}")
+    @Update("update testoption set testOptionName=#{testOptionName},goal=#{goal},startDate=#{startDate},selectNum=#{selectNum},judgeNum=#{judgeNum},qaNum=#{qaNum},totalScore=#{totalScore},selectTag=#{selectTag},judgeTag=#{judgeTag},qaTag=#{qaTag},duration=#{duration},paperId=#{paperId} where testOptionId=#{testOptionId}")
     int updateByModel(TestOption testOption);
 }

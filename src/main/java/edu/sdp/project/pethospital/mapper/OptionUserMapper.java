@@ -31,4 +31,6 @@ public interface OptionUserMapper {
 
     @Delete("delete from optionuser where testOptionId=#{testOptionId} and userId=#{userId}")
     int delete(int testOptionId,int userId);
+    @Delete("delete from optionuser where testOptionId=#{testOptionId}")
+    int deleteByTestOptionId(int testOptionId);
 }
